@@ -32,7 +32,11 @@
     "cli:add": "node cli/src/index.js add",
     "cli:list": "node cli/src/index.js list",
     "cli:init": "node cli/src/index.js init",
-    "tokens:extract": "node scripts/token-extractor.js"
+    "tokens:extract": "node scripts/token-extractor.js",
+    "build": "vite build",
+    "build:js": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.0.0",
@@ -46,6 +50,8 @@
     "sharp": "^0.33.5",
     "storybook": "^8.6.18",
     "stylelint": "^15.0.0",
-    "stylelint-config-standard": "^30.0.0"
+    "stylelint-config-standard": "^30.0.0",
+    "vite": "^5.4.0",
+    "terser": "^5.31.0"
   }
 }
