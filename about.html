@@ -38,6 +38,10 @@
   />
 
   <!-- CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About ? UIverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="home.css" />
   <link rel="stylesheet" href="about.css" />
@@ -313,6 +317,58 @@
         <div class="stat-card">
           <h3>25+</h3>
           <p>Modern Layouts</p>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon"><i class="fa-solid fa-cube"></i></span>
+      <span class="brand-text">UIverse</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="about.html" class="active"><i class="fa-regular fa-user"></i><span>About</span></a>
+      <a href="button.html"><i class="fa-solid fa-hand-pointer"></i><span>Buttons</span></a>
+      <a href="navbar.html"><i class="fa-solid fa-bars"></i><span>Navbar</span></a>
+      <a href="cards.html"><i class="fa-solid fa-table-cells-large"></i><span>Cards</span></a>
+      <a href="inputs.html"><i class="fa-solid fa-keyboard"></i><span>Inputs</span></a>
+      <a href="forms.html"><i class="fa-brands fa-wpforms"></i><span>Forms</span></a>
+      <a href="badges.html"><i class="fa-solid fa-award"></i><span>Badges</span></a>
+      <a href="contact.html"><i class="fa-regular fa-envelope"></i><span>Contact</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+  </aside>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <header class="navbar" id="navbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    <div class="logo">UIverse</div>
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search components..." />
+    </div>
+    <div class="nav-actions">
+      <button class="outline-btn"><i class="fa-solid fa-plus"></i> Add Component</button>
+      <a href="MyCollection.html"><button class="primary-btn"><i class="fa-solid fa-bookmark"></i> My Collection</button></a>
+    </div>
+  </header>
+
+  <main class="main-home">
+    <section class="hero-section">
+      <div class="hero-content">
+        <span class="hero-badge">About UIverse</span>
+        <h1>Design systems should feel <span>alive.</span></h1>
+        <p>
+          UIverse is a growing library of reusable interface components built to help developers explore ideas faster, learn by example, and ship cleaner frontends with plain HTML, CSS, and JavaScript.
+        </p>
+        <div class="hero-actions">
+          <a href="cards.html"><button class="primary-btn">Explore Components</button></a>
+          <a href="contact.html"><button class="outline-btn">Contact Us</button></a>
         </div>
 
         <div class="stat-card">
@@ -323,6 +379,17 @@
         <div class="stat-card">
           <h3>24/7</h3>
           <p>Community Support</p>
+      <div class="preview-card">
+        <div class="preview-top"><span></span><span></span><span></span></div>
+        <div class="preview-body">
+          <div class="preview-avatar"></div>
+          <h3>UIverse</h3>
+          <p>Reusable UI, built for curious makers.</p>
+          <div class="preview-stats">
+            <div><strong>120+</strong><span>Components</span></div>
+            <div><strong>100%</strong><span>Free</span></div>
+            <div><strong>?</strong><span>Ideas</span></div>
+          </div>
         </div>
 
       </div>
@@ -355,6 +422,32 @@
 
         <div class="feature-icon purple">
           <i class="fa-solid fa-pen-to-square"></i>
+    </section>
+
+    <section class="about-grid">
+      <article class="about-card">
+        <div class="card-icon orange"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Our Mission</h3>
+        <p>Make modern UI easier to study, remix, and build?without hiding the craft behind heavy tooling.</p>
+      </article>
+      <article class="about-card">
+        <div class="card-icon purple"><i class="fa-solid fa-code"></i></div>
+        <h3>How We Build</h3>
+        <p>Clean structure, expressive visuals, and components that remain understandable when you open the source.</p>
+      </article>
+      <article class="about-card">
+        <div class="card-icon blue"><i class="fa-solid fa-people-group"></i></div>
+        <h3>Who It?s For</h3>
+        <p>Students, designers, and developers who want beautiful examples they can actually learn from.</p>
+      </article>
+    </section>
+
+    <section class="story-section">
+      <div class="story-left">
+        <div class="story-box">
+          <span class="section-tag">Why</span>
+          <h2>Because good interfaces teach.</h2>
+          <p>Every polished component is a small lesson in hierarchy, spacing, color, and motion. UIverse collects those lessons in one place.</p>
         </div>
 
         <h3>Forms</h3>
@@ -373,6 +466,11 @@
 
         <div class="feature-icon green">
           <i class="fa-solid fa-trophy"></i>
+      <div class="story-right">
+        <div class="story-box">
+          <span class="section-tag">What?s next</span>
+          <h2>A richer component universe.</h2>
+          <p>More patterns, more examples, and a stronger bridge between inspiration and implementation.</p>
         </div>
 
         <h3>Badges</h3>
@@ -585,5 +683,31 @@
 
   </script>
 
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col brand">
+        <h2 class="footer-logo">UIverse</h2>
+        <p>Build modern, reusable UI components with clean HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="footer-col"><h3>Explore</h3><ul><li><a href="button.html">Buttons</a></li><li><a href="navbar.html">Navbars</a></li><li><a href="cards.html">Cards</a></li></ul></div>
+      <div class="footer-col"><h3>Resources</h3><ul><li><a href="#">Documentation</a></li><li><a href="#">Community</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('sidebarBackdrop');
+    document.getElementById('menuToggle')?.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('visible');
+    });
+    backdrop?.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('visible');
+    });
+  </script>
 </body>
 </html>

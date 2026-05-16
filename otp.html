@@ -2,42 +2,20 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Sections — UIverse</title>
+  <title>OTP Components - UIverse</title>
 
   <!-- Fonts -->
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <!-- Icons -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  >
-
-  <!-- CSS -->
-
-  <link
-    rel="stylesheet"
-    href="section.css"
-  >
-
+  <link rel="stylesheet" href="otp.css">
+  
 </head>
 
 <body>
@@ -234,282 +212,192 @@
 
 <!-- ================= SIDEBAR BACKDROP ================= -->
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
-<!-- =====================================================
-NAVBAR
-===================================================== -->
+<!-- MAIN -->
+<div class="main-content">
 
-<header class="navbar">
+  <!-- TOPBAR -->
+  <header class="topbar">
 
-  <div class="search-bar">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search components...">
+    </div>
 
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="topbar-actions">
 
-    <input
-      type="text"
-      placeholder="Search sections..."
-      id="searchInput"
-    >
+      <button class="add-btn">
+        <i class="fa-solid fa-plus"></i>
+        Add Component
+      </button>
 
-  </div>
+      <button class="collection-btn">
+        <i class="fa-solid fa-bookmark"></i>
+        My Collection
+      </button>
 
-  <div class="nav-actions">
+      <button class="theme-btn">
+        <i class="fa-solid fa-moon"></i>
+      </button>
 
-    <button class="outline-btn">
-      Documentation
-    </button>
+    </div>
 
-    <button class="primary-btn">
-      Explore UI
-    </button>
-
-  </div>
-
-</header>
-
-<!-- =====================================================
-MAIN
-===================================================== -->
-
-<main class="main-home">
+  </header>
 
   <!-- HERO -->
+  <section class="hero">
 
-  <section class="hero-section">
+    <div class="hero-left">
 
-    <div class="hero-badge">
-      ✦ Premium Website Layouts
-    </div>
-
-    <h1>
-      Modern <span>Website Sections</span>
-    </h1>
-
-    <p>
-
-      Discover premium reusable website
-      sections crafted for modern interfaces.
-      Hero blocks, pricing layouts, stats,
-      testimonials and more.
-
-    </p>
-
-  </section>
-
-  <!-- FILTER -->
-
-  <section class="filter-bar">
-
-    <button class="filter-btn active">
-      All
-    </button>
-
-    <button class="filter-btn">
-      Hero
-    </button>
-
-    <button class="filter-btn">
-      Pricing
-    </button>
-
-    <button class="filter-btn">
-      Stats
-    </button>
-
-    <button class="filter-btn">
-      Features
-    </button>
-
-  </section>
-
-  <!-- GRID -->
-
-  <section class="sections-grid">
-
-    <!-- CARD -->
-
-    <div class="section-card">
-
-      <div class="card-icon orange">
-        🚀
+      <div class="breadcrumb">
+        Home > OTP Inputs
       </div>
 
-      <span class="card-label">
-        HERO
-      </span>
-
-      <h2>
-        Hero Sections
-      </h2>
+      <h1>OTP Input Components</h1>
 
       <p>
-
-        Premium landing page hero
-        layouts with modern typography,
-        gradients and CTA buttons.
-
+        Modern OTP verification components with responsive layouts,
+        clean UI, and smooth focus effects.
       </p>
 
-      <button>
-        View Section
-      </button>
+      <div class="hero-tags">
+
+        <span>
+          <i class="fa-solid fa-layer-group"></i>
+          6 Components
+        </span>
+
+        <span>
+          <i class="fa-solid fa-code"></i>
+          Pure HTML/CSS
+        </span>
+
+        <span>
+          <i class="fa-solid fa-mobile-screen"></i>
+          Responsive
+        </span>
+
+      </div>
 
     </div>
 
-    <!-- CARD -->
+    <div class="hero-preview">
 
-    <div class="section-card">
+      <div class="preview-box">
 
-      <div class="card-icon purple">
-        💼
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+
       </div>
-
-      <span class="card-label">
-        PRICING
-      </span>
-
-      <h2>
-        Pricing Sections
-      </h2>
-
-      <p>
-
-        Responsive SaaS pricing layouts
-        with premium UI cards and
-        subscription tables.
-
-      </p>
-
-      <button>
-        View Section
-      </button>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="section-card">
-
-      <div class="card-icon blue">
-        ⭐
-      </div>
-
-      <span class="card-label">
-        TESTIMONIALS
-      </span>
-
-      <h2>
-        Testimonial Blocks
-      </h2>
-
-      <p>
-
-        Beautiful review and feedback
-        sections with glassmorphism
-        inspired layouts.
-
-      </p>
-
-      <button>
-        View Section
-      </button>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="section-card">
-
-      <div class="card-icon green">
-        📊
-      </div>
-
-      <span class="card-label">
-        STATS
-      </span>
-
-      <h2>
-        Analytics Sections
-      </h2>
-
-      <p>
-
-        Dashboard analytics and stats
-        layouts for admin interfaces
-        and SaaS dashboards.
-
-      </p>
-
-      <button>
-        View Section
-      </button>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="section-card">
-
-      <div class="card-icon orange">
-        📩
-      </div>
-
-      <span class="card-label">
-        NEWSLETTER
-      </span>
-
-      <h2>
-        Newsletter Sections
-      </h2>
-
-      <p>
-
-        Responsive email subscribe
-        sections crafted with modern
-        glassmorphism UI.
-
-      </p>
-
-      <button>
-        View Section
-      </button>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="section-card">
-
-      <div class="card-icon purple">
-        🧩
-      </div>
-
-      <span class="card-label">
-        FEATURES
-      </span>
-
-      <h2>
-        Feature Blocks
-      </h2>
-
-      <p>
-
-        Showcase product features
-        with premium modern
-        layout sections.
-
-      </p>
-
-      <button>
-        View Section
-      </button>
 
     </div>
 
   </section>
 
-</main>
+  <!-- OTP COMPONENT -->
+  <section class="otp-section">
 
-<script src="section.js"></script>
+    <div class="otp-card">
 
+      <span class="otp-badge">
+        Verification
+      </span>
+
+      <h2>Modern OTP Input</h2>
+
+      <p>
+        Elegant OTP verification component with modern spacing,
+        interactive focus states, and responsive design.
+      </p>
+
+      <div class="otp-container">
+
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-col">
+
+        <h2 class="footer-logo">⬡ UIverse</h2>
+
+        <p>
+          Build modern, reusable UI components
+          with clean HTML, CSS and JavaScript.
+        </p>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h3>Explore</h3>
+
+        <ul>
+          <li><a href="#">Buttons</a></li>
+          <li><a href="#">Inputs</a></li>
+          <li><a href="#">OTP Inputs</a></li>
+          <li><a href="#">Forms</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h3>Resources</h3>
+
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">GitHub Repo</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h3>Stay Updated</h3>
+
+        <div class="newsletter">
+
+          <input type="email" placeholder="your@email.com">
+
+          <button>
+            Subscribe
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 UIverse. Made with ❤️ for developers.
+    </div>
+
+  </footer>
+
+</div>
+<script>
+  window.addEventListener("load", () => {
+    document.querySelector(".sidebar").scrollTop = 0;
+  });
+</script>
 </body>
 </html>

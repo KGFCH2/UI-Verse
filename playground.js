@@ -50,12 +50,22 @@
     drawer.classList.add("open");
     backdrop.classList.add("active");
     drawer.setAttribute("aria-hidden", "false");
+    drawer.setAttribute("role", "dialog");
+    drawer.setAttribute("aria-modal", "true");
+    if (window.FocusTrap) {
+      window.FocusTrap.activate(drawer);
+    }
   }
 
   function closeDrawer() {
     drawer.classList.remove("open");
     backdrop.classList.remove("active");
     drawer.setAttribute("aria-hidden", "true");
+    drawer.removeAttribute("role");
+    drawer.removeAttribute("aria-modal");
+    if (window.FocusTrap) {
+      window.FocusTrap.deactivate();
+    }
   }
 
   function setValueLabel(name, value) {
@@ -133,19 +143,33 @@
     const values = getControlValues();
     const styles = styleForType(activeType, values);
 
+    // Generate CSS class-based output
+    const className = 'uiv-component';
+    activeTarget.classList.add(className);
+    
+    // Remove inline styles and use CSS classes
     Object.keys(styles).forEach((prop) => {
-      activeTarget.style[prop] = styles[prop];
+      activeTarget.style[prop] = '';
     });
 
-    const styleText = Object.keys(styles)
-      .map((key) => {
-        const cssKey = key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
-        return cssKey + ": " + styles[key] + ";";
-      })
-      .join(" ");
+    const cssOutput = generateCSS(className, styles, activeType);
+    activeTarget.setAttribute('class', activeTarget.className.replace('uiv-component', '').trim());
+    
+    const htmlOutput = `<div class="${className}">\n  ${activeTarget.outerHTML}\n</div>\n\n<style>\n${cssOutput}</style>`;
+    code.textContent = htmlOutput;
+  }
 
-    activeTarget.setAttribute("style", styleText);
-    code.textContent = activeTarget.outerHTML;
+  function generateCSS(className, styles, type) {
+    const rules = [];
+    
+    rules.push(`.${className} {`);
+    Object.keys(styles).forEach((prop) => {
+      const cssKey = prop.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+      rules.push(`  ${cssKey}: ${styles[prop]};`);
+    });
+    rules.push('}');
+    
+    return rules.join('\n');
   }
 
   function findPreviewElement(card) {
@@ -183,14 +207,25 @@
   }
 
   // Export / copy button
-  function copyPlaygroundCode() {
+  async function copyPlaygroundCode() {
     try {
       const text = code.textContent || '';
-      if (!navigator.clipboard) {
-        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
       } else {
-        navigator.clipboard.writeText(text);
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const success = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (!success) throw new Error('Fallback copy failed');
       }
+      
       if (typeof showToastSafe === 'function') showToastSafe('Playground code copied ✓');
     } catch (e) {
       console.error('copyPlaygroundCode', e);
