@@ -62,6 +62,74 @@ const PAGE_CONFIGS = {
   }
 };
 
+function generateSchema(pageConfig) {
+  const site = SITE_CONFIG;
+  const page = pageConfig;
+  const url = `${site.url}/${page.path || ''}`;
+  
+  const isComponentPage = ['button', 'cards', 'form', 'navbar', 'badges', 'alerts', 'footer', 'pricing', 'testimonials', 'toggles'].includes(page.id);
+  
+  let schema;
+  
+  if (page.id === 'index') {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": site.name,
+      "url": site.url,
+      "description": site.description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${site.url}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": site.name,
+        "url": site.url
+      }
+    };
+  } else if (isComponentPage) {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": page.title,
+      "description": page.description,
+      "url": url,
+      "about": {
+        "@type": "Thing",
+        "name": page.title,
+        "description": page.description
+      },
+      "keywords": (page.tags || []).join(', '),
+      "genre": "Web Development",
+      "programmingLanguage": ["HTML", "CSS", "JavaScript"]
+    };
+  } else {
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": page.title,
+      "description": page.description,
+      "url": url
+    };
+  }
+  
+  // Add breadcrumb for component pages
+  if (isComponentPage) {
+    schema.breadcrumb = {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url },
+        { "@type": "ListItem", "position": 2, "name": "Components", "item": `${site.url}/components` },
+        { "@type": "ListItem", "position": 3, "name": page.title, "item": url }
+      ]
+    };
+  }
+  
+  return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
+}
+  
 function generateMetaTags(pageConfig) {
   const site = SITE_CONFIG;
   const page = pageConfig;
@@ -69,6 +137,8 @@ function generateMetaTags(pageConfig) {
   const fullTitle = page.title || site.title;
   const fullDesc = page.description || site.description;
   const canonicalUrl = `${site.url}/${page.path || ''}`;
+
+  const schema = generateSchema(pageConfig);
 
   return `
   <!-- Primary Meta Tags -->
@@ -86,6 +156,7 @@ function generateMetaTags(pageConfig) {
   <meta property="og:description" content="${fullDesc}">
   <meta property="og:image" content="${site.ogImage}">
   <meta property="og:site_name" content="${site.name}">
+  <meta property="og:locale" content="en_US">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
@@ -95,21 +166,8 @@ function generateMetaTags(pageConfig) {
   <meta property="twitter:image" content="${site.ogImage}">
   <meta property="twitter:creator" content="${site.twitter}">
 
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "${site.name}",
-    "url": "${site.url}",
-    "description": "${site.description}",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "${site.url}/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>`;
+  <!-- JSON-LD Structured Data -->
+  ${schema}`;
 }
 
 function injectMetadata(htmlFile, pageKey) {
