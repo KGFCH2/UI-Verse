@@ -1,154 +1,422 @@
-<!-- modals.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>UIverse - Modal Components</title>
+  <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="Model.css" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Modal Components — UIverse</title>
+
+  <!-- Fonts -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Icons -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <!-- CSS -->
+
+  <link
+    rel="stylesheet"
+    href="Model.css"
+  >
+
 </head>
 
 <body>
 
-  <!-- HEADER -->
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
 
-  <header class="header">
-    <h1>UIverse Modal Components 🚀</h1>
-    <p>Reusable modern popup modal components</p>
-  </header>
+<aside class="sidebar">
 
-  <!-- COMPONENTS -->
+  <div>
 
-  <section class="components-container">
+    <div class="sidebar-brand">
 
-    <!-- SIMPLE MODAL -->
+      <div class="brand-icon">
+        ⬡
+      </div>
 
-    <div class="component-card">
+      <div class="brand-text">
+        UIverse
+      </div>
 
-      <h2>Simple Modal</h2>
+    </div>
 
-      <p>Basic reusable popup modal</p>
+    <nav class="sidebar-nav">
 
-      <button class="open-btn" onclick="openModal('simpleModal')">
+      <a href="#">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Components</span>
+      </a>
+
+      <a
+        href="#"
+        class="active"
+      >
+        <i class="fa-solid fa-window-maximize"></i>
+        <span>Modals</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-code"></i>
+        <span>Source</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-book"></i>
+        <span>Docs</span>
+      </a>
+
+    </nav>
+
+  </div>
+
+  <div class="sidebar-footer">
+
+    <a href="#">
+      <i class="fab fa-github"></i>
+    </a>
+
+    <a href="#">
+      <i class="fab fa-discord"></i>
+    </a>
+
+    <a href="#">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+
+</aside>
+
+<!-- =====================================================
+NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+  <div class="search-bar">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+      type="text"
+      placeholder="Search modal components..."
+    >
+
+  </div>
+
+  <div class="nav-actions">
+
+    <button class="outline-btn">
+      Documentation
+    </button>
+
+    <button class="primary-btn">
+      Explore UI
+    </button>
+
+  </div>
+
+</header>
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main-home">
+
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <div class="hero-badge">
+      ✦ Premium Popup Components
+    </div>
+
+    <h1>
+      Modern <span>Modal UI</span>
+    </h1>
+
+    <p>
+
+      Explore beautiful popup modals,
+      dialog windows, alerts and modern
+      confirmation boxes crafted for
+      premium interfaces.
+
+    </p>
+
+  </section>
+
+  <!-- GRID -->
+
+  <section class="modal-grid">
+
+    <!-- CARD -->
+
+    <div class="modal-card">
+
+      <div class="card-icon orange">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+
+      <span class="card-label">
+        BASIC
+      </span>
+
+      <h2>
+        Simple Modal
+      </h2>
+
+      <p>
+
+        Minimal modern popup
+        with smooth animation
+        and glassmorphism UI.
+
+      </p>
+
+      <button
+        class="open-modal"
+        data-modal="modal1"
+      >
         Open Modal
       </button>
 
-      <div class="modal-overlay" id="simpleModal">
+    </div>
 
-        <div class="modal-box">
+    <!-- CARD -->
 
-          <span class="close-btn" onclick="closeModal('simpleModal')">
-            &times;
-          </span>
+    <div class="modal-card">
 
-          <h2>Welcome to UIverse 🚀</h2>
-
-          <p>
-            This is a simple reusable modal component.
-          </p>
-
-          <button class="action-btn">
-            Continue
-          </button>
-
-        </div>
-
+      <div class="card-icon purple">
+        <i class="fa-solid fa-circle-check"></i>
       </div>
+
+      <span class="card-label">
+        SUCCESS
+      </span>
+
+      <h2>
+        Success Modal
+      </h2>
+
+      <p>
+
+        Premium success popup
+        for actions, forms and
+        verification messages.
+
+      </p>
+
+      <button
+        class="open-modal"
+        data-modal="modal2"
+      >
+        Open Modal
+      </button>
 
     </div>
 
-    <!-- SUCCESS MODAL -->
+    <!-- CARD -->
 
-    <div class="component-card">
+    <div class="modal-card">
 
-      <h2>Success Modal</h2>
-
-      <p>Success popup with animation</p>
-
-      <button class="success-open-btn" onclick="openModal('successModal')">
-        Open Success Modal
-      </button>
-
-      <div class="modal-overlay" id="successModal">
-
-        <div class="modal-box success-modal">
-
-          <span class="close-btn" onclick="closeModal('successModal')">
-            &times;
-          </span>
-
-          <div class="success-icon">
-            ✓
-          </div>
-
-          <h2>Success!</h2>
-
-          <p>
-            Your action was completed successfully.
-          </p>
-
-          <button class="success-btn">
-            Done
-          </button>
-
-        </div>
-
+      <div class="card-icon blue">
+        <i class="fa-solid fa-credit-card"></i>
       </div>
 
-    </div>
+      <span class="card-label">
+        PAYMENT
+      </span>
 
-    <!-- WARNING MODAL -->
+      <h2>
+        Payment Modal
+      </h2>
 
-    <div class="component-card">
+      <p>
 
-      <h2>Warning Modal</h2>
+        Elegant payment dialog
+        designed for premium
+        dashboard experiences.
 
-      <p>Delete confirmation popup</p>
+      </p>
 
-      <button class="warning-open-btn" onclick="openModal('warningModal')">
-        Open Warning Modal
+      <button
+        class="open-modal"
+        data-modal="modal3"
+      >
+        Open Modal
       </button>
-
-      <div class="modal-overlay" id="warningModal">
-
-        <div class="modal-box warning-modal">
-
-          <span class="close-btn" onclick="closeModal('warningModal')">
-            &times;
-          </span>
-
-          <h2>Delete Item?</h2>
-
-          <p>
-            This action cannot be undone.
-          </p>
-
-          <div class="warning-actions">
-
-            <button class="cancel-btn"
-              onclick="closeModal('warningModal')">
-              Cancel
-            </button>
-
-            <button class="delete-btn">
-              Delete
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
 
     </div>
 
   </section>
 
-  <script src="Model.js"></script>
+</main>
+
+<!-- =====================================================
+MODAL 1
+===================================================== -->
+
+<div
+  class="modal-overlay"
+  id="modal1"
+>
+
+  <div class="modal-box">
+
+    <button class="close-modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-icon orange">
+      <i class="fa-solid fa-bolt"></i>
+    </div>
+
+    <h2>
+      Premium Modal UI
+    </h2>
+
+    <p>
+
+      This is a modern modal
+      component crafted for
+      UIverse design systems.
+
+    </p>
+
+    <div class="modal-actions">
+
+      <button class="cancel-btn">
+        Cancel
+      </button>
+
+      <button class="confirm-btn">
+        Continue
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+MODAL 2
+===================================================== -->
+
+<div
+  class="modal-overlay"
+  id="modal2"
+>
+
+  <div class="modal-box">
+
+    <button class="close-modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-icon green">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <h2>
+      Payment Successful
+    </h2>
+
+    <p>
+
+      Your subscription has
+      been activated successfully.
+
+    </p>
+
+    <button class="full-btn">
+      Done
+    </button>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+MODAL 3
+===================================================== -->
+
+<div
+  class="modal-overlay"
+  id="modal3"
+>
+
+  <div class="modal-box payment-modal">
+
+    <button class="close-modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-icon blue">
+      <i class="fa-solid fa-credit-card"></i>
+    </div>
+
+    <h2>
+      Upgrade Plan
+    </h2>
+
+    <p>
+
+      Unlock premium components
+      and advanced UI kits.
+
+    </p>
+
+    <div class="payment-card">
+
+      <span>
+        Premium Pro
+      </span>
+
+      <strong>
+        $29/mo
+      </strong>
+
+    </div>
+
+    <button class="full-btn">
+      Continue Payment
+    </button>
+
+  </div>
+
+</div>
+
+<script src="modal.js"></script>
 
 </body>
-
 </html>
