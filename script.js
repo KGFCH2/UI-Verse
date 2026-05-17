@@ -362,8 +362,23 @@ function initScrollTop() {
   const btn = document.getElementById("scrollTopBtn");
   if (!btn) return;
 
+  let lastScrollY = 0;
+  let ticking = false;
+
+  const updateButton = () => {
+    const shouldShow = window.scrollY > 300;
+    btn.style.display = shouldShow ? "block" : "none";
+    btn.style.opacity = shouldShow ? "1" : "0";
+    btn.style.transform = shouldShow ? "translateY(0)" : "translateY(10px)";
+    ticking = false;
+  };
+
   window.addEventListener("scroll", () => {
-    btn.classList.toggle("visible", window.scrollY > 400);
+    lastScrollY = window.scrollY;
+    if (!ticking) {
+      requestAnimationFrame(updateButton);
+      ticking = true;
+    }
   });
 
   btn.addEventListener("click", () => {
@@ -409,3 +424,112 @@ window.addEventListener("DOMContentLoaded", () => {
   initProgressBar();
   initSearchFilter();
 });
+
+// DARK MODE
+  const toggle = document.getElementById('darkModeToggle');
+  const icon = toggle.querySelector('i');
+
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    icon.className = 'fa-solid fa-sun';
+  }
+
+  toggle.addEventListener('click', () => {
+
+    document.body.classList.toggle('dark-mode');
+
+    const isDark = document.body.classList.contains('dark-mode');
+
+    icon.className = isDark
+      ? 'fa-solid fa-sun'
+      : 'fa-solid fa-moon';
+
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+  });
+
+
+  // SIDEBAR
+  function toggleSidebar() {
+
+    document.getElementById('sidebar').classList.toggle('open');
+
+    document.getElementById('sidebarBackdrop')
+      .classList.toggle('visible');
+
+  }
+
+
+  // SCROLL TOP
+  function scrollToTop() {
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+  }
+  // SHOW BUTTON
+  window.addEventListener('scroll', () => {
+
+    document.getElementById('scrollTopBtn')
+      .classList.toggle('visible', window.scrollY > 400);
+
+    document.getElementById('navbar')
+      .classList.toggle('scrolled', window.scrollY > 40);
+
+  });
+
+  // TOGGLE CODE
+  function toggleCode(id, btn) {
+
+    const block = document.getElementById(id);
+
+    const isOpen = block.classList.toggle('open');
+
+    btn.innerHTML = isOpen
+      ? '<i class="fa-solid fa-eye-slash"></i> Hide Code'
+      : '<i class="fa-solid fa-code"></i> View Code';
+
+  }
+
+  // COPY CODE
+  function copyCode(id, btn) {
+
+    navigator.clipboard.writeText(
+      document.getElementById(id).innerText
+    ).then(() => {
+
+      btn.innerHTML =
+        '<i class="fa-solid fa-check"></i> Copied!';
+
+      btn.classList.add('copied');
+
+      setTimeout(() => {
+
+        btn.innerHTML =
+          '<i class="fa-solid fa-copy"></i> Copy';
+
+        btn.classList.remove('copied');
+
+      }, 2000);
+
+    });
+
+  }
+
+  // SCROLL ANIMATION
+  const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(e => {
+
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+      }
+
+    });
+
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.form-component-card')
+    .forEach(el => observer.observe(el));
