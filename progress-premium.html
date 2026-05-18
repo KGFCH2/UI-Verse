@@ -339,6 +339,296 @@
 &lt;/div&gt;</code></pre>
     </div>
 
+    <!-- 6. SEGMENTED MULTI-STEP PROGRESS BAR -->
+    <div class="component-card" data-category="linear">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-segmented-progress">
+            <div class="segmented-steps" id="segSteps">
+              <span class="seg-step active" data-seg="1"></span>
+              <span class="seg-step" data-seg="2"></span>
+              <span class="seg-step" data-seg="3"></span>
+              <span class="seg-step" data-seg="4"></span>
+              <span class="seg-step" data-seg="5"></span>
+            </div>
+            <div class="segmented-subtext">
+              <span id="segStatus">Phase 1: Environment Provisioning</span>
+              <span id="segPct">20%</span>
+            </div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="display:flex; gap:10px; margin-top:25px;">
+            <button class="trigger-live-btn purple" onclick="adjustProgress('segmented', -1)"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+            <button class="trigger-live-btn orange" onclick="adjustProgress('segmented', 1)">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Segmented Steps</h3>
+          <span>Linear Bars</span>
+        </div>
+        <p>A step-based segmented layout designed with pill indicators, dynamic description subtitles, and smooth glowing activations.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeSeg', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeSeg', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeSeg" style="display:none;"><code>&lt;div class="premium-segmented-progress"&gt;
+  &lt;div class="segmented-steps"&gt;
+    &lt;span class="seg-step active"&gt;&lt;/span&gt;
+    &lt;span class="seg-step active"&gt;&lt;/span&gt;
+    &lt;span class="seg-step"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="segmented-subtext"&gt;
+    &lt;span&gt;Phase 2: Database Setup&lt;/span&gt;
+    &lt;span&gt;40%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 7. WAVE ANIMATED PROGRESS LOADER -->
+    <div class="component-card" data-category="loaders">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-wave-progress">
+            <div class="wave-tank">
+              <svg class="wave-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path class="wave-fill-path" id="waveFill" d="M0,50 C30,45 70,55 100,50 L100,100 L0,100 Z" style="transform: translateY(50%);"></path>
+              </svg>
+              <div class="wave-center-text">
+                <span id="wavePct">50%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="display:flex; gap:10px; margin-top:20px;">
+            <button class="trigger-live-btn purple" onclick="adjustProgress('wave', -10)"><i class="fa-solid fa-minus"></i></button>
+            <button class="trigger-live-btn blue" onclick="adjustProgress('wave', 10)"><i class="fa-solid fa-plus"></i></button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Wave Liquid Tank</h3>
+          <span>Loaders</span>
+        </div>
+        <p>A fluid-dynamic tank rendering an animated sinusoidal wave mask overlay syncing directly with loader values.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeWave', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeWave', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeWave" style="display:none;"><code>&lt;div class="premium-wave-progress"&gt;
+  &lt;div class="wave-tank"&gt;
+    &lt;svg class="wave-svg" viewBox="0 0 100 100"&gt;
+      &lt;path class="wave-fill-path" d="M0,50 C30,45 70,55 100,50 L100,100 L0,100 Z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span class="wave-pct"&gt;50%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 8. GLASSMORPHISM BATTERY PROGRESS -->
+    <div class="component-card" data-category="cards">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-battery-progress">
+            <div class="battery-body">
+              <div class="battery-fill" id="batFill" style="width: 60%;"></div>
+              <div class="battery-nipple"></div>
+              <div class="battery-content">
+                <i class="fa-solid fa-bolt battery-bolt active" id="batBolt"></i>
+                <span id="batPct">60%</span>
+              </div>
+            </div>
+            <div class="battery-status" id="batStatus">Fast Charging (Active)</div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="display:flex; gap:10px; margin-top:20px;">
+            <button class="trigger-live-btn purple" onclick="adjustProgress('battery', -20)"><i class="fa-solid fa-minus"></i></button>
+            <button class="trigger-live-btn green" onclick="adjustProgress('battery', 20)"><i class="fa-solid fa-plus"></i></button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Battery Indicator</h3>
+          <span>Cards</span>
+        </div>
+        <p>A frosted glass-body battery layout displaying charging segments, neon status logs, and pulsating active lightning bolts.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeBat', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeBat', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeBat" style="display:none;"><code>&lt;div class="premium-battery-progress"&gt;
+  &lt;div class="battery-body"&gt;
+    &lt;div class="battery-fill" style="width: 75%;"&gt;&lt;/div&gt;
+    &lt;div class="battery-nipple"&gt;&lt;/div&gt;
+    &lt;span&gt;75%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 9. NEON GRADIENT ACTIVITY TRACKER -->
+    <div class="component-card" data-category="circular">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-activity-tracker">
+            <div class="activity-concentric">
+              <!-- Outer Ring: CPU -->
+              <svg class="act-ring outer" width="130" height="130">
+                <circle class="act-track" cx="65" cy="65" r="55"></circle>
+                <circle class="act-fill cpu" id="actFillCPU" cx="65" cy="65" r="55" stroke-dasharray="345.58" stroke-dashoffset="138.23"></circle>
+              </svg>
+              <!-- Middle Ring: RAM -->
+              <svg class="act-ring middle" width="100" height="100">
+                <circle class="act-track" cx="50" cy="50" r="40"></circle>
+                <circle class="act-fill ram" id="actFillRAM" cx="50" cy="50" r="40" stroke-dasharray="251.33" stroke-dashoffset="75.4"></circle>
+              </svg>
+              <!-- Inner Ring: Network -->
+              <svg class="act-ring inner" width="70" height="70">
+                <circle class="act-track" cx="35" cy="35" r="25"></circle>
+                <circle class="act-fill net" id="actFillNET" cx="35" cy="35" r="25" stroke-dasharray="157.08" stroke-dashoffset="31.42"></circle>
+              </svg>
+            </div>
+            
+            <!-- Statistics logs -->
+            <div class="activity-stats">
+              <span class="stat-row cpu">CPU: <b id="actValCPU">60%</b></span>
+              <span class="stat-row ram">RAM: <b id="actValRAM">70%</b></span>
+              <span class="stat-row net">NET: <b id="actValNET">80%</b></span>
+            </div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="margin-top:20px;">
+            <button class="trigger-live-btn orange" onclick="jitterActivityTracker()"><i class="fa-solid fa-bolt"></i> Stream Live Loads</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Concentric Rings</h3>
+          <span>Circular</span>
+        </div>
+        <p>Concentric activity rings that visualize multiple active parameters simultaneously using custom gradients.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeAct', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeAct', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeAct" style="display:none;"><code>&lt;div class="premium-activity-tracker"&gt;
+  &lt;div class="activity-concentric"&gt;
+    &lt;svg class="act-ring"&gt;
+      &lt;circle class="act-fill" cx="50" cy="50" r="40" stroke-dasharray="251" stroke-dashoffset="100"&gt;&lt;/circle&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 10. REAL-TIME ANALYTICS PROGRESS CHART -->
+    <div class="component-card" data-category="cards">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-analytics-chart">
+            <h5 class="chart-header">Analytics Throughput</h5>
+            
+            <div class="chart-row">
+              <div class="chart-info">
+                <span>Ingestion Stream</span>
+                <span class="val" id="chartVal1">65%</span>
+              </div>
+              <div class="chart-progress">
+                <div class="chart-fill magenta" id="chartFill1" style="width: 65%;"></div>
+              </div>
+            </div>
+
+            <div class="chart-row">
+              <div class="chart-info">
+                <span>Processing Workers</span>
+                <span class="val" id="chartVal2">82%</span>
+              </div>
+              <div class="chart-progress">
+                <div class="chart-fill neon-blue" id="chartFill2" style="width: 82%;"></div>
+              </div>
+            </div>
+
+            <div class="chart-row">
+              <div class="chart-info">
+                <span>Query Load</span>
+                <span class="val" id="chartVal3">45%</span>
+              </div>
+              <div class="chart-progress">
+                <div class="chart-fill amber" id="chartFill3" style="width: 45%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="margin-top:20px;">
+            <button class="trigger-live-btn blue" onclick="startChartSimulate()"><i class="fa-solid fa-chart-line"></i> Pulse Stream</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Analytics Chart</h3>
+          <span>Cards</span>
+        </div>
+        <p>An interactive system analytics board demonstrating progress bar streams, numeric ticking values, and real-time status pulses.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeChart', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeChart', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeChart" style="display:none;"><code>&lt;div class="premium-analytics-chart"&gt;
+  &lt;div class="chart-row"&gt;
+    &lt;div class="chart-info"&gt;
+      &lt;span&gt;Ingestion Stream&lt;/span&gt;
+      &lt;span class="val"&gt;65%&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="chart-progress"&gt;
+      &lt;div class="chart-fill magenta" style="width: 65%;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
   </div>
 
 </div>
@@ -407,6 +697,13 @@
   let circularVal = 50;
   let trackerVal = 75;
 
+  // New component states
+  let segmentedVal = 1; // 1 to 5
+  let waveVal = 50;
+  let batteryVal = 60;
+  let activityVals = { cpu: 60, ram: 70, net: 80 };
+  let chartVals = { ing: 65, proc: 82, query: 45 };
+
   // 1. Linear Bar Adjuster
   function updateLinearUI() {
     const fill = document.getElementById('lFill');
@@ -430,9 +727,67 @@
     num.innerText = circularVal + '%';
 
     // Calculate dynamic rotation angle of orbital dot
-    // Initial position is at 90 deg (bottom) or 0 deg (right) depending on SVG orientation
     const angle = (progress * 360) - 90;
     dot.style.transform = `rotate(${angle}deg) translate(50px) rotate(-${angle}deg)`;
+  }
+
+  // 6. Segmented Multi-Step Adjuster
+  function updateSegmentedUI() {
+    const steps = document.querySelectorAll('#segSteps .seg-step');
+    const status = document.getElementById('segStatus');
+    const pct = document.getElementById('segPct');
+
+    const phases = [
+      "Phase 1: Environment Provisioning",
+      "Phase 2: Database Setup & Sync",
+      "Phase 3: Core API Integration",
+      "Phase 4: CDN Edge Deployment",
+      "Phase 5: Cloud Pipeline Online"
+    ];
+
+    steps.forEach((step, idx) => {
+      if (idx < segmentedVal) {
+        step.classList.add('active');
+      } else {
+        step.classList.remove('active');
+      }
+    });
+
+    status.innerText = phases[segmentedVal - 1] || "Deployment Idle";
+    pct.innerText = (segmentedVal * 20) + '%';
+  }
+
+  // 7. Wave Animated Progress Adjuster
+  function updateWaveUI() {
+    const fill = document.getElementById('waveFill');
+    const pct = document.getElementById('wavePct');
+    
+    pct.innerText = waveVal + '%';
+    // Translate Y: 100% is empty, 0% is full
+    const translateY = 100 - waveVal;
+    fill.style.transform = `translateY(${translateY}%)`;
+  }
+
+  // 8. Glassmorphism Battery Progress Adjuster
+  function updateBatteryUI() {
+    const fill = document.getElementById('batFill');
+    const pct = document.getElementById('batPct');
+    const status = document.getElementById('batStatus');
+    const bolt = document.getElementById('batBolt');
+
+    fill.style.width = batteryVal + '%';
+    pct.innerText = batteryVal + '%';
+
+    if (batteryVal === 100) {
+      status.innerText = "Battery Fully Charged";
+      bolt.classList.remove('active');
+    } else if (batteryVal === 0) {
+      status.innerText = "Battery Critical (Empty)";
+      bolt.classList.remove('active');
+    } else {
+      status.innerText = "Fast Charging (Active)";
+      bolt.classList.add('active');
+    }
   }
 
   // Global Progress Adjuster
@@ -444,6 +799,18 @@
     if (type === 'circular') {
       circularVal = Math.min(100, Math.max(0, circularVal + val));
       updateCircularUI();
+    }
+    if (type === 'segmented') {
+      segmentedVal = Math.min(5, Math.max(1, segmentedVal + val));
+      updateSegmentedUI();
+    }
+    if (type === 'wave') {
+      waveVal = Math.min(100, Math.max(0, waveVal + val));
+      updateWaveUI();
+    }
+    if (type === 'battery') {
+      batteryVal = Math.min(100, Math.max(0, batteryVal + val));
+      updateBatteryUI();
     }
   }
 
@@ -531,12 +898,106 @@
     }, 15);
   }
 
+  // 9. Concentric Rings UI Adjuster
+  function updateActivityRings() {
+    const fillCPU = document.getElementById('actFillCPU');
+    const fillRAM = document.getElementById('actFillRAM');
+    const fillNET = document.getElementById('actFillNET');
+
+    const valCPU = document.getElementById('actValCPU');
+    const valRAM = document.getElementById('actValRAM');
+    const valNET = document.getElementById('actValNET');
+
+    // Outer radius 55 => C = 345.58
+    const cCPU = 345.58;
+    fillCPU.style.strokeDashoffset = cCPU - (activityVals.cpu / 100 * cCPU);
+    valCPU.innerText = activityVals.cpu + '%';
+
+    // Middle radius 40 => C = 251.33
+    const cRAM = 251.33;
+    fillRAM.style.strokeDashoffset = cRAM - (activityVals.ram / 100 * cRAM);
+    valRAM.innerText = activityVals.ram + '%';
+
+    // Inner radius 25 => C = 157.08
+    const cNET = 157.08;
+    fillNET.style.strokeDashoffset = cNET - (activityVals.net / 100 * cNET);
+    valNET.innerText = activityVals.net + '%';
+  }
+
+  let activityInterval = null;
+  function jitterActivityTracker() {
+    const btn = document.querySelector('[onclick="jitterActivityTracker()"]');
+    if (activityInterval) {
+      clearInterval(activityInterval);
+      activityInterval = null;
+      btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Stream Live Loads';
+      btn.classList.remove('active');
+      return;
+    }
+
+    btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Stream';
+    btn.classList.add('active');
+
+    activityInterval = setInterval(() => {
+      activityVals.cpu = Math.min(100, Math.max(10, activityVals.cpu + Math.floor(Math.random() * 21) - 10));
+      activityVals.ram = Math.min(100, Math.max(10, activityVals.ram + Math.floor(Math.random() * 15) - 7));
+      activityVals.net = Math.min(100, Math.max(10, activityVals.net + Math.floor(Math.random() * 25) - 12));
+      updateActivityRings();
+    }, 400);
+  }
+
+  // 10. Analytics Chart UI Adjuster
+  function updateChartsUI() {
+    document.getElementById('chartFill1').style.width = chartVals.ing + '%';
+    document.getElementById('chartVal1').innerText = chartVals.ing + '%';
+
+    document.getElementById('chartFill2').style.width = chartVals.proc + '%';
+    document.getElementById('chartVal2').innerText = chartVals.proc + '%';
+
+    document.getElementById('chartFill3').style.width = chartVals.query + '%';
+    document.getElementById('chartVal3').innerText = chartVals.query + '%';
+  }
+
+  let chartInterval = null;
+  function startChartSimulate() {
+    const btn = document.querySelector('[onclick="startChartSimulate()"]');
+    if (chartInterval) {
+      clearInterval(chartInterval);
+      chartInterval = null;
+      btn.innerHTML = '<i class="fa-solid fa-chart-line"></i> Pulse Stream';
+      btn.classList.remove('active');
+      return;
+    }
+
+    btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Pulse';
+    btn.classList.add('active');
+
+    chartInterval = setInterval(() => {
+      chartVals.ing = Math.min(100, Math.max(20, chartVals.ing + Math.floor(Math.random() * 17) - 8));
+      chartVals.proc = Math.min(100, Math.max(20, chartVals.proc + Math.floor(Math.random() * 11) - 5));
+      chartVals.query = Math.min(100, Math.max(15, chartVals.query + Math.floor(Math.random() * 21) - 10));
+      updateChartsUI();
+    }, 500);
+  }
+
   // Global Actions
   function fillAllProgress() {
     linearVal = 100;
     circularVal = 100;
+    segmentedVal = 5;
+    waveVal = 100;
+    batteryVal = 100;
+    
+    activityVals = { cpu: 100, ram: 100, net: 100 };
+    chartVals = { ing: 100, proc: 100, query: 100 };
+
     updateLinearUI();
     updateCircularUI();
+    updateSegmentedUI();
+    updateWaveUI();
+    updateBatteryUI();
+    updateActivityRings();
+    updateChartsUI();
     
     // Fill skills
     document.getElementById('sFill1').style.width = '100%';
@@ -558,9 +1019,40 @@
     linearVal = 50;
     circularVal = 50;
     trackerVal = 75;
+
+    segmentedVal = 1;
+    waveVal = 50;
+    batteryVal = 60;
+    activityVals = { cpu: 60, ram: 70, net: 80 };
+    chartVals = { ing: 65, proc: 82, query: 45 };
     
     updateLinearUI();
     updateCircularUI();
+    updateSegmentedUI();
+    updateWaveUI();
+    updateBatteryUI();
+    updateActivityRings();
+    updateChartsUI();
+
+    // Clear simulation intervals if any
+    if (activityInterval) {
+      clearInterval(activityInterval);
+      activityInterval = null;
+      const actBtn = document.querySelector('[onclick="jitterActivityTracker()"]');
+      if (actBtn) {
+        actBtn.innerHTML = '<i class="fa-solid fa-bolt"></i> Stream Live Loads';
+        actBtn.classList.remove('active');
+      }
+    }
+    if (chartInterval) {
+      clearInterval(chartInterval);
+      chartInterval = null;
+      const chartBtn = document.querySelector('[onclick="startChartSimulate()"]');
+      if (chartBtn) {
+        chartBtn.innerHTML = '<i class="fa-solid fa-chart-line"></i> Pulse Stream';
+        chartBtn.classList.remove('active');
+      }
+    }
     
     // Reset skills
     document.getElementById('sFill1').style.width = '90%';
@@ -640,6 +1132,11 @@
   // Run on start
   updateLinearUI();
   updateCircularUI();
+  updateSegmentedUI();
+  updateWaveUI();
+  updateBatteryUI();
+  updateActivityRings();
+  updateChartsUI();
 </script>
 
 </body>
