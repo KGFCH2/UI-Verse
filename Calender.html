@@ -756,66 +756,40 @@
 
   </footer>
 
+  <!-- ================= COMMAND PALETTE ================= -->
+
+  <div id="commandPaletteOverlay" class="command-palette-overlay">
+    <div class="command-palette-container">
+      <div class="command-palette-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          id="commandPaletteInput"
+          class="command-palette-input"
+          placeholder="Search components... (Cmd+K)"
+          autocomplete="off" />
+      </div>
+      <ul id="commandPaletteResults" class="command-palette-results"></ul>
+      <div class="command-palette-footer">
+        <div class="command-palette-footer-item">
+          <span class="command-palette-footer-kbd">↑↓</span>
+          <span>Navigate</span>
+        </div>
+        <div class="command-palette-footer-item">
+          <span class="command-palette-footer-kbd">⏎</span>
+          <span>Select</span>
+        </div>
+        <div class="command-palette-footer-item">
+          <span class="command-palette-footer-kbd">Esc</span>
+          <span>Close</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= SCRIPT ================= -->
 
   <script>
-
-    // DARK MODE
-
-    const toggle =
-      document.getElementById('darkModeToggle');
-    if (toggle) {
-      const icon =
-        toggle.querySelector('i');
-
-      if (localStorage.getItem('theme') === 'dark') {
-
-        document.body.classList.add('dark-mode');
-
-        if (icon) {
-          icon.className =
-            'fa-solid fa-sun';
-        }
-
-      }
-
-      toggle.addEventListener('click', () => {
-
-        document.body.classList.toggle('dark-mode');
-
-        const isDark =
-          document.body.classList.contains('dark-mode');
-
-        if (icon) {
-          icon.className =
-            isDark ?
-            'fa-solid fa-sun' :
-            'fa-solid fa-moon';
-        }
-
-        localStorage.setItem(
-          'theme',
-          isDark ? 'dark' : 'light'
-        );
-
-      });
-    }
-
-    // SIDEBAR
-
-    function toggleSidebar() {
-
-      const sidebar =
-        document.getElementById('sidebar');
-
-      const backdrop =
-        document.getElementById('sidebarBackdrop');
-
-      sidebar.classList.toggle('open');
-
-      backdrop.classList.toggle('visible');
-
-    }
 
     // NAVBAR SCROLL EFFECT
 
@@ -829,6 +803,133 @@
         window.scrollY > 40
       );
 
+    });
+
+    // CALENDAR RENDERING
+
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+
+    const calendarState = {
+      viewDate: new Date(),
+      today: new Date()
+    };
+
+    calendarState.today.setHours(0, 0, 0, 0);
+
+    const mainCalendarTitle =
+      document.getElementById('mainCalendarTitle');
+    const mainCalendarDates =
+      document.getElementById('mainCalendarDates');
+    const miniCalendarTitle =
+      document.getElementById('miniCalendarTitle');
+    const miniCalendarGrid =
+      document.getElementById('miniCalendarGrid');
+    const prevMonthBtn =
+      document.getElementById('prevMonthBtn');
+    const nextMonthBtn =
+      document.getElementById('nextMonthBtn');
+
+    function renderCalendarGrid(target, date, isMini = false) {
+
+      target.innerHTML = '';
+
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const daysInPreviousMonth =
+        new Date(year, month, 0).getDate();
+
+      const totalCells = 42;
+
+      for (let index = 0; index < totalCells; index += 1) {
+
+        const cell = document.createElement('span');
+        const dayNumber = index - firstDayIndex + 1;
+
+        if (index < firstDayIndex) {
+
+          const previousDay =
+            daysInPreviousMonth - firstDayIndex + index + 1;
+
+          cell.textContent = previousDay;
+          cell.classList.add('mute');
+
+        } else if (dayNumber <= daysInMonth) {
+
+          const cellDate = new Date(year, month, dayNumber);
+          cell.textContent = dayNumber;
+
+          if (
+            cellDate.getTime() === calendarState.today.getTime()
+          ) {
+            cell.classList.add(isMini ? 'today' : 'active');
+          }
+
+          if (dayNumber === 17) {
+            cell.classList.add('event');
+          }
+
+        } else {
+
+          const nextMonthDay = dayNumber - daysInMonth;
+          cell.textContent = nextMonthDay;
+          cell.classList.add('mute');
+
+        }
+
+        target.appendChild(cell);
+
+      }
+
+    }
+
+    function renderCalendar() {
+
+      const year = calendarState.viewDate.getFullYear();
+      const month = calendarState.viewDate.getMonth();
+
+      const currentLabel = `${monthNames[month]} ${year}`;
+
+      mainCalendarTitle.textContent = currentLabel;
+      miniCalendarTitle.textContent = currentLabel;
+
+      renderCalendarGrid(mainCalendarDates, calendarState.viewDate);
+      renderCalendarGrid(miniCalendarGrid, calendarState.viewDate, true);
+
+    }
+
+    function shiftMonth(offset) {
+
+      calendarState.viewDate = new Date(
+        calendarState.viewDate.getFullYear(),
+        calendarState.viewDate.getMonth() + offset,
+        1
+      );
+
+      renderCalendar();
+
+    }
+
+    prevMonthBtn.addEventListener('click', () => {
+      shiftMonth(-1);
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+      shiftMonth(1);
     });
 
     // CALENDAR RENDERING

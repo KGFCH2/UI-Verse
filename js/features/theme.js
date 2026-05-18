@@ -9,6 +9,19 @@ const Theme = {
     listener: null
   },
 
+  updateToggleState(themeToggle, isDark) {
+    if (!themeToggle) return;
+
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+
+    const icon = themeToggle.querySelector('i');
+    if (icon) {
+      icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+  },
+
   /**
    * Load and apply saved theme
    */
@@ -18,18 +31,10 @@ const Theme = {
 
     if (saved === "dark") {
       document.body.classList.add("dark-mode");
-      if (themeToggle) {
-        themeToggle.innerText = "☀️ Light Mode";
-        const icon = themeToggle.querySelector("i");
-        if (icon) icon.className = "fa-solid fa-sun";
-      }
+      this.updateToggleState(themeToggle, true);
     } else {
       document.body.classList.remove("dark-mode");
-      if (themeToggle) {
-        themeToggle.innerText = "🌙 Dark Mode";
-        const icon = themeToggle.querySelector("i");
-        if (icon) icon.className = "fa-solid fa-moon";
-      }
+      this.updateToggleState(themeToggle, false);
     }
   },
 
@@ -58,13 +63,8 @@ const Theme = {
         document.body.classList.toggle("dark-mode");
         const isDark = document.body.classList.contains("dark-mode");
         localStorage.setItem("theme", isDark ? "dark" : "light");
-        
-        // Update icon if it exists
-        const icon = themeToggle.querySelector("i");
-        if (icon) {
-          icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
-        }
-        themeToggle.innerText = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+        this.updateToggleState(themeToggle, isDark);
       };
 
       themeToggle.addEventListener("click", onClick);
