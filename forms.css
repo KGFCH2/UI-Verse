@@ -1193,4 +1193,443 @@ body.dark-mode .action-btn:hover {
     padding: 24px;
     text-align: center;
   }
+}
+
+/* =================================================================
+   5 NEW PREMIUM FORM COMPONENTS
+   ================================================================= */
+
+/* --- 10. Secure Checkout Form --- */
+.payment-card-wrapper {
+  padding: 24px !important;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.credit-card-mock {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.7 / 1;
+  background: linear-gradient(135deg, #1e1b4b 0%, #31108f 50%, #4338ca 100%);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 24px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.credit-card-mock::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(162, 89, 255, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.card-chip {
+  width: 38px;
+  height: 28px;
+  background: linear-gradient(135deg, #ffd3b6 0%, #ffaa71 100%);
+  border-radius: 6px;
+  position: relative;
+}
+.card-chip::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+.card-number-display {
+  font-family: 'DM Sans', monospace;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin: 20px 0 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.card-holder-display {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.7);
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-expiry-display {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.7);
+}
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.payment-btn {
+  background: linear-gradient(135deg, #a259ff, #6366f1) !important;
+  box-shadow: 0 10px 24px rgba(162, 89, 255, 0.3) !important;
+}
+.payment-btn:hover {
+  box-shadow: 0 14px 30px rgba(162, 89, 255, 0.45) !important;
+}
+
+/* --- 11. Emoji Feedback & Rating Form --- */
+.feedback-rating-card {
+  align-items: center;
+  text-align: center;
+  padding: 30px !important;
+}
+.emoji-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+  width: 100%;
+}
+.emoji-btn {
+  background: transparent;
+  border: none;
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  outline: none;
+  padding: 4px;
+}
+.emoji-btn:hover {
+  transform: scale(1.3) translateY(-4px);
+  filter: drop-shadow(0 8px 12px rgba(235,104,53,0.25));
+}
+.emoji-btn.active {
+  transform: scale(1.4) translateY(-6px);
+  filter: drop-shadow(0 10px 16px rgba(235,104,53,0.45));
+}
+.feedback-text-field {
+  width: 100%;
+  text-align: left;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+.feedback-text-field.active {
+  opacity: 1;
+}
+.feedback-submit-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53) !important;
+  box-shadow: 0 10px 24px rgba(255,107,107,0.3) !important;
+}
+.feedback-submit-btn:hover {
+  box-shadow: 0 14px 30px rgba(255,107,107,0.45) !important;
+}
+
+/* --- 12. 2FA Code OTP Verification Form --- */
+.otp-verification-card {
+  align-items: center;
+  padding: 30px !important;
+}
+.security-shield-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(235,104,53,0.08);
+  border: 1px solid rgba(235,104,53,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 24px;
+  margin-bottom: 16px;
+  animation: pulseShield 2s infinite;
+}
+@keyframes pulseShield {
+  0% { box-shadow: 0 0 0 0 rgba(235,104,53,0.2); }
+  70% { box-shadow: 0 0 0 10px rgba(235,104,53,0); }
+  100% { box-shadow: 0 0 0 0 rgba(235,104,53,0); }
+}
+.otp-input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 24px 0;
+  width: 100%;
+}
+.otp-box {
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.8);
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.25s ease;
+}
+body.dark-mode .otp-box {
+  background: rgba(255,255,255,0.03);
+}
+.otp-box:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+  background: rgba(255,255,255,0.95);
+  transform: translateY(-2px);
+}
+body.dark-mode .otp-box:focus {
+  background: rgba(255,255,255,0.06);
+}
+.resend-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.resend-text a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.resend-text a:hover {
+  text-decoration: underline;
+}
+.otp-btn {
+  background: linear-gradient(135deg, #e17055, #ff8c5f) !important;
+  box-shadow: 0 10px 24px rgba(225,112,85,0.3) !important;
+}
+.otp-btn:hover {
+  box-shadow: 0 14px 30px rgba(225,112,85,0.45) !important;
+}
+
+/* --- 13. Newsletter Pill / Capsule Form --- */
+.newsletter-pill-card {
+  padding: 30px !important;
+}
+.inline-pill-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 6px;
+  margin: 20px 0 12px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+body.dark-mode .inline-pill-form {
+  background: rgba(255,255,255,0.03);
+}
+.inline-pill-form:focus-within {
+  border-color: #0984e3;
+  box-shadow: 0 0 0 4px rgba(9,132,227,0.15);
+}
+.pill-icon {
+  position: absolute;
+  left: 20px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+.pill-input {
+  width: 100%;
+  padding: 12px 12px 12px 48px !important;
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  font-size: 0.95rem !important;
+  color: var(--text-primary) !important;
+  box-shadow: none !important;
+}
+.pill-btn {
+  background: linear-gradient(135deg, #0984e3, #74b9ff);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.pill-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(9,132,227,0.3);
+}
+.pill-terms {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+/* --- 14. Preference Checklist Option Dashboard --- */
+.preference-survey-card {
+  padding: 30px !important;
+}
+.preference-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+  width: 100%;
+}
+.pref-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  width: 100%;
+}
+body.dark-mode .pref-item {
+  background: rgba(255,255,255,0.02);
+}
+.pref-item:hover {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(46,213,115,0.3);
+  transform: translateY(-2px);
+}
+body.dark-mode .pref-item:hover {
+  background: rgba(255,255,255,0.04);
+}
+.pref-item.active {
+  background: rgba(46,213,115,0.04);
+  border-color: #2ed573;
+  box-shadow: 0 4px 18px rgba(46,213,115,0.06);
+}
+.pref-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+body.dark-mode .pref-icon-wrapper {
+  background: rgba(255,255,255,0.03);
+}
+.pref-item.active .pref-icon-wrapper {
+  color: #2ed573;
+  background: rgba(46,213,115,0.1);
+  border-color: rgba(46,213,115,0.25);
+}
+.pref-text {
+  flex: 1;
+  text-align: left;
+}
+.pref-text h4 {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.pref-text p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.pref-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.pref-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.pref-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(120, 120, 128, 0.3);
+  transition: .3s;
+  border-radius: 24px;
+}
+.pref-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.pref-switch input:checked + .pref-slider {
+  background-color: #2ed573;
+}
+.pref-switch input:checked + .pref-slider:before {
+  transform: translateX(20px);
+}
+.pref-save-btn {
+  background: linear-gradient(135deg, #2ed573, #26af56) !important;
+  box-shadow: 0 10px 24px rgba(46,213,115,0.3) !important;
+}
+.pref-save-btn:hover {
+  box-shadow: 0 14px 30px rgba(46,213,115,0.45) !important;
+}
+
+/* Custom Tag Badges */
+.tag-premium {
+  background: rgba(162, 89, 255, 0.14) !important;
+  color: #a259ff !important;
+}
+.tag-trending {
+  background: rgba(255, 107, 107, 0.14) !important;
+  color: #ff6b6b !important;
+}
+.tag-new {
+  background: rgba(46, 213, 115, 0.14) !important;
+  color: #2ed573 !important;
+  border-radius: 999px !important;
+}
+
+/* Structural Utilities */
+.flex-row {
+  display: flex !important;
+  gap: 12px !important;
+}
+.flex-1 {
+  flex: 1 !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.mt-1 {
+  margin-top: 10px !important;
 }

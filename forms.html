@@ -210,6 +210,12 @@
           <span>Authentication</span>
         </a>
       </li>
+        <li>
+          <a href="recovery.html">
+            <i class="fa-solid fa-key" aria-hidden="true"></i>
+            <span>Password Recovery</span>
+          </a>
+        </li>
       <li>
         <a href="section.html">
           <i class="fa-solid fa-rectangle-list"></i>
@@ -366,8 +372,8 @@
     <h1>Forms UI</h1>
     <p>Reusable form components with clean inputs, selects, radios, checkboxes and more.</p>
     <div class="page-meta">
-      <span class="meta-badge"><i class="fa-solid fa-layer-group"></i> 9 Forms</span>
-      <span class="meta-badge"><i class="fa-solid fa-code"></i> Pure HTML & CSS</span>
+      <span class="meta-badge"><i class="fa-solid fa-layer-group"></i> 14 Forms</span>
+      <span class="meta-badge"><i class="fa-solid fa-code"></i> Pure HTML &amp; CSS</span>
     </div>
   </div>
 
@@ -763,6 +769,241 @@
 &lt;/div&gt;</code></pre>
     </div>
 
+    <!-- Secure Checkout Form -->
+    <div class="form-component-card" data-name="credit card payment checkout secure transaction">
+      <div class="card-top">
+        <span class="card-label">Secure Checkout</span>
+        <span class="card-tag tag-premium">Premium</span>
+      </div>
+      <div class="form-preview">
+        <div class="form-card payment-card-wrapper">
+          <div class="credit-card-mock">
+            <div class="card-glow"></div>
+            <div class="card-chip"></div>
+            <div class="card-number-display">•••• •••• •••• ••••</div>
+            <div class="card-meta">
+              <div class="card-holder-display">CARDHOLDER NAME</div>
+              <div class="card-expiry-display">MM/YY</div>
+            </div>
+          </div>
+          <form class="payment-form" onsubmit="event.preventDefault();">
+            <div class="form-field">
+              <label for="pay-name">Cardholder Name</label>
+              <input type="text" id="pay-name" placeholder="John Doe" oninput="updateCardName(this.value)">
+            </div>
+            <div class="form-field">
+              <label for="pay-number">Card Number</label>
+              <input type="text" id="pay-number" placeholder="4000 1234 5678 9010" maxlength="19" oninput="updateCardNumber(this.value)">
+            </div>
+            <div class="form-row flex-row">
+              <div class="form-field flex-1">
+                <label for="pay-expiry">Expiry Date</label>
+                <input type="text" id="pay-expiry" placeholder="MM/YY" maxlength="5" oninput="updateCardExpiry(this.value)">
+              </div>
+              <div class="form-field flex-1">
+                <label for="pay-cvv">CVV</label>
+                <input type="password" id="pay-cvv" placeholder="•••" maxlength="3">
+              </div>
+            </div>
+            <button type="submit" class="form-btn payment-btn"><i class="fa-solid fa-lock" aria-hidden="true"></i> Pay $49.00 Securely</button>
+          </form>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="action-btn view-btn" onclick="toggleCode('fc10', this)" aria-label="View code for Secure Checkout"><i class="fa-solid fa-code" aria-hidden="true"></i> View Code</button>
+        <button type="button" class="action-btn copy-btn" onclick="copyCode('fc10', this)" aria-label="Copy code for Secure Checkout"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy</button>
+      </div>
+      <pre id="fc10" class="code-block"><code>&lt;div class="credit-card-mock"&gt;
+  &lt;div class="card-chip"&gt;&lt;/div&gt;
+  &lt;div class="card-number-display"&gt;•••• •••• •••• ••••&lt;/div&gt;
+  &lt;div class="card-holder-display"&gt;CARDHOLDER NAME&lt;/div&gt;
+  &lt;div class="card-expiry-display"&gt;MM/YY&lt;/div&gt;
+&lt;/div&gt;
+&lt;form class="payment-form"&gt;
+  &lt;input type="text" placeholder="Cardholder Name" oninput="updateCardName(this.value)"&gt;
+  &lt;input type="text" placeholder="Card Number" oninput="updateCardNumber(this.value)"&gt;
+  &lt;button type="submit" class="payment-btn"&gt;Pay Securely&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </div>
+
+    <!-- Emoji Feedback Form -->
+    <div class="form-component-card" data-name="feedback emoji rating interactive user experience review">
+      <div class="card-top">
+        <span class="card-label">Emoji Feedback</span>
+        <span class="card-tag tag-trending">Trending</span>
+      </div>
+      <div class="form-preview">
+        <div class="form-card feedback-rating-card">
+          <h3>Share Your Experience</h3>
+          <p class="form-sub">We value your thoughts and review</p>
+          <div class="emoji-container">
+            <button type="button" class="emoji-btn" onclick="selectEmoji(this, 'angry')" title="Angry">😠</button>
+            <button type="button" class="emoji-btn" onclick="selectEmoji(this, 'neutral')" title="Neutral">😐</button>
+            <button type="button" class="emoji-btn" onclick="selectEmoji(this, 'happy')" title="Happy">😊</button>
+            <button type="button" class="emoji-btn" onclick="selectEmoji(this, 'love')" title="Love">😍</button>
+            <button type="button" class="emoji-btn" onclick="selectEmoji(this, 'excited')" title="Excited">🤩</button>
+          </div>
+          <div class="form-field feedback-text-field">
+            <label for="feedback-comment">Tell us more</label>
+            <textarea id="feedback-comment" placeholder="What can we improve?..." rows="3"></textarea>
+          </div>
+          <button type="button" class="form-btn feedback-submit-btn" onclick="submitFeedback(this)">Submit Review</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="action-btn view-btn" onclick="toggleCode('fc11', this)" aria-label="View code for Emoji Feedback"><i class="fa-solid fa-code" aria-hidden="true"></i> View Code</button>
+        <button type="button" class="action-btn copy-btn" onclick="copyCode('fc11', this)" aria-label="Copy code for Emoji Feedback"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy</button>
+      </div>
+      <pre id="fc11" class="code-block"><code>&lt;div class="emoji-container"&gt;
+  &lt;button type="button" class="emoji-btn" onclick="selectEmoji(this, 'angry')"&gt;😠&lt;/button&gt;
+  &lt;button type="button" class="emoji-btn" onclick="selectEmoji(this, 'neutral')"&gt;😐&lt;/button&gt;
+  &lt;button type="button" class="emoji-btn" onclick="selectEmoji(this, 'happy')"&gt;😊&lt;/button&gt;
+  &lt;button type="button" class="emoji-btn" onclick="selectEmoji(this, 'love')"&gt;😍&lt;/button&gt;
+  &lt;button type="button" class="emoji-btn" onclick="selectEmoji(this, 'excited')"&gt;🤩&lt;/button&gt;
+&lt;/div&gt;
+&lt;textarea placeholder="What can we improve?..."&gt;&lt;/textarea&gt;
+&lt;button type="button" class="form-btn feedback-submit-btn"&gt;Submit Review&lt;/button&gt;</code></pre>
+    </div>
+
+    <!-- OTP Verification Form -->
+    <div class="form-component-card" data-name="otp security verification code 2fa two factor">
+      <div class="card-top">
+        <span class="card-label">OTP Verification</span>
+        <span class="card-tag tag-essential">Essential</span>
+      </div>
+      <div class="form-preview">
+        <div class="form-card otp-verification-card">
+          <div class="security-shield-icon">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          </div>
+          <h3>Verify Account</h3>
+          <p class="form-sub text-center">We sent a 6-digit code to your email</p>
+          <div class="otp-input-group">
+            <input type="text" class="otp-box" aria-label="Digit 1" maxlength="1" oninput="handleOtpInput(this, event)" onkeydown="handleOtpBackspace(this, event)">
+            <input type="text" class="otp-box" aria-label="Digit 2" maxlength="1" oninput="handleOtpInput(this, event)" onkeydown="handleOtpBackspace(this, event)">
+            <input type="text" class="otp-box" aria-label="Digit 3" maxlength="1" oninput="handleOtpInput(this, event)" onkeydown="handleOtpBackspace(this, event)">
+            <input type="text" class="otp-box" aria-label="Digit 4" maxlength="1" oninput="handleOtpInput(this, event)" onkeydown="handleOtpBackspace(this, event)">
+            <input type="text" class="otp-box" aria-label="Digit 5" maxlength="1" oninput="handleOtpInput(this, event)" onkeydown="handleOtpBackspace(this, event)">
+            <input type="text" class="otp-box" aria-label="Digit 6" maxlength="1" oninput="handleOtpInput(this, event)" onkeydown="handleOtpBackspace(this, event)">
+          </div>
+          <p class="resend-text">Didn't receive code? <a href="#" onclick="event.preventDefault(); resetOtpBoxes();">Resend Code</a></p>
+          <button type="button" class="form-btn otp-btn">Verify &amp; Activate</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="action-btn view-btn" onclick="toggleCode('fc12', this)" aria-label="View code for OTP Verification"><i class="fa-solid fa-code" aria-hidden="true"></i> View Code</button>
+        <button type="button" class="action-btn copy-btn" onclick="copyCode('fc12', this)" aria-label="Copy code for OTP Verification"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy</button>
+      </div>
+      <pre id="fc12" class="code-block"><code>&lt;div class="otp-input-group"&gt;
+  &lt;input type="text" class="otp-box" maxlength="1" oninput="handleOtpInput(this)"&gt;
+  &lt;input type="text" class="otp-box" maxlength="1" oninput="handleOtpInput(this)"&gt;
+  &lt;input type="text" class="otp-box" maxlength="1" oninput="handleOtpInput(this)"&gt;
+  &lt;input type="text" class="otp-box" maxlength="1" oninput="handleOtpInput(this)"&gt;
+  &lt;input type="text" class="otp-box" maxlength="1" oninput="handleOtpInput(this)"&gt;
+  &lt;input type="text" class="otp-box" maxlength="1" oninput="handleOtpInput(this)"&gt;
+&lt;/div&gt;
+&lt;button type="button" class="form-btn otp-btn"&gt;Verify &amp; Activate&lt;/button&gt;</code></pre>
+    </div>
+
+    <!-- Newsletter Pill Form -->
+    <div class="form-component-card" data-name="newsletter pill subscribe email signup inline container">
+      <div class="card-top">
+        <span class="card-label">Newsletter Pill</span>
+        <span class="card-tag tag-popular">Popular</span>
+      </div>
+      <div class="form-preview">
+        <div class="form-card newsletter-pill-card">
+          <h3>Stay in the Loop</h3>
+          <p class="form-sub">Get direct premium updates to your inbox</p>
+          <form class="inline-pill-form" onsubmit="event.preventDefault();">
+            <i class="fa-regular fa-envelope pill-icon" aria-hidden="true"></i>
+            <input type="email" class="pill-input" aria-label="Email Address" placeholder="Enter your email address" required>
+            <button type="submit" class="pill-btn">Subscribe</button>
+          </form>
+          <p class="pill-terms">Zero spam. Unsubscribe at any time.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="action-btn view-btn" onclick="toggleCode('fc13', this)" aria-label="View code for Newsletter Pill"><i class="fa-solid fa-code" aria-hidden="true"></i> View Code</button>
+        <button type="button" class="action-btn copy-btn" onclick="copyCode('fc13', this)" aria-label="Copy code for Newsletter Pill"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy</button>
+      </div>
+      <pre id="fc13" class="code-block"><code>&lt;form class="inline-pill-form"&gt;
+  &lt;i class="fa-regular fa-envelope pill-icon"&gt;&lt;/i&gt;
+  &lt;input type="email" class="pill-input" placeholder="Enter your email address" required&gt;
+  &lt;button type="submit" class="pill-btn"&gt;Subscribe&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </div>
+
+    <!-- Notification Preferences Form -->
+    <div class="form-component-card" data-name="preference settings toggle checklist dashboard notification items">
+      <div class="card-top">
+        <span class="card-label">Notification Options</span>
+        <span class="card-tag tag-new">New</span>
+      </div>
+      <div class="form-preview">
+        <div class="form-card preference-survey-card">
+          <h3>Preferences</h3>
+          <p class="form-sub">Manage active delivery channels</p>
+          <div class="preference-list">
+            <div class="pref-item active" onclick="togglePrefSwitch(this)">
+              <div class="pref-icon-wrapper">
+                <i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>
+              </div>
+              <div class="pref-text">
+                <h4>Email Digests</h4>
+                <p>Weekly summaries and component releases</p>
+              </div>
+              <label class="pref-switch">
+                <input type="checkbox" checked onclick="event.stopPropagation();">
+                <span class="pref-slider"></span>
+              </label>
+            </div>
+            <div class="pref-item" onclick="togglePrefSwitch(this)">
+              <div class="pref-icon-wrapper">
+                <i class="fa-solid fa-bell" aria-hidden="true"></i>
+              </div>
+              <div class="pref-text">
+                <h4>Push Alerts</h4>
+                <p>Immediate live database additions</p>
+              </div>
+              <label class="pref-switch">
+                <input type="checkbox" onclick="event.stopPropagation();">
+                <span class="pref-slider"></span>
+              </label>
+            </div>
+            <div class="pref-item active" onclick="togglePrefSwitch(this)">
+              <div class="pref-icon-wrapper">
+                <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+              </div>
+              <div class="pref-text">
+                <h4>Security Logs</h4>
+                <p>Critical account activity warning notes</p>
+              </div>
+              <label class="pref-switch">
+                <input type="checkbox" checked onclick="event.stopPropagation();">
+                <span class="pref-slider"></span>
+              </label>
+            </div>
+          </div>
+          <button type="button" class="form-btn pref-save-btn" onclick="savePreferences(this)">Save Preferences</button>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="action-btn view-btn" onclick="toggleCode('fc14', this)" aria-label="View code for Notification Options"><i class="fa-solid fa-code" aria-hidden="true"></i> View Code</button>
+        <button type="button" class="action-btn copy-btn" onclick="copyCode('fc14', this)" aria-label="Copy code for Notification Options"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy</button>
+      </div>
+      <pre id="fc14" class="code-block"><code>&lt;div class="pref-item"&gt;
+  &lt;div class="pref-text"&gt;
+    &lt;h4&gt;Email Digests&lt;/h4&gt;
+    &lt;p&gt;Weekly summaries of new items&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;label class="pref-switch"&gt;
+    &lt;input type="checkbox" checked&gt;
+    &lt;span class="pref-slider"&gt;&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
   </div><!-- /forms-grid -->
 
 </main>
@@ -868,6 +1109,124 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.form-component-card').forEach(el => observer.observe(el));
+
+  /* =================================================================
+     5 NEW PREMIUM FORM COMPONENTS JAVASCRIPT
+     ================================================================= */
+
+  /* --- 10. Secure Checkout Form Live Card Bindings --- */
+  function updateCardName(val) {
+    const nameDisplay = document.querySelector('.card-holder-display');
+    if (nameDisplay) {
+      nameDisplay.textContent = val.trim() ? val.toUpperCase() : 'CARDHOLDER NAME';
+    }
+  }
+  function updateCardNumber(val) {
+    const numDisplay = document.querySelector('.card-number-display');
+    if (numDisplay) {
+      let formatted = val.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim();
+      document.getElementById('pay-number').value = formatted;
+      numDisplay.textContent = formatted || '•••• •••• •••• ••••';
+    }
+  }
+  function updateCardExpiry(val) {
+    const expiryDisplay = document.querySelector('.card-expiry-display');
+    if (expiryDisplay) {
+      let formatted = val.replace(/\D/g, '');
+      if (formatted.length >= 2) {
+        formatted = formatted.slice(0, 2) + '/' + formatted.slice(2, 4);
+      }
+      document.getElementById('pay-expiry').value = formatted;
+      expiryDisplay.textContent = formatted || 'MM/YY';
+    }
+  }
+
+  /* --- 11. Emoji Feedback Selection & Form Submit --- */
+  let selectedEmojiName = '';
+  function selectEmoji(btn, name) {
+    const container = btn.closest('.emoji-container');
+    container.querySelectorAll('.emoji-btn').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    selectedEmojiName = name;
+    
+    const feedbackField = document.querySelector('.feedback-text-field');
+    if (feedbackField) {
+      feedbackField.classList.add('active');
+    }
+  }
+  function submitFeedback(btn) {
+    if (!selectedEmojiName) {
+      alert('Please select an emoji rating first!');
+      return;
+    }
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Submitted! Thank you';
+      btn.style.background = 'linear-gradient(135deg, #2ed573, #26af56)';
+      btn.style.boxShadow = '0 10px 24px rgba(46,213,115,0.3)';
+      setTimeout(() => {
+        btn.innerHTML = 'Submit Review';
+        btn.disabled = false;
+        btn.style.background = '';
+        btn.style.boxShadow = '';
+        document.getElementById('feedback-comment').value = '';
+        const container = document.querySelector('.emoji-container');
+        container.querySelectorAll('.emoji-btn').forEach(el => el.classList.remove('active'));
+        document.querySelector('.feedback-text-field').classList.remove('active');
+        selectedEmojiName = '';
+      }, 2500);
+    }, 1000);
+  }
+
+  /* --- 12. 2FA Code OTP Input Focus Shifting & Backspacing --- */
+  function handleOtpInput(input, event) {
+    const val = input.value;
+    input.value = val.replace(/\D/g, '');
+    if (input.value && input.nextElementSibling && input.nextElementSibling.classList.contains('otp-box')) {
+      input.nextElementSibling.focus();
+    }
+  }
+  function handleOtpBackspace(input, event) {
+    if (event.key === 'Backspace' && !input.value && input.previousElementSibling && input.previousElementSibling.classList.contains('otp-box')) {
+      input.previousElementSibling.focus();
+    }
+  }
+  function resetOtpBoxes() {
+    document.querySelectorAll('.otp-box').forEach(box => box.value = '');
+    const firstBox = document.querySelector('.otp-box');
+    if (firstBox) firstBox.focus();
+  }
+
+  /* --- 14. Preferences Options Toggle Checkboxes & Action --- */
+  function togglePrefSwitch(item) {
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    checkbox.checked = !checkbox.checked;
+    item.classList.toggle('active', checkbox.checked);
+  }
+  document.querySelectorAll('.pref-switch input').forEach(input => {
+    input.addEventListener('change', (e) => {
+      const item = e.target.closest('.pref-item');
+      if (item) item.classList.toggle('active', e.target.checked);
+    });
+  });
+  function savePreferences(btn) {
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Saving...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+      btn.style.background = 'linear-gradient(135deg, #0984e3, #74b9ff)';
+      btn.style.boxShadow = '0 10px 24px rgba(9,132,227,0.3)';
+      setTimeout(() => {
+        btn.innerHTML = 'Save Preferences';
+        btn.disabled = false;
+        btn.style.background = '';
+        btn.style.boxShadow = '';
+      }, 2000);
+    }, 1000);
+  }
 </script>
 </body>
 </html>
