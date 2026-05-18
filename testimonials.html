@@ -4,35 +4,23 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; base-uri 'self'; frame-ancestors 'none'; object-src 'none'; connect-src 'self' https:; img-src 'self' data: https:; font-src 'self' data: https:; script-src 'self' https: 'unsafe-hashes' sha256-4idOpfcVGcf1JIcDr6s5pmLauAMO9auB0wLw0b1hd9Y= sha256-CJLmHsFNKFyLE4WkvZTkcWuAlwE+cWi6XCPaOHHsmRs= sha256-S6d4FNO/1iV0V0FnzHkAQYcUblCxiNQaYtiR4SI0iEg= sha256-ZSwevDjx4JYKRPyZr4Fy5ODN1zCghPnMJ4DiCbdB3/k= sha256-awZC1gR1Ud9aisSi3fnOTOfLd1OWCGiT1EG6rP0+LqM=; script-src-attr 'unsafe-hashes' sha256-4idOpfcVGcf1JIcDr6s5pmLauAMO9auB0wLw0b1hd9Y= sha256-CJLmHsFNKFyLE4WkvZTkcWuAlwE+cWi6XCPaOHHsmRs= sha256-S6d4FNO/1iV0V0FnzHkAQYcUblCxiNQaYtiR4SI0iEg= sha256-ZSwevDjx4JYKRPyZr4Fy5ODN1zCghPnMJ4DiCbdB3/k= sha256-awZC1gR1Ud9aisSi3fnOTOfLd1OWCGiT1EG6rP0+LqM=; style-src 'self' https: 'unsafe-hashes'; style-src-attr 'unsafe-hashes'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Testimonials - UIverse</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-   <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="testimonials.css">
-
-  <!-- UIverse Modular CSS Architecture -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="shared-sidebar.css">
 </head>
-
 <body>
-
-<!-- ================= SIDEBAR ================= -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand">
     <span class="brand-icon">⬡</span>
     <span class="brand-text">UIverse</span>
   </div>
-          <nav class="sidebar-nav">
+  <nav class="sidebar-nav">
     <ul>
       <li>
         <a href="index.html">
@@ -46,7 +34,7 @@
           <span>Buttons</span>
         </a>
       </li>
-            <li>
+      <li>
         <a href="dropdown-components.html">
           <i class="fa-solid fa-caret-down"></i>
           <span>Dropdowns</span>
@@ -58,7 +46,7 @@
           <span>Profiles</span>
         </a>
       </li>
-<li>
+      <li>
         <a href="navbar.html">
           <i class="fa-solid fa-bars"></i>
           <span>Navbar</span>
@@ -209,24 +197,6 @@
         </a>
       </li>
       <li>
-        <a href="subscription.html">
-          <i class="fa-solid fa-credit-card"></i>
-          <span>Subscription</span>
-        </a>
-      </li>
-      <li>
-        <a href="auth.html">
-          <i class="fa-solid fa-user-shield"></i>
-          <span>Authentication</span>
-        </a>
-      </li>
-        <li>
-          <a href="recovery.html">
-            <i class="fa-solid fa-key" aria-hidden="true"></i>
-            <span>Password Recovery</span>
-          </a>
-        </li>
-      <li>
         <a href="section.html">
           <i class="fa-solid fa-rectangle-list"></i>
           <span>Section</span>
@@ -316,7 +286,7 @@
           <span>Admin Panel V2</span>
         </a>
       </li>
-<li>
+      <li>
         <a href="about.html">
           <i class="fa-solid fa-circle-info"></i>
           <span>About</span>
@@ -348,22 +318,17 @@
     <a href="#"><i class="fab fa-x-twitter"></i></a>
   </div>
 </aside>
-  <!-- ================= SIDEBAR BACKDROP ================= -->
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
-  <!-- ================= NAVBAR ================= -->
 <header class="navbar" id="navbar">
   <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Menu">
     <i class="fa-solid fa-bars"></i>
   </button>
-
   <div class="logo">UIverse</div>
-
   <div class="search-bar">
     <i class="fa-solid fa-magnifying-glass search-icon"></i>
     <input type="text" id="searchInput" placeholder="Search components..." onkeydown="handleSearch(event)" />
     <kbd class="search-kbd">⌘K</kbd>
   </div>
-
   <div class="nav-right">
     <button class="nav-btn outline-nav-btn">
       <i class="fa-solid fa-plus"></i> Add Component
@@ -376,328 +341,328 @@
     </button>
   </div>
 </header>
-
-  <!-- Main -->
-
-  <main class="main">
-
-    <div class="page-header">
-
-      <h1>Testimonials</h1>
-
-      <p>
-        Beautiful modern testimonial cards designed with
-        glassmorphism, premium hover animations, gradient glow
-        effects, and elegant typography.
-      </p>
-
-    </div>
-
-    <!-- Testimonials -->
-
-    <div class="testimonial-grid">
-
-      <!-- Card 1 -->
-
-      <div class="component-card">
-
-        <h3>Customer Testimonial</h3>
-
-        <div class="testimonial-card">
-
-          <div class="blur-glow"></div>
-
-          <div class="quote-icon">❝</div>
-
-          <div class="stars">
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-          </div>
-
-          <p>
-            “UIverse helped us launch faster with polished
-            UI components that were elegant, scalable,
-            and incredibly easy to customize.”
-          </p>
-
-          <div class="testimonial-meta">
-
-            <div class="avatar">
-              <img
-                src="https://i.pravatar.cc/100?img=5"
-                alt=""
-               srcset="https://i.pravatar.cc/40?img=5 40w, https://i.pravatar.cc/80?img=5 80w, https://i.pravatar.cc/150?img=5 150w, https://i.pravatar.cc/300?img=5 300w" sizes="(max-width: 768px) 96px, 160px" loading="lazy" decoding="async">
-            </div>
-
-            <div class="user-info">
-              <strong>Maya Lee</strong>
-              <span>Product Designer</span>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="actions">
-          <button class="action-btn view-btn" onclick="toggleCode('t1', this)"><i class="fa-solid fa-code"></i> View Code</button>
-          <button class="action-btn copy-btn" onclick="copyCode('t1', this)"><i class="fa-solid fa-copy"></i> Copy</button>
-        </div>
-
-<pre id="t1" class="code-block">
-&lt;div class="testimonial-card"&gt;
-  Modern glowing testimonial card
-&lt;/div&gt;
-</pre>
-
-      </div>
-
-      <!-- Card 2 -->
-
-      <div class="component-card">
-
-        <h3>Quote Panel</h3>
-
-        <div class="testimonial-card">
-
-          <div class="blur-glow"></div>
-
-          <div class="quote-icon">❝</div>
-
-          <div class="stars">
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-          </div>
-
-          <p>
-            “The component library is beginner friendly
-            and made styling my app feel effortless,
-            modern, and professional.”
-          </p>
-
-          <div class="testimonial-meta">
-
-            <div class="avatar">
-              <img
-                src="https://i.pravatar.cc/100?img=12"
-                alt=""
-               srcset="https://i.pravatar.cc/40?img=12 40w, https://i.pravatar.cc/80?img=12 80w, https://i.pravatar.cc/150?img=12 150w, https://i.pravatar.cc/300?img=12 300w" sizes="(max-width: 768px) 96px, 160px" loading="lazy" decoding="async">
-            </div>
-
-            <div class="user-info">
-              <strong>Alex Chen</strong>
-              <span>Frontend Developer</span>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="actions">
-          <button class="action-btn view-btn" onclick="toggleCode('t2', this)"><i class="fa-solid fa-code"></i> View Code</button>
-          <button class="action-btn copy-btn" onclick="copyCode('t2', this)"><i class="fa-solid fa-copy"></i> Copy</button>
-        </div>
-
-<pre id="t2" class="code-block">
-&lt;div class="testimonial-card"&gt;
-  Premium quote testimonial
-&lt;/div&gt;
-</pre>
-
-      </div>
-      <!-- Card 3 -->
-<div class="component-card">
-  <h3>Client Feedback</h3>
-  <div class="testimonial-card">
-    <div class="blur-glow"></div>
-    <div class="quote-icon">❝</div>
-    <div class="stars">
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
-    </div>
+<main class="main">
+  <div class="page-header">
+    <h1>Testimonials</h1>
     <p>
-      “The UIverse components saved us countless hours.
-      The designs are sleek, responsive, and easy to adapt
-      for our brand guidelines.”
+      Discover premium, responsive testimonial card layouts styled with advanced glassmorphism, glowing borders, neo-brutalism, interactive 3D transforms, and minimalist elegance.
     </p>
-    <div class="testimonial-meta">
-      <div class="avatar">
-        <img src="https://i.pravatar.cc/100?img=20" alt="" />
+  </div>
+  <div class="testimonial-grid">
+    <div class="component-card">
+      <h3>Glassmorphism Glow Card</h3>
+      <div class="t-card-glass">
+        <div class="t-glass-glow"></div>
+        <div class="t-quote-mark">❝</div>
+        <div class="t-rating">
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+        </div>
+        <p class="t-text">
+          UIverse helped us launch faster with polished UI components that were elegant, scalable, and incredibly easy to customize.
+        </p>
+        <div class="t-user">
+          <div class="t-avatar">
+            <img src="https://i.pravatar.cc/100?img=5" alt="Maya Lee" />
+          </div>
+          <div class="t-info">
+            <strong class="t-name">Maya Lee</strong>
+            <span class="t-role">Product Designer</span>
+          </div>
+        </div>
       </div>
-      <div class="user-info">
-        <strong>Priya Sharma</strong>
-        <span>Marketing Lead</span>
+      <div class="actions">
+        <button class="action-btn view-btn" onclick="toggleCode('t1', this)"><i class="fa-solid fa-code"></i> View Code</button>
+        <button class="action-btn copy-btn" onclick="copyCode('t1', this)"><i class="fa-solid fa-copy"></i> Copy</button>
       </div>
+      <pre id="t1" class="code-block">&lt;div class="t-card-glass"&gt;
+  &lt;div class="t-glass-glow"&gt;&lt;/div&gt;
+  &lt;div class="t-quote-mark"&gt;❝&lt;/div&gt;
+  &lt;div class="t-rating"&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="t-text"&gt;
+    UIverse helped us launch faster with polished UI components that were elegant, scalable, and incredibly easy to customize.
+  &lt;/p&gt;
+  &lt;div class="t-user"&gt;
+    &lt;div class="t-avatar"&gt;
+      &lt;img src="https://i.pravatar.cc/100?img=5" alt="Maya Lee" /&gt;
+    &lt;/div&gt;
+    &lt;div class="t-info"&gt;
+      &lt;strong class="t-name"&gt;Maya Lee&lt;/strong&gt;
+      &lt;span class="t-role"&gt;Product Designer&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="component-card">
+      <h3>Gradient Border Card</h3>
+      <div class="t-card-gradient">
+        <div class="t-quote-mark">❝</div>
+        <div class="t-rating">
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+        </div>
+        <p class="t-text">
+          The component library is beginner friendly and made styling my app feel effortless, modern, and professional.
+        </p>
+        <div class="t-user">
+          <div class="t-avatar">
+            <img src="https://i.pravatar.cc/100?img=12" alt="Alex Chen" />
+          </div>
+          <div class="t-info">
+            <strong class="t-name">Alex Chen</strong>
+            <span class="t-role">Frontend Developer</span>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="action-btn view-btn" onclick="toggleCode('t2', this)"><i class="fa-solid fa-code"></i> View Code</button>
+        <button class="action-btn copy-btn" onclick="copyCode('t2', this)"><i class="fa-solid fa-copy"></i> Copy</button>
+      </div>
+      <pre id="t2" class="code-block">&lt;div class="t-card-gradient"&gt;
+  &lt;div class="t-quote-mark"&gt;❝&lt;/div&gt;
+  &lt;div class="t-rating"&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="t-text"&gt;
+    The component library is beginner friendly and made styling my app feel effortless, modern, and professional.
+  &lt;/p&gt;
+  &lt;div class="t-user"&gt;
+    &lt;div class="t-avatar"&gt;
+      &lt;img src="https://i.pravatar.cc/100?img=12" alt="Alex Chen" /&gt;
+    &lt;/div&gt;
+    &lt;div class="t-info"&gt;
+      &lt;strong class="t-name"&gt;Alex Chen&lt;/strong&gt;
+      &lt;span class="t-role"&gt;Frontend Developer&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="component-card">
+      <h3>Neo-Brutalist Card</h3>
+      <div class="t-card-brutalist">
+        <div class="t-quote-mark">❝</div>
+        <div class="t-rating">
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star-empty">☆</span>
+        </div>
+        <p class="t-text">
+          The UIverse components saved us countless hours. The designs are sleek, responsive, and easy to adapt for our brand guidelines.
+        </p>
+        <div class="t-user">
+          <div class="t-avatar">
+            <img src="https://i.pravatar.cc/100?img=20" alt="Priya Sharma" />
+          </div>
+          <div class="t-info">
+            <strong class="t-name">Priya Sharma</strong>
+            <span class="t-role">Marketing Lead</span>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="action-btn view-btn" onclick="toggleCode('t3', this)"><i class="fa-solid fa-code"></i> View Code</button>
+        <button class="action-btn copy-btn" onclick="copyCode('t3', this)"><i class="fa-solid fa-copy"></i> Copy</button>
+      </div>
+      <pre id="t3" class="code-block">&lt;div class="t-card-brutalist"&gt;
+  &lt;div class="t-quote-mark"&gt;❝&lt;/div&gt;
+  &lt;div class="t-rating"&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star-empty"&gt;☆&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="t-text"&gt;
+    The UIverse components saved us countless hours. The designs are sleek, responsive, and easy to adapt for our brand guidelines.
+  &lt;/p&gt;
+  &lt;div class="t-user"&gt;
+    &lt;div class="t-avatar"&gt;
+      &lt;img src="https://i.pravatar.cc/100?img=20" alt="Priya Sharma" /&gt;
+    &lt;/div&gt;
+    &lt;div class="t-info"&gt;
+      &lt;strong class="t-name"&gt;Priya Sharma&lt;/strong&gt;
+      &lt;span class="t-role"&gt;Marketing Lead&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="component-card">
+      <h3>Avatar Pop Card</h3>
+      <div class="t-card-pop">
+        <div class="t-avatar-pop">
+          <img src="https://i.pravatar.cc/100?img=30" alt="Daniel Roberts" />
+        </div>
+        <div class="t-quote-mark">❝</div>
+        <div class="t-rating">
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+        </div>
+        <p class="t-text">
+          Our development team loved how intuitive the components were. Integration was seamless and documentation was clear.
+        </p>
+        <div class="t-user">
+          <div class="t-info">
+            <strong class="t-name">Daniel Roberts</strong>
+            <span class="t-role">Software Engineer</span>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="action-btn view-btn" onclick="toggleCode('t4', this)"><i class="fa-solid fa-code"></i> View Code</button>
+        <button class="action-btn copy-btn" onclick="copyCode('t4', this)"><i class="fa-solid fa-copy"></i> Copy</button>
+      </div>
+      <pre id="t4" class="code-block">&lt;div class="t-card-pop"&gt;
+  &lt;div class="t-avatar-pop"&gt;
+    &lt;img src="https://i.pravatar.cc/100?img=30" alt="Daniel Roberts" /&gt;
+  &lt;/div&gt;
+  &lt;div class="t-quote-mark"&gt;❝&lt;/div&gt;
+  &lt;div class="t-rating"&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="t-text"&gt;
+    Our development team loved how intuitive the components were. Integration was seamless and documentation was clear.
+  &lt;/p&gt;
+  &lt;div class="t-user"&gt;
+    &lt;div class="t-info"&gt;
+      &lt;strong class="t-name"&gt;Daniel Roberts&lt;/strong&gt;
+      &lt;span class="t-role"&gt;Software Engineer&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="component-card">
+      <h3>3D Perspective Card</h3>
+      <div class="t-card-skew">
+        <div class="t-skew-glare"></div>
+        <div class="t-quote-mark">❝</div>
+        <div class="t-rating">
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star-empty">☆</span>
+        </div>
+        <p class="t-text">
+          As a startup, we needed fast, reliable UI solutions. UIverse gave us a professional look without compromising speed or quality.
+        </p>
+        <div class="t-user">
+          <div class="t-avatar">
+            <img src="https://i.pravatar.cc/100?img=45" alt="Sofia Martinez" />
+          </div>
+          <div class="t-info">
+            <strong class="t-name">Sofia Martinez</strong>
+            <span class="t-role">Founder & CEO</span>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="action-btn view-btn" onclick="toggleCode('t5', this)"><i class="fa-solid fa-code"></i> View Code</button>
+        <button class="action-btn copy-btn" onclick="copyCode('t5', this)"><i class="fa-solid fa-copy"></i> Copy</button>
+      </div>
+      <pre id="t5" class="code-block">&lt;div class="t-card-skew"&gt;
+  &lt;div class="t-skew-glare"&gt;&lt;/div&gt;
+  &lt;div class="t-quote-mark"&gt;❝&lt;/div&gt;
+  &lt;div class="t-rating"&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star-empty"&gt;☆&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="t-text"&gt;
+    As a startup, we needed fast, reliable UI solutions. UIverse gave us a professional look without compromising speed or quality.
+  &lt;/p&gt;
+  &lt;div class="t-user"&gt;
+    &lt;div class="t-avatar"&gt;
+      &lt;img src="https://i.pravatar.cc/100?img=45" alt="Sofia Martinez" /&gt;
+    &lt;/div&gt;
+    &lt;div class="t-info"&gt;
+      &lt;strong class="t-name"&gt;Sofia Martinez&lt;/strong&gt;
+      &lt;span class="t-role"&gt;Founder & CEO&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    <div class="component-card">
+      <h3>Minimal Premium Card</h3>
+      <div class="t-card-minimal">
+        <div class="t-quote-mark">❝</div>
+        <div class="t-rating">
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+          <span class="t-star">★</span>
+        </div>
+        <p class="t-text">
+          Absolute masterclass in developer experience and modern aesthetics. Implementing UIverse components has redefined our products.
+        </p>
+        <div class="t-user">
+          <div class="t-avatar">
+            <img src="https://i.pravatar.cc/100?img=60" alt="Marcus Aurelius" />
+          </div>
+          <div class="t-info">
+            <strong class="t-name">Marcus Aurelius</strong>
+            <span class="t-role">Principal UX Architect</span>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="action-btn view-btn" onclick="toggleCode('t6', this)"><i class="fa-solid fa-code"></i> View Code</button>
+        <button class="action-btn copy-btn" onclick="copyCode('t6', this)"><i class="fa-solid fa-copy"></i> Copy</button>
+      </div>
+      <pre id="t6" class="code-block">&lt;div class="t-card-minimal"&gt;
+  &lt;div class="t-quote-mark"&gt;❝&lt;/div&gt;
+  &lt;div class="t-rating"&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+    &lt;span class="t-star"&gt;★&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="t-text"&gt;
+    Absolute masterclass in developer experience and modern aesthetics. Implementing UIverse components has redefined our products.
+  &lt;/p&gt;
+  &lt;div class="t-user"&gt;
+    &lt;div class="t-avatar"&gt;
+      &lt;img src="https://i.pravatar.cc/100?img=60" alt="Marcus Aurelius" /&gt;
+    &lt;/div&gt;
+    &lt;div class="t-info"&gt;
+      &lt;strong class="t-name"&gt;Marcus Aurelius&lt;/strong&gt;
+      &lt;span class="t-role"&gt;Principal UX Architect&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
     </div>
   </div>
-  <div class="actions">
-    <button class="action-btn view-btn" onclick="toggleCode('t3', this)">
-      <i class="fa-solid fa-code"></i> View Code
-    </button>
-    <button class="action-btn copy-btn" onclick="copyCode('t3', this)">
-      <i class="fa-solid fa-copy"></i> Copy
-    </button>
-  </div>
-  <pre id="t3" class="code-block">
-&lt;div class="testimonial-card"&gt;
-  Client feedback testimonial card
-&lt;/div&gt;
-  </pre>
-</div>
-
-<!-- Footer -->
+</main>
 <footer class="footer">
   <div class="footer-container">
-
-    <!-- Brand Section -->
-    <div class="footer-brand">
-      <h2>◯ UIverse</h2>
-
-      <p>
-        Build modern, reusable UI components with clean HTML,
-        CSS, and JavaScript.
-      </p>
-
-      <div class="footer-socials">
-        <a href="#">GitHub</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">X</a>
-      </div>
-    </div>
-
-    <!-- Explore -->
-    <div class="footer-column">
-      <h3>EXPLORE</h3>
-
-      <a href="#">Buttons</a>
-      <a href="#">Navbars</a>
-      <a href="#">Cards</a>
-      <a href="#">Inputs</a>
-      <a href="#">Forms</a>
-    </div>
-
-    <!-- Resources -->
-    <div class="footer-column">
-      <h3>RESOURCES</h3>
-
-      <a href="#">Documentation</a>
-      <a href="#">Contribute</a>
-      <a href="#">GitHub Repo</a>
-      <a href="#">Community</a>
-    </div>
-
-    <!-- Legal -->
-    <div class="footer-column">
-      <h3>LEGAL</h3>
-
-      <a href="privacypolicy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-      <a href="#">License</a>
-    </div>
-
-    <!-- Newsletter -->
-    <div class="footer-column">
-      <h3>STAY UPDATED</h3>
-
-      <p>Get notified when new components drop.</p>
-
-      <div class="footer-subscribe">
-        <input type="email" placeholder="your@email.com">
-        <button>Subscribe</button>
-
-<!-- Card 4 -->
-<div class="component-card">
-  <h3>Team Review</h3>
-  <div class="testimonial-card">
-    <div class="blur-glow"></div>
-    <div class="quote-icon">❝</div>
-    <div class="stars">
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-    </div>
-    <p>
-      “Our development team loved how intuitive the
-      components were. Integration was seamless and
-      documentation was clear.”
-    </p>
-    <div class="testimonial-meta">
-      <div class="avatar">
-        <img src="https://i.pravatar.cc/100?img=30" alt="" />
-      </div>
-      <div class="user-info">
-        <strong>Daniel Roberts</strong>
-        <span>Software Engineer</span>
-      </div>
-    </div>
-  </div>
-  <div class="actions">
-    <button class="action-btn view-btn" onclick="toggleCode('t4', this)">
-      <i class="fa-solid fa-code"></i> View Code
-    </button>
-    <button class="action-btn copy-btn" onclick="copyCode('t4', this)">
-      <i class="fa-solid fa-copy"></i> Copy
-    </button>
-  </div>
-  <pre id="t4" class="code-block">
-&lt;div class="testimonial-card"&gt;
-  Team review testimonial card
-&lt;/div&gt;
-  </pre>
-</div>
-
-<!-- Card 5 -->
-<div class="component-card">
-  <h3>Startup Success Story</h3>
-  <div class="testimonial-card">
-    <div class="blur-glow"></div>
-    <div class="quote-icon">❝</div>
-    <div class="stars">
-      <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
-    </div>
-    <p>
-      “As a startup, we needed fast, reliable UI solutions.
-      UIverse gave us a professional look without
-      compromising speed or quality.”
-    </p>
-    <div class="testimonial-meta">
-      <div class="avatar">
-        <img src="https://i.pravatar.cc/100?img=45" alt="" />
-      </div>
-      <div class="user-info">
-        <strong>Sofia Martinez</strong>
-        <span>Founder & CEO</span>
-      </div>
-    </div>
-  </div>
-  <div class="actions">
-    <button class="action-btn view-btn" onclick="toggleCode('t5', this)">
-      <i class="fa-solid fa-code"></i> View Code
-    </button>
-    <button class="action-btn copy-btn" onclick="copyCode('t5', this)">
-      <i class="fa-solid fa-copy"></i> Copy
-    </button>
-  </div>
-  <pre id="t5" class="code-block">
-&lt;div class="testimonial-card"&gt;
-  Startup success testimonial card
-&lt;/div&gt;
-  </pre>
-</div>
-
-
-    </div>
-
-  </main>
-
-</div>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="footer-container">
-
     <div class="footer-col brand">
       <h2 class="footer-logo"><i class="fa-solid fa-cube"></i> UIverse</h2>
       <p>Build modern, reusable UI components with clean HTML, CSS, and JavaScript.</p>
@@ -707,7 +672,6 @@
         <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
       </div>
     </div>
-
     <div class="footer-col">
       <h3>Explore</h3>
       <ul>
@@ -718,7 +682,6 @@
         <li><a href="forms.html">Forms</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h3>Resources</h3>
       <ul>
@@ -728,7 +691,6 @@
         <li><a href="#">Community</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h3>Legal</h3>
       <ul>
@@ -737,36 +699,23 @@
         <li><a href="#">License</a></li>
       </ul>
     </div>
-
     <div class="footer-col newsletter">
       <h3>Stay Updated</h3>
       <p>Get notified when new components drop.</p>
       <div class="newsletter-form">
         <input type="email" placeholder="your@email.com" />
         <button type="button" onclick="subscribe()">Subscribe</button>
-
       </div>
     </div>
-
   </div>
-
-
-  <!-- Bottom -->
   <div class="footer-bottom">
     <p>© 2026 UIverse. Made with ❤️ for developers worldwide.</p>
   </div>
 </footer>
-
-  <div class="footer-bottom">
-    <p>© 2026 UIverse. Made with ❤️ for developers worldwide.</p>
-  </div>
-</footer>
-  
-
-<!-- UIverse Modular Scripts -->
 <script src="js/core/utils.js"></script>
 <script src="js/features/toast.js"></script>
 <script src="js/features/popup.js"></script>
+<script src="js/registry.js"></script>
 <script src="js/features/code-tools.js"></script>
 <script src="js/features/sidebar.js"></script>
 <script src="js/features/search.js"></script>
@@ -776,8 +725,5 @@
 <script src="js/features/sandbox.js"></script>
 <script src="js/features/accessibility.js"></script>
 <script src="js/bootstrap.js"></script>
-
 </body>
 </html>
-
-
