@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Progress Components — UIverse</title>
+  <meta name="description" content="Modern, premium progress bars, SVG indicators, and animated loaders featuring HSL gradients, frosted glass reflections, and smooth transitions.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <link rel="stylesheet" href="progress-premium.css">
+  <link rel="stylesheet" href="shared-sidebar.css">
+</head>
+
+<body>
+
+<div class="main-content">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search progress components..." id="searchInput">
+    </div>
+    <div class="topbar-actions">
+      <button class="add-btn" onclick="fillAllProgress()"><i class="fa-solid fa-play"></i> Fill All</button>
+      <button class="collection-btn" onclick="resetAllProgress()"><i class="fa-solid fa-rotate-left"></i> Reset All</button>
+      <button class="theme-btn"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="breadcrumb">Home &gt; Progress Indicators</div>
+      <h1>Premium Progress Bars</h1>
+      <p>Modern reusable progress loaders, orbital circular indicators, multi-color skill cards, and dynamic percentage trackers. Crafted with pure CSS gradients, backdrop filter blurs, and interactive vanilla JavaScript.</p>
+      
+      <div class="hero-tags">
+        <span><i class="fa-solid fa-gauge-high"></i> Fluid Animation</span>
+        <span><i class="fa-solid fa-star"></i> High-End Glows</span>
+        <span><i class="fa-solid fa-layer-group"></i> Glassmorphic Blurs</span>
+      </div>
+    </div>
+
+    <!-- Hero Progress Preview Animation -->
+    <div class="hero-preview">
+      <div class="hero-progress-demo">
+        <div class="demo-track">
+          <div class="demo-fill"></div>
+        </div>
+        <span class="demo-label">Processing...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section class="filters">
+    <button class="active" onclick="filterCategory('all', this)">All Components</button>
+    <button onclick="filterCategory('linear', this)">Linear Bars</button>
+    <button onclick="filterCategory('circular', this)">Circular</button>
+    <button onclick="filterCategory('loaders', this)">Loaders</button>
+    <button onclick="filterCategory('cards', this)">Cards</button>
+  </section>
+
+  <!-- SHOWROOM GRID -->
+  <div class="notification-grid" id="progressGrid">
+
+    <!-- 1. LINEAR PROGRESS BAR -->
+    <div class="component-card" data-category="linear">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-linear-container">
+            <div class="premium-linear-bar">
+              <div class="linear-track-fill" id="lFill" style="width: 50%;">
+                <div class="linear-tooltip" id="lTooltip">50%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="display:flex; gap:10px; margin-top:30px;">
+            <button class="trigger-live-btn purple" onclick="adjustProgress('linear', -10)"><i class="fa-solid fa-minus"></i> Decrease</button>
+            <button class="trigger-live-btn orange" onclick="adjustProgress('linear', 10)"><i class="fa-solid fa-plus"></i> Increase</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Linear Progress</h3>
+          <span>Linear Bars</span>
+        </div>
+        <p>A sleek horizontal progress bar featuring an HSL violet-to-orange gradient fill and a glass-frosted indicator tooltip.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeL', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeL', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeL" style="display:none;"><code>&lt;div class="premium-linear-container"&gt;
+  &lt;div class="premium-linear-bar"&gt;
+    &lt;div class="linear-track-fill" style="width: 50%;"&gt;
+      &lt;div class="linear-tooltip"&gt;50%&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 2. CIRCULAR PROGRESS INDICATOR -->
+    <div class="component-card" data-category="circular">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-circular-progress">
+            <div class="circular-svg-wrap">
+              <svg width="120" height="120" class="circle-svg">
+                <circle class="circle-track" cx="60" cy="60" r="50"></circle>
+                <circle class="circle-fill-path" id="cPath" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="157.08"></circle>
+              </svg>
+              <!-- Glowing Orbital Dot -->
+              <div class="orbital-dot" id="orbitalDot" style="transform: rotate(90deg) translate(50px) rotate(-90deg);"></div>
+              <div class="circle-center-text">
+                <span class="circle-num" id="cNum">50%</span>
+              </div>
+            </div>
+
+            <!-- Interaction Controls -->
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button class="trigger-live-btn purple" onclick="adjustProgress('circular', -10)"><i class="fa-solid fa-minus"></i></button>
+              <button class="trigger-live-btn green" onclick="adjustProgress('circular', 10)"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Circular Progress</h3>
+          <span>Circular</span>
+        </div>
+        <p>A circular indicator utilizing SVG stroke offsets, active neon glows, and a physical glowing dot orbiting the track path.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeC', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeC', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeC" style="display:none;"><code>&lt;div class="premium-circular-progress"&gt;
+  &lt;svg width="120" height="120" class="circle-svg"&gt;
+    &lt;circle class="circle-track" cx="60" cy="60" r="50"&gt;&lt;/circle&gt;
+    &lt;circle class="circle-fill-path" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="157.08"&gt;&lt;/circle&gt;
+  &lt;/svg&gt;
+  &lt;div class="orbital-dot"&gt;&lt;/div&gt;
+  &lt;div class="circle-center-text"&gt;
+    &lt;span class="circle-num"&gt;50%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 3. GRADIENT PROGRESS LOADER -->
+    <div class="component-card" data-category="loaders">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-gradient-loader">
+            <div class="loader-track">
+              <div class="loader-running-gradient" id="gFill" style="width: 0%;"></div>
+            </div>
+            <div class="loader-meta">
+              <span class="loader-status" id="loaderStatus">Ready to load</span>
+              <span class="loader-pct" id="loaderPct">0%</span>
+            </div>
+          </div>
+
+          <!-- Interaction Controls -->
+          <div style="margin-top:20px;">
+            <button class="trigger-live-btn orange" onclick="startSimulatedLoad()"><i class="fa-solid fa-rotate"></i> Simulate Load</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Gradient Loader</h3>
+          <span>Loaders</span>
+        </div>
+        <p>A glass-embedded progress loader displaying a continuous overlapping active gradient filling track on trigger.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeG', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeG', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeG" style="display:none;"><code>&lt;div class="premium-gradient-loader"&gt;
+  &lt;div class="loader-track"&gt;
+    &lt;div class="loader-running-gradient" style="width: 75%;"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="loader-meta"&gt;
+    &lt;span class="loader-status"&gt;Loading assets...&lt;/span&gt;
+    &lt;span class="loader-pct"&gt;75%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 4. SKILL PROGRESS CARD -->
+    <div class="component-card" data-category="cards">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-skill-card" onclick="refillSkills()">
+            <div class="skill-row">
+              <div class="skill-header">
+                <span>UI / UX Design</span>
+                <span class="skill-val">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill violet" id="sFill1" style="width: 90%;"></div>
+              </div>
+            </div>
+            
+            <div class="skill-row">
+              <div class="skill-header">
+                <span>Frontend Code</span>
+                <span class="skill-val">85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill green" id="sFill2" style="width: 85%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-row">
+              <div class="skill-header">
+                <span>Backend Logic</span>
+                <span class="skill-val">70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-fill gold" id="sFill3" style="width: 70%;"></div>
+              </div>
+            </div>
+            
+            <span class="skill-card-tip"><i class="fa-solid fa-wand-magic-sparkles"></i> Click Card to Refill</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Skill Progress Card</h3>
+          <span>Cards</span>
+        </div>
+        <p>A multi-row dashboard card featuring specific colored progress tracks, responsive layouts, and elegant text details.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeS', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeS', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeS" style="display:none;"><code>&lt;div class="premium-skill-card"&gt;
+  &lt;div class="skill-row"&gt;
+    &lt;div class="skill-header"&gt;
+      &lt;span&gt;UI / UX Design&lt;/span&gt;
+      &lt;span class="skill-val"&gt;90%&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="skill-bar"&gt;
+      &lt;div class="skill-fill violet" style="width: 90%;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 5. ANIMATED PERCENTAGE TRACKER -->
+    <div class="component-card" data-category="circular">
+      <div class="card-preview">
+        <div class="card-interactive-area full-width">
+          
+          <!-- Interactive Render -->
+          <div class="premium-percentage-tracker">
+            <div class="tracker-circle">
+              <svg width="100" height="100" class="tracker-svg">
+                <circle class="tracker-bg" cx="50" cy="50" r="42"></circle>
+                <circle class="tracker-fill" id="tPath" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="65.97"></circle>
+              </svg>
+              <div class="tracker-center">
+                <span class="tracker-pct" id="trackerNum">75%</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Input Target -->
+            <div class="tracker-input-box">
+              <input type="number" min="0" max="100" value="75" id="targetInput" placeholder="Target %">
+              <button onclick="applyTrackerTarget()"><i class="fa-solid fa-chevron-right"></i> Set</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Percentage Tracker</h3>
+          <span>Circular</span>
+        </div>
+        <p>A round progress gauge that updates in real time by taking user inputs and ticking progress numbers smoothly up or down.</p>
+        
+        <div class="card-actions">
+          <button onclick="toggleCode('codeP', this)"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('codeP', this)"><i class="fa-solid fa-copy"></i> Copy HTML</button>
+        </div>
+      </div>
+
+      <pre class="code-block" id="codeP" style="display:none;"><code>&lt;div class="premium-percentage-tracker"&gt;
+  &lt;div class="tracker-circle"&gt;
+    &lt;svg width="100" height="100" class="tracker-svg"&gt;
+      &lt;circle class="tracker-bg" cx="50" cy="50" r="42"&gt;&lt;/circle&gt;
+      &lt;circle class="tracker-fill" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="131.95"&gt;&lt;/circle&gt;
+    &lt;/svg&gt;
+    &lt;div class="tracker-center"&gt;
+      &lt;span class="tracker-pct"&gt;50%&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- INJECT SIDEBAR VIA CLIENT-SIDE HOOKS OR INLINE ASSETS -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <span class="brand-icon">⬡</span>
+    <span class="brand-text">UIverse</span>
+  </div>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+      <li><a href="button.html"><i class="fa-solid fa-hand-pointer"></i><span>Buttons</span></a></li>
+      <li><a href="dropdown-components.html"><i class="fa-solid fa-caret-down"></i><span>Dropdowns</span></a></li>
+      <li><a href="navbar.html"><i class="fa-solid fa-bars"></i><span>Navbar</span></a></li>
+      <li><a href="cards.html"><i class="fa-solid fa-table-cells-large"></i><span>Cards</span></a></li>
+      <li><a href="flipcards.html"><i class="fa-solid fa-clone"></i><span>3D Cards</span></a></li>
+      <li><a href="inputs.html"><i class="fa-solid fa-keyboard"></i><span>Inputs</span></a></li>
+      <li><a href="forms.html"><i class="fa-brands fa-wpforms"></i><span>Forms</span></a></li>
+      <li><a href="badges.html"><i class="fa-solid fa-award"></i><span>Badges</span></a></li>
+      <li><a href="blog.html"><i class="fa-solid fa-blog"></i><span>Blog</span></a></li>
+      <li><a href="article.html"><i class="fa-solid fa-newspaper"></i><span>Articles</span></a></li>
+      <li><a href="alerts.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Alerts</span></a></li>
+      <li><a href="color.html"><i class="fa-solid fa-palette"></i><span>Colors</span></a></li>
+      <li><a href="charts.html"><i class="fa-solid fa-chart-pie"></i><span>Charts</span></a></li>
+      <li><a href="dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+      <li><a href="div.html"><i class="fa-solid fa-square"></i><span>DIV</span></a></li>
+      <li><a href="widgets.html"><i class="fa-solid fa-layer-group"></i><span>Widgets</span></a></li>
+      <li><a href="search.html"><i class="fa-solid fa-magnifying-glass"></i><span>Search Bars</span></a></li>
+      <li><a href="hover.html"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Hover Effects</span></a></li>
+      <li><a href="error.html"><i class="fa-solid fa-circle-exclamation"></i><span>Error Pages</span></a></li>
+      <li><a href="ecommerce.html"><i class="fa-solid fa-cart-shopping"></i><span>E-commerce</span></a></li>
+      <li><a href="files.html"><i class="fa-solid fa-file-arrow-up"></i><span>Drag & Drop</span></a></li>
+      <li><a href="hero.html"><i class="fa-solid fa-star"></i><span>Hero Sections</span></a></li>
+      <li><a href="loaders.html"><i class="fa-solid fa-spinner"></i><span>Loaders</span></a></li>
+      <li><a href="timeline.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Timeline</span></a></li>
+      <li><a href="map.html"><i class="fa-solid fa-map-location-dot"></i><span>Maps</span></a></li>
+      <li><a href="menu.html"><i class="fa-solid fa-bars-staggered"></i><span>Menu</span></a></li>
+      <li><a href="pricing.html"><i class="fa-solid fa-tags"></i><span>Pricing</span></a></li>
+      <li><a href="section.html"><i class="fa-solid fa-rectangle-list"></i><span>Section</span></a></li>
+      <li><a href="span.html"><i class="fa-solid fa-code"></i><span>Span</span></a></li>
+      <li><a href="table.html"><i class="fa-solid fa-table"></i><span>Table</span></a></li>
+      <li><a href="tabs.html"><i class="fa-solid fa-table-columns"></i><span>Tabs</span></a></li>
+      <li><a href="terms.html"><i class="fa-solid fa-file-contract"></i><span>Terms</span></a></li>
+      <li><a href="testimonials.html"><i class="fa-solid fa-comments"></i><span>Testimonials</span></a></li>
+      <li><a href="toggles.html"><i class="fa-solid fa-toggle-on"></i><span>Toggle</span></a></li>
+      <li><a href="radiobutton.html"><i class="fa-solid fa-circle-dot"></i><span>Radio Buttons</span></a></li>
+      <li><a href="checkbox.html"><i class="fa-solid fa-square-check"></i><span>Checkboxes</span></a></li>
+      <li><a href="notifications-premium.html"><i class="fa-solid fa-bell"></i><span>Notifications V2</span></a></li>
+      <li><a href="step-indicators.html"><i class="fa-solid fa-list-check"></i><span>Steppers</span></a></li>
+      <li class="active"><a href="progress-premium.html"><i class="fa-solid fa-bars-progress"></i><span>Progress V2</span></a></li>
+      <li><a href="ratings-premium.html"><i class="fa-solid fa-star"></i><span>Ratings V2</span></a></li>
+      <li><a href="filters-premium.html"><i class="fa-solid fa-sliders"></i><span>Filters V2</span></a></li>
+      <li><a href="about.html"><i class="fa-solid fa-circle-info"></i><span>About</span></a></li>
+      <li><a href="documentation.html"><i class="fa-solid fa-book"></i><span>Documentation</span></a></li>
+      <li><a href="faq.html"><i class="fa-solid fa-circle-question"></i><span>Faq</span></a></li>
+      <li><a href="contact.html"><i class="fa-regular fa-envelope"></i><span>Contact Us</span></a></li>
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  // PROGRESS STATE variables
+  let linearVal = 50;
+  let circularVal = 50;
+  let trackerVal = 75;
+
+  // 1. Linear Bar Adjuster
+  function updateLinearUI() {
+    const fill = document.getElementById('lFill');
+    const tooltip = document.getElementById('lTooltip');
+    fill.style.width = linearVal + '%';
+    tooltip.innerText = linearVal + '%';
+  }
+
+  // 2. Circular Bar Adjuster
+  function updateCircularUI() {
+    const path = document.getElementById('cPath');
+    const dot = document.getElementById('orbitalDot');
+    const num = document.getElementById('cNum');
+
+    // Circumference = 2 * PI * 50 = 314.16
+    const circumference = 314.16;
+    const progress = circularVal / 100;
+    const offset = circumference - (progress * circumference);
+
+    path.style.strokeDashoffset = offset;
+    num.innerText = circularVal + '%';
+
+    // Calculate dynamic rotation angle of orbital dot
+    // Initial position is at 90 deg (bottom) or 0 deg (right) depending on SVG orientation
+    const angle = (progress * 360) - 90;
+    dot.style.transform = `rotate(${angle}deg) translate(50px) rotate(-${angle}deg)`;
+  }
+
+  // Global Progress Adjuster
+  function adjustProgress(type, val) {
+    if (type === 'linear') {
+      linearVal = Math.min(100, Math.max(0, linearVal + val));
+      updateLinearUI();
+    }
+    if (type === 'circular') {
+      circularVal = Math.min(100, Math.max(0, circularVal + val));
+      updateCircularUI();
+    }
+  }
+
+  // 3. Simulated Load System
+  let simulateInterval = null;
+  function startSimulatedLoad() {
+    const fill = document.getElementById('gFill');
+    const status = document.getElementById('loaderStatus');
+    const pct = document.getElementById('loaderPct');
+    const btn = document.querySelector('[onclick="startSimulatedLoad()"]');
+
+    if (simulateInterval) clearInterval(simulateInterval);
+    btn.disabled = true;
+    
+    let loadProgress = 0;
+    status.innerText = "Initializing assets...";
+    
+    simulateInterval = setInterval(() => {
+      loadProgress += Math.floor(Math.random() * 8) + 4;
+      if (loadProgress >= 100) {
+        loadProgress = 100;
+        clearInterval(simulateInterval);
+        status.innerText = "Fetch Completed!";
+        btn.disabled = false;
+      } else if (loadProgress > 75) {
+        status.innerText = "Finalizing pipeline...";
+      } else if (loadProgress > 40) {
+        status.innerText = "Loading shaders & assets...";
+      } else if (loadProgress > 15) {
+        status.innerText = "Connecting secure workspace...";
+      }
+      
+      fill.style.width = loadProgress + '%';
+      pct.innerText = loadProgress + '%';
+    }, 150);
+  }
+
+  // 4. Refill Skills Panel
+  function refillSkills() {
+    const fill1 = document.getElementById('sFill1');
+    const fill2 = document.getElementById('sFill2');
+    const fill3 = document.getElementById('sFill3');
+
+    // Drain
+    fill1.style.width = '0%';
+    fill2.style.width = '0%';
+    fill3.style.width = '0%';
+
+    // Refill
+    setTimeout(() => {
+      fill1.style.width = '90%';
+      fill2.style.width = '85%';
+      fill3.style.width = '70%';
+    }, 200);
+  }
+
+  // 5. Dynamic Percentage Tracker Selector
+  function applyTrackerTarget() {
+    const input = document.getElementById('targetInput');
+    const target = Math.min(100, Math.max(0, parseInt(input.value) || 0));
+    
+    const path = document.getElementById('tPath');
+    const num = document.getElementById('trackerNum');
+
+    // Circumference = 2 * PI * 42 = 263.89
+    const circumference = 263.89;
+    
+    // Animate path fill
+    const progress = target / 100;
+    const offset = circumference - (progress * circumference);
+    path.style.strokeDashoffset = offset;
+
+    // JavaScript ticker counting numbers smoothly
+    let current = trackerVal;
+    const isUp = target > current;
+    
+    const tickInterval = setInterval(() => {
+      if (current === target) {
+        clearInterval(tickInterval);
+        trackerVal = target;
+      } else {
+        current = isUp ? current + 1 : current - 1;
+        num.innerText = current + '%';
+      }
+    }, 15);
+  }
+
+  // Global Actions
+  function fillAllProgress() {
+    linearVal = 100;
+    circularVal = 100;
+    updateLinearUI();
+    updateCircularUI();
+    
+    // Fill skills
+    document.getElementById('sFill1').style.width = '100%';
+    document.getElementById('sFill2').style.width = '100%';
+    document.getElementById('sFill3').style.width = '100%';
+
+    // Fill loader
+    document.getElementById('gFill').style.width = '100%';
+    document.getElementById('loaderPct').innerText = '100%';
+    document.getElementById('loaderStatus').innerText = 'Fetch Completed!';
+
+    // Fill tracker
+    document.getElementById('targetInput').value = 100;
+    applyTrackerTarget();
+  }
+
+  // Reset progress states
+  function resetAllProgress() {
+    linearVal = 50;
+    circularVal = 50;
+    trackerVal = 75;
+    
+    updateLinearUI();
+    updateCircularUI();
+    
+    // Reset skills
+    document.getElementById('sFill1').style.width = '90%';
+    document.getElementById('sFill2').style.width = '85%';
+    document.getElementById('sFill3').style.width = '70%';
+
+    // Reset loader
+    document.getElementById('gFill').style.width = '0%';
+    document.getElementById('loaderPct').innerText = '0%';
+    document.getElementById('loaderStatus').innerText = 'Ready to load';
+
+    // Reset tracker
+    document.getElementById('targetInput').value = 75;
+    applyTrackerTarget();
+  }
+
+  // Filter category
+  function filterCategory(cat, btn) {
+    const buttons = document.querySelectorAll('.filters button');
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.component-card');
+    cards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (cat === 'all' || cardCat === cat) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Search input system
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.component-card');
+    
+    cards.forEach(card => {
+      const title = card.querySelector('h3').innerText.toLowerCase();
+      const desc = card.querySelector('p').innerText.toLowerCase();
+      if (title.includes(query) || desc.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+
+  // Code toggle and copy clipboard methods
+  function toggleCode(id, btn) {
+    const block = document.getElementById(id);
+    if (block.style.display === 'none') {
+      block.style.display = 'block';
+      btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Hide Code';
+    } else {
+      block.style.display = 'none';
+      btn.innerHTML = '<i class="fa-solid fa-code"></i> View Code';
+    }
+  }
+
+  function copyCode(id, btn) {
+    const code = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      const origText = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+      btn.style.color = '#10b981';
+      btn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+      setTimeout(() => {
+        btn.innerHTML = origText;
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1800);
+    });
+  }
+
+  // Run on start
+  updateLinearUI();
+  updateCircularUI();
+</script>
+
+</body>
+</html>
