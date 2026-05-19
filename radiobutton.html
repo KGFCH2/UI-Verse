@@ -461,6 +461,240 @@
 }</code></pre>
     </div>
 
+    <div class="component-card">
+      <div class="card-preview dark-preview">
+        <div class="cyber-radio-group">
+          <label class="cyber-radio">
+            <input type="radio" name="cyber" checked>
+            <div class="cyber-indicator"></div>
+            <span class="cyber-label">Cyber</span>
+          </label>
+          <label class="cyber-radio">
+            <input type="radio" name="cyber">
+            <div class="cyber-indicator"></div>
+            <span class="cyber-label">Punk</span>
+          </label>
+          <label class="cyber-radio">
+            <input type="radio" name="cyber">
+            <div class="cyber-indicator"></div>
+            <span class="cyber-label">Neon</span>
+          </label>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Cyberpunk Radio</h3>
+          <span>Neon</span>
+        </div>
+        <p>A futuristic radio button with neon glow effects, harsh angles, and vivid magenta/cyan contrasts.</p>
+        <div class="card-actions">
+          <button onclick="toggleCode('r6')"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('r6')"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button><i class="fa-solid fa-bookmark"></i> Save</button>
+        </div>
+      </div>
+      <pre id="r6" class="code-block" style="display:none;"><code>&lt;label class="cyber-radio"&gt;
+  &lt;input type="radio" name="cyber" checked&gt;
+  &lt;div class="cyber-indicator"&gt;&lt;/div&gt;
+  &lt;span class="cyber-label"&gt;Cyber&lt;/span&gt;
+&lt;/label&gt;
+
+.cyber-radio input:checked ~ .cyber-indicator {
+  border-color: #f0f;
+  box-shadow: 0 0 10px #f0f;
+  transform: rotate(90deg);
+}</code></pre>
+    </div>
+
+    <div class="component-card">
+      <div class="card-preview dark-preview">
+        <div class="neu-radio-group">
+          <label class="neu-radio">
+            <input type="radio" name="neu" checked>
+            <div class="neu-indicator"></div>
+            <span class="neu-label">System Default</span>
+          </label>
+          <label class="neu-radio">
+            <input type="radio" name="neu">
+            <div class="neu-indicator"></div>
+            <span class="neu-label">Dark Mode</span>
+          </label>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Neumorphic Radio</h3>
+          <span>Dark</span>
+        </div>
+        <p>Dark themed neumorphic radio buttons with deep inset shadows and bright glowing active indicators.</p>
+        <div class="card-actions">
+          <button onclick="toggleCode('r7')"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('r7')"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button><i class="fa-solid fa-bookmark"></i> Save</button>
+        </div>
+      </div>
+      <pre id="r7" class="code-block" style="display:none;"><code>&lt;label class="neu-radio"&gt;
+  &lt;input type="radio" name="neu" checked&gt;
+  &lt;div class="neu-indicator"&gt;&lt;/div&gt;
+  &lt;span class="neu-label"&gt;System Default&lt;/span&gt;
+&lt;/label&gt;
+
+.neu-radio input:checked ~ .neu-indicator {
+  box-shadow: inset 4px 4px 8px #080a14, inset -4px -4px 8px #202652;
+}</code></pre>
+    </div>
+
+    <div class="component-card">
+      <div class="card-preview">
+        <div class="emoji-radio-group">
+          <label class="emoji-radio">
+            <input type="radio" name="emoji">
+            <span class="emoji-icon">😠</span>
+            <span class="emoji-label">Poor</span>
+          </label>
+          <label class="emoji-radio">
+            <input type="radio" name="emoji">
+            <span class="emoji-icon">😐</span>
+            <span class="emoji-label">Fair</span>
+          </label>
+          <label class="emoji-radio">
+            <input type="radio" name="emoji" checked>
+            <span class="emoji-icon">😊</span>
+            <span class="emoji-label">Good</span>
+          </label>
+          <label class="emoji-radio">
+            <input type="radio" name="emoji">
+            <span class="emoji-icon">😍</span>
+            <span class="emoji-label">Great</span>
+          </label>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Feedback Emoji Radio</h3>
+          <span>Fun</span>
+        </div>
+        <p>Interactive emoji-based radio selector perfect for feedback forms, featuring bouncy scale animations.</p>
+        <div class="card-actions">
+          <button onclick="toggleCode('r8')"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('r8')"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button><i class="fa-solid fa-bookmark"></i> Save</button>
+        </div>
+      </div>
+      <pre id="r8" class="code-block" style="display:none;"><code>&lt;label class="emoji-radio"&gt;
+  &lt;input type="radio" name="emoji" checked&gt;
+  &lt;span class="emoji-icon"&gt;😊&lt;/span&gt;
+  &lt;span class="emoji-label"&gt;Good&lt;/span&gt;
+&lt;/label&gt;
+
+.emoji-radio input:checked ~ .emoji-icon {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.2) translateY(-5px);
+}</code></pre>
+    </div>
+
+    <div class="component-card">
+      <div class="card-preview">
+        <div class="accordion-radio-group">
+          <label class="accordion-radio">
+            <input type="radio" name="accordion" checked>
+            <div class="accordion-header">
+              <span class="accordion-title">Standard Shipping</span>
+              <div class="accordion-indicator"></div>
+            </div>
+            <div class="accordion-body">
+              Delivery in 3-5 business days. Available for all orders under 5lbs.
+            </div>
+          </label>
+          <label class="accordion-radio">
+            <input type="radio" name="accordion">
+            <div class="accordion-header">
+              <span class="accordion-title">Express Shipping</span>
+              <div class="accordion-indicator"></div>
+            </div>
+            <div class="accordion-body">
+              Get it tomorrow! Orders must be placed before 2 PM local time.
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Accordion Radio</h3>
+          <span>Interactive</span>
+        </div>
+        <p>Radio buttons combined with an accordion layout, expanding to show more details upon selection.</p>
+        <div class="card-actions">
+          <button onclick="toggleCode('r9')"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('r9')"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button><i class="fa-solid fa-bookmark"></i> Save</button>
+        </div>
+      </div>
+      <pre id="r9" class="code-block" style="display:none;"><code>&lt;label class="accordion-radio"&gt;
+  &lt;input type="radio" name="accordion" checked&gt;
+  &lt;div class="accordion-header"&gt;
+    &lt;span class="accordion-title"&gt;Standard Shipping&lt;/span&gt;
+    &lt;div class="accordion-indicator"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion-body"&gt;
+    Delivery in 3-5 business days.
+  &lt;/div&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+
+    <div class="component-card">
+      <div class="card-preview">
+        <div class="pricing-radio-group">
+          <label class="pricing-radio">
+            <input type="radio" name="pricing">
+            <div class="pricing-card">
+              <span class="pricing-tier">Basic</span>
+              <div class="pricing-amount">$9<span>/mo</span></div>
+            </div>
+          </label>
+          <label class="pricing-radio">
+            <input type="radio" name="pricing" checked>
+            <div class="pricing-card">
+              <span class="pricing-tier">Pro</span>
+              <div class="pricing-amount">$19<span>/mo</span></div>
+            </div>
+          </label>
+          <label class="pricing-radio">
+            <input type="radio" name="pricing">
+            <div class="pricing-card">
+              <span class="pricing-tier">Max</span>
+              <div class="pricing-amount">$29<span>/mo</span></div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-top">
+          <h3>Pricing Tier Radio</h3>
+          <span>Cards</span>
+        </div>
+        <p>A set of radio cards designed for subscription selection with elevated 3D states and shadow effects.</p>
+        <div class="card-actions">
+          <button onclick="toggleCode('r10')"><i class="fa-solid fa-code"></i> View Code</button>
+          <button onclick="copyCode('r10')"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button><i class="fa-solid fa-bookmark"></i> Save</button>
+        </div>
+      </div>
+      <pre id="r10" class="code-block" style="display:none;"><code>&lt;label class="pricing-radio"&gt;
+  &lt;input type="radio" name="pricing" checked&gt;
+  &lt;div class="pricing-card"&gt;
+    &lt;span class="pricing-tier"&gt;Pro&lt;/span&gt;
+    &lt;div class="pricing-amount"&gt;$19&lt;span&gt;/mo&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/label&gt;
+
+.pricing-radio input:checked ~ .pricing-card {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-5px);
+}</code></pre>
+    </div>
+
   </section>
 
 </div>

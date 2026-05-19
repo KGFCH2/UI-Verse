@@ -787,6 +787,318 @@ body {
   color: #6366f1;
 }
 
+.cyber-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 250px;
+}
+.cyber-radio {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  padding: 15px 20px;
+  border: 2px solid transparent;
+  background: #09090e;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: all 0.3s;
+}
+.cyber-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cyber-indicator {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #0ff;
+  position: relative;
+  transform: rotate(45deg);
+  transition: all 0.3s;
+  box-shadow: 0 0 5px #0ff, inset 0 0 5px #0ff;
+}
+.cyber-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 8px;
+  height: 8px;
+  background: #f0f;
+  box-shadow: 0 0 10px #f0f;
+  transition: all 0.3s;
+}
+.cyber-radio input:checked ~ .cyber-indicator {
+  border-color: #f0f;
+  box-shadow: 0 0 10px #f0f, inset 0 0 10px #f0f;
+  transform: rotate(90deg);
+}
+.cyber-radio input:checked ~ .cyber-indicator::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.cyber-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #0ff;
+  transition: all 0.3s;
+}
+.cyber-radio input:checked ~ .cyber-label {
+  color: #f0f;
+  text-shadow: 0 0 8px #f0f;
+}
+
+.neu-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.neu-radio {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  padding: 12px;
+}
+.neu-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.neu-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #141833;
+  box-shadow: 4px 4px 8px #080a14, -4px -4px 8px #202652;
+  position: relative;
+  transition: all 0.3s;
+}
+.neu-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f97316;
+  box-shadow: 0 0 10px #f97316;
+  transition: all 0.3s;
+}
+.neu-radio input:checked ~ .neu-indicator {
+  box-shadow: inset 4px 4px 8px #080a14, inset -4px -4px 8px #202652;
+}
+.neu-radio input:checked ~ .neu-indicator::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.neu-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #8a9bc0;
+  transition: color 0.3s;
+}
+.neu-radio input:checked ~ .neu-label {
+  color: #fff;
+}
+
+.emoji-radio-group {
+  display: flex;
+  gap: 15px;
+  background: rgba(255,255,255,0.03);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.emoji-radio {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.emoji-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.emoji-icon {
+  font-size: 28px;
+  filter: grayscale(100%) opacity(0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0.8);
+}
+.emoji-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s;
+}
+.emoji-radio input:checked ~ .emoji-icon {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.2) translateY(-5px);
+}
+.emoji-radio input:checked ~ .emoji-label {
+  opacity: 1;
+  transform: translateY(0);
+  color: #fff;
+}
+.emoji-radio:hover .emoji-icon {
+  filter: grayscale(50%) opacity(0.8);
+  transform: scale(1);
+}
+
+.accordion-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+}
+.accordion-radio {
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+.accordion-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+.accordion-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #cbd5e1;
+  transition: color 0.3s;
+}
+.accordion-indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #475569;
+  position: relative;
+  transition: all 0.3s;
+}
+.accordion-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.6;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 0 0 12px 12px;
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+.accordion-radio input:checked ~ .accordion-header {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 12px 12px 0 0;
+}
+.accordion-radio input:checked ~ .accordion-header .accordion-title {
+  color: #10b981;
+}
+.accordion-radio input:checked ~ .accordion-header .accordion-indicator {
+  border-color: #10b981;
+}
+.accordion-radio input:checked ~ .accordion-header .accordion-indicator::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.accordion-radio input:checked ~ .accordion-body {
+  max-height: 100px;
+  padding: 12px 18px;
+  opacity: 1;
+  border: 1px solid #10b981;
+  border-top: none;
+}
+
+.pricing-radio-group {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+.pricing-radio {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+}
+.pricing-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.pricing-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 2px solid rgba(255,255,255,0.05);
+  text-align: center;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pricing-tier {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.pricing-amount {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+}
+.pricing-amount span {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+.pricing-radio input:checked ~ .pricing-card {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(59,130,246,0.2);
+}
+.pricing-radio input:checked ~ .pricing-card .pricing-tier {
+  color: #60a5fa;
+}
+
 /* =========================================================
    SIDEBAR (mirrored from project standard)
 ========================================================= */
