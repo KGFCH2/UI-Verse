@@ -14,9 +14,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home.css">
-  <link rel="stylesheet" href="input.css">
   <link rel="stylesheet" href="shared-sidebar.css">
+  <link rel="stylesheet" href="shared-page.css">
+  <link rel="stylesheet" href="input.css">
 </head>
 
 <body data-playground-type="input">
@@ -24,7 +26,7 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
       <span class="brand-icon">⬡</span>
-      <span class="brand-text">UIverse</span>
+      <span class="brand-text">UIverse <span class="brand-badge">V2</span></span>
     </div>
 
     <nav class="sidebar-nav">
@@ -164,7 +166,7 @@
         <li>
           <a href="files.html">
             <i class="fa-solid fa-file-arrow-up"></i>
-            <span>Drag & Drop</span>
+            <span>Drag &amp; Drop</span>
           </a>
         </li>
         <li>
@@ -333,9 +335,9 @@
     </nav>
 
     <div class="sidebar-footer">
-      <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a href="#" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-x-twitter"></i></a>
     </div>
   </aside>
 
@@ -343,24 +345,24 @@
   <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
   <!-- NAVBAR -->
   <header class="navbar" id="navbar">
-    <button class="menu-toggle" onclick="toggleSidebar()">
+    <button type="button" class="menu-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar Navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
     <div class="logo">UIverse</div>
     <div class="search-bar">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" id="searchInput" placeholder="Search components..." oninput="liveFilter(this.value)" />
+      <input type="text" id="searchInput" placeholder="Search components..." oninput="liveFilter(this.value)" >
       <kbd class="search-kbd">⌘K</kbd>
     </div>
     <div class="nav-right">
-      <button class="nav-btn outline-nav-btn"><i class="fa-solid fa-plus"></i> Add Component</button>
-      <button class="nav-btn primary-nav-btn"><i class="fa-solid fa-bookmark"></i> My Collection</button>
-      <button id="darkModeToggle" class="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+      <button type="button" class="nav-btn outline-nav-btn"><i class="fa-solid fa-plus"></i> Add Component</button>
+      <a href="MyCollection.html" class="nav-btn primary-nav-btn"><i class="fa-solid fa-bookmark"></i> My Collection</a>
+      <button type="button" id="darkModeToggle" class="theme-toggle" aria-label="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
     </div>
   </header>
 
   <!-- MAIN -->
-  <main class="main-home">
+  <div class="main-content">
 
     <!-- Page Hero -->
     <div class="page-hero">
@@ -383,28 +385,28 @@
         <div class="hero-inputs-preview">
           <div class="preview-input-wrap">
             <i class="fa-solid fa-user preview-icon"></i>
-            <input class="preview-input" type="text" placeholder="Username" readonly />
+            <input class="preview-input" type="text" placeholder="Username" readonly >
           </div>
           <div class="preview-input-wrap">
             <i class="fa-solid fa-lock preview-icon"></i>
-            <input class="preview-input" type="password" placeholder="Password" readonly />
+            <input class="preview-input" type="password" placeholder="Password" readonly >
           </div>
-          <input class="preview-range" type="range" value="60" readonly />
+          <input class="preview-range" type="range" value="60" disabled>
         </div>
       </div>
     </div>
 
     <!-- Filter Bar -->
     <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterSection('all', this)">All</button>
-      <button class="filter-btn" onclick="filterSection('basic', this)">Basic</button>
-      <button class="filter-btn" onclick="filterSection('datetime', this)">Date & Time</button>
-      <button class="filter-btn" onclick="filterSection('advanced', this)">Advanced</button>
-      <button class="filter-btn" onclick="filterSection('selection', this)">Selection</button>
-      <button class="filter-btn" onclick="filterSection('attributes', this)">Attributes</button>
+      <button type="button" class="filter-btn active" onclick="filterSection('all', this)">All</button>
+      <button type="button" class="filter-btn" onclick="filterSection('basic', this)">Basic</button>
+      <button type="button" class="filter-btn" onclick="filterSection('datetime', this)">Date &amp; Time</button>
+      <button type="button" class="filter-btn" onclick="filterSection('advanced', this)">Advanced</button>
+      <button type="button" class="filter-btn" onclick="filterSection('selection', this)">Selection</button>
+      <button type="button" class="filter-btn" onclick="filterSection('attributes', this)">Attributes</button>
       <div class="filter-search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Filter inputs..." oninput="liveFilter(this.value)" />
+        <input type="text" placeholder="Filter inputs..." oninput="liveFilter(this.value)" >
       </div>
     </div>
 
@@ -422,13 +424,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="text" placeholder="Enter text" />
+            <input class="demo-input" type="text" placeholder="Enter text" >
           </div>
           <p class="card-desc">The most basic input — accepts any text value.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c1', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c1', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c1', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c1', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c1" class="code-block"><code>&lt;input type="text" placeholder="Enter text"&gt;</code></pre>
@@ -440,13 +442,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="email" placeholder="you@example.com" />
+            <input class="demo-input" type="email" placeholder="you@example.com" >
           </div>
           <p class="card-desc">Validates email format on submission automatically.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c2', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c2', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c2', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c2', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c2" class="code-block"><code>&lt;input type="email" placeholder="you@example.com"&gt;</code></pre>
@@ -458,13 +460,13 @@
             <span class="card-tag tag-popular">Popular</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="password" placeholder="••••••••" />
+            <input class="demo-input" type="password" placeholder="••••••••" >
           </div>
           <p class="card-desc">Masks characters as the user types for secure entry.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c3', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c3', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c3', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c3', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c3" class="code-block"><code>&lt;input type="password" placeholder="••••••••"&gt;</code></pre>
@@ -487,13 +489,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="date" />
+            <input class="demo-input" type="date" >
           </div>
           <p class="card-desc">Opens a native date picker in supported browsers.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c4', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c4', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c4', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c4', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c4" class="code-block"><code>&lt;input type="date"&gt;</code></pre>
@@ -505,13 +507,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="time" />
+            <input class="demo-input" type="time" >
           </div>
           <p class="card-desc">Opens a native time picker for hour/minute selection.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c5', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c5', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c5', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c5', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c5" class="code-block"><code>&lt;input type="time"&gt;</code></pre>
@@ -534,13 +536,13 @@
             <span class="card-tag tag-popular">Popular</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="file" />
+            <input class="demo-input" type="file" >
           </div>
           <p class="card-desc">Lets users browse and select files from their device.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c6', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c6', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c6', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c6', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c6" class="code-block"><code>&lt;input type="file"&gt;</code></pre>
@@ -552,13 +554,13 @@
             <span class="card-tag tag-trending">Trending</span>
           </div>
           <div class="card-preview">
-            <input class="demo-range" type="range" min="0" max="100" value="60" />
+            <input class="demo-range" type="range" min="0" max="100" value="60" >
           </div>
           <p class="card-desc">A draggable slider for picking a numeric value within a range.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c7', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c7', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c7', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c7', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c7" class="code-block"><code>&lt;input type="range" min="0" max="100" value="60"&gt;</code></pre>
@@ -570,13 +572,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="number" placeholder="0.0" step="0.5" />
+            <input class="demo-input" type="number" placeholder="0.0" step="0.5" >
           </div>
           <p class="card-desc">Numeric input with a step attribute — increments by 0.5.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c8', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c8', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c8', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c8', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c8" class="code-block"><code>&lt;input type="number" placeholder="0.0" step="0.5"&gt;</code></pre>
@@ -589,15 +591,15 @@
           </div>
           <div class="card-preview">
             <div class="color-preview-wrap">
-              <input class="demo-color" type="color" value="#eb6835" />
+              <input class="demo-color" type="color" value="#eb6835" >
               <span>Pick a color</span>
             </div>
           </div>
           <p class="card-desc">Opens a native color picker — great for theme customization.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c9', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c9', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c9', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c9', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c9" class="code-block"><code>&lt;input type="color" value="#eb6835"&gt;</code></pre>
@@ -621,15 +623,15 @@
           </div>
           <div class="card-preview">
             <div class="demo-checks">
-              <label class="demo-check-label"><input type="checkbox" checked /> Accept terms &amp; conditions</label>
-              <label class="demo-check-label"><input type="checkbox" /> Subscribe to newsletter</label>
+              <label class="demo-check-label"><input type="checkbox" checked > Accept terms &amp; conditions</label>
+              <label class="demo-check-label"><input type="checkbox" > Subscribe to newsletter</label>
             </div>
           </div>
           <p class="card-desc">Used for multi-select boolean options.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c10', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c10', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c10', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c10', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c10" class="code-block"><code>&lt;label&gt;&lt;input type="checkbox"&gt; Accept terms&lt;/label&gt;
@@ -643,16 +645,16 @@
           </div>
           <div class="card-preview">
             <div class="demo-checks">
-              <label class="demo-check-label"><input type="radio" name="demo-radio" checked /> Option 1</label>
-              <label class="demo-check-label"><input type="radio" name="demo-radio" /> Option 2</label>
-              <label class="demo-check-label"><input type="radio" name="demo-radio" /> Option 3</label>
+              <label class="demo-check-label"><input type="radio" name="demo-radio" checked > Option 1</label>
+              <label class="demo-check-label"><input type="radio" name="demo-radio" > Option 2</label>
+              <label class="demo-check-label"><input type="radio" name="demo-radio" > Option 3</label>
             </div>
           </div>
           <p class="card-desc">Used for single-choice selection from a group.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c11', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c11', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c11', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c11', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c11" class="code-block"><code>&lt;label&gt;&lt;input type="radio" name="opt"&gt; Option 1&lt;/label&gt;
@@ -669,9 +671,9 @@
           </div>
           <p class="card-desc">Multi-line text input for longer content like messages.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c12', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c12', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c12', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c12', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c12"
@@ -694,9 +696,9 @@
           </div>
           <p class="card-desc">Dropdown for selecting one option from a list.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c13', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c13', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c13', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c13', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c13" class="code-block"><code>&lt;select&gt;
@@ -723,13 +725,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="text" placeholder="This field is disabled" disabled />
+            <input class="demo-input" type="text" placeholder="This field is disabled" disabled >
           </div>
           <p class="card-desc">A disabled input — cannot be interacted with or submitted.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c14', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c14', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c14', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c14', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c14" class="code-block"><code>&lt;input type="text" placeholder="Disabled" disabled&gt;</code></pre>
@@ -741,13 +743,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="text" value="This is readonly" readonly />
+            <input class="demo-input" type="text" value="This is readonly" readonly >
           </div>
           <p class="card-desc">Readonly — visible and selectable but not editable.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c15', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c15', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c15', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c15', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c15" class="code-block"><code>&lt;input type="text" value="Readonly value" readonly&gt;</code></pre>
@@ -759,13 +761,13 @@
             <span class="card-tag tag-popular">Popular</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="email" placeholder="Email is required *" required />
+            <input class="demo-input" type="email" placeholder="Email is required *" required >
           </div>
           <p class="card-desc">Blocks form submission if this field is left empty.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c16', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c16', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c16', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c16', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c16" class="code-block"><code>&lt;input type="email" placeholder="Email" required&gt;</code></pre>
@@ -777,13 +779,13 @@
             <span class="card-tag tag-essential">Essential</span>
           </div>
           <div class="card-preview">
-            <input class="demo-input" type="text" placeholder="3 to 10 characters" minlength="3" maxlength="10" />
+            <input class="demo-input" type="text" placeholder="3 to 10 characters" minlength="3" maxlength="10" >
           </div>
           <p class="card-desc">Restricts the character count between a min and max value.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c17', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c17', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c17', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c17', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c17" class="code-block"><code>&lt;input type="text" minlength="3" maxlength="10"&gt;</code></pre>
@@ -796,13 +798,13 @@
           </div>
           <div class="card-preview">
             <input class="demo-input" type="text" placeholder="Uppercase only (A-Z)" pattern="[A-Z]+"
-              title="Only uppercase letters" />
+              title="Only uppercase letters" >
           </div>
           <p class="card-desc">Validates input against a regex pattern on submit.</p>
           <div class="actions">
-            <button class="action-btn view-btn" onclick="toggleCode('c18', this)"><i class="fa-solid fa-code"></i> View
+            <button type="button" class="action-btn view-btn" onclick="toggleCode('c18', this)"><i class="fa-solid fa-code"></i> View
               Code</button>
-            <button class="action-btn copy-btn" onclick="copyCode('c18', this)"><i class="fa-solid fa-copy"></i>
+            <button type="button" class="action-btn copy-btn" onclick="copyCode('c18', this)"><i class="fa-solid fa-copy"></i>
               Copy</button>
           </div>
           <pre id="c18"
@@ -812,10 +814,10 @@
       </div>
     </div>
 
-  </main>
+  </div>
 
   <!-- Scroll to Top -->
-  <button id="scrollTopBtn" onclick="scrollToTop()">
+  <button type="button" id="scroll-top-btn" onclick="scrollToTop()" aria-label="Scroll To Top" title="Back to top">
     <i class="fa-solid fa-chevron-up"></i>
   </button>
 
@@ -826,9 +828,9 @@
         <h2 class="footer-logo">⬡ UIverse</h2>
         <p>Build modern, reusable UI components with clean HTML, CSS, and JavaScript.</p>
         <div class="socials">
-          <a href="https://github.com" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://twitter.com" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://github.com" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com" aria-label="Twitter" title="Twitter"><i class="fab fa-x-twitter"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -860,7 +862,7 @@
         <h3>Stay Updated</h3>
         <p>Get notified when new components drop.</p>
         <div class="newsletter-form">
-          <input type="email" placeholder="your@email.com" />
+          <input type="email" placeholder="your@email.com">
           <button type="button">Subscribe</button>
         </div>
       </div>
@@ -894,7 +896,7 @@
     /* Scroll Top */
     function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     window.addEventListener('scroll', () => {
-      document.getElementById('scrollTopBtn').classList.toggle('visible', window.scrollY > 400);
+      document.getElementById('scroll-top-btn').classList.toggle('visible', window.scrollY > 400);
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
 
