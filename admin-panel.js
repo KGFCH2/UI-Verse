@@ -339,11 +339,34 @@ function copyCode(id) {
   if (!pre) return;
 
   const rawCode = pre.querySelector('code').textContent;
-  navigator.clipboard.writeText(rawCode).then(() => {
-    if (typeof showLiveToast === 'function') showLiveToast('Source code copied to clipboard!', 'success');
-  }).catch(() => {
-    if (typeof showLiveToast === 'function') showLiveToast('Copy failed, please retry.', 'error');
-  });
+  
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(rawCode).then(() => {
+      if (typeof showLiveToast === 'function') showLiveToast('Source code copied to clipboard!', 'success');
+    }).catch(() => {
+      if (typeof showLiveToast === 'function') showLiveToast('Copy failed, please retry.', 'error');
+    });
+  } else {
+    // Fallback for non-secure HTTP contexts
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = rawCode;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      
+      if (successful) {
+        if (typeof showLiveToast === 'function') showLiveToast('Source code copied to clipboard!', 'success');
+      } else {
+        if (typeof showLiveToast === 'function') showLiveToast('Copy failed, please retry.', 'error');
+      }
+    } catch (err) {
+      if (typeof showLiveToast === 'function') showLiveToast('Copy failed, please retry.', 'error');
+    }
+  }
 }
 
 // ==========================================
