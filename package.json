@@ -71,6 +71,7 @@
         "components:version:generate": "node scripts/component-metadata.js --generate",
         "components:version:check": "node scripts/component-metadata.js --check",
         "components:version:bump": "node scripts/component-metadata.js"
+        ,"state:test": "playwright test tests/state --reporter=list"
     },
     "devDependencies": {
         "@axe-core/playwright": "^4.0.0",
