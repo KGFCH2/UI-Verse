@@ -660,6 +660,8 @@ body{
 
 .form-preview{
   min-height:260px;
+  max-height:280px;
+  overflow:hidden;
 
   display:flex;
   align-items:center;
@@ -1383,7 +1385,16 @@ body{
   }
 
   .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .bento-grid{
     grid-template-columns:1fr;
+  }
+
+  .bento-large,
+  .bento-medium{
+    grid-column:1;
   }
 
 }
@@ -1392,6 +1403,10 @@ body{
 
   .actions{
     flex-direction:column;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
   }
 
 }
