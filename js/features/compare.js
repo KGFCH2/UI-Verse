@@ -289,7 +289,12 @@
     const cards = getCardElements();
     if (!cards.length) return;
 
-    state.selectedIds = loadSelection();
+    const restoredIds = loadSelection();
+
+    // Keep only IDs that are present on this page load.
+    const validIds = new Set(cards.map((card) => ensureCompareId(card)).filter(Boolean));
+    state.selectedIds = restoredIds.filter((id) => validIds.has(id)).slice(0, MAX_COMPARE);
+    persistSelection();
 
     // Inject checkboxes once
     cards.forEach((card) => {
