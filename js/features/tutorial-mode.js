@@ -14,7 +14,11 @@ const TutorialMode = {
     overlayEl: null,
     tooltipEl: null,
     highlightEl: null,
-    completionKey: ''
+    overlayClickHandler: null,
+    keydownHandler: null,
+    refreshHandler: null,
+    completionKey: '',
+    lastOptions: null
   },
 
   _storageKeys: {
@@ -43,21 +47,23 @@ const TutorialMode = {
 
   /**
    * Start tutorial for a given page/category.
-   * @param {{pageKey?: string, categoryKey?: string, steps: Array}} options
+   * @param {{pageKey?: string, categoryKey?: string, steps: Array, force?: boolean}} options
    */
-  start({ pageKey, categoryKey, steps }) {
+  start({ pageKey, categoryKey, steps, force = false } = {}) {
     this._state.pageKey = pageKey || 'global';
     this._state.categoryKey = categoryKey || 'general';
     this._state.completionKey = this._buildCompletionKey(this._state.pageKey, this._state.categoryKey);
+    this._state.lastOptions = { pageKey: this._state.pageKey, categoryKey: this._state.categoryKey, steps };
 
     if (!steps || !Array.isArray(steps) || steps.length === 0) return;
-    if (this._isCompleted()) return;
+    if (!force && this._isCompleted()) return;
 
     this._state.steps = steps;
     this._state.currentIndex = 0;
     this._state.active = true;
 
     this._ensureUI();
+    this._bindUIEvents();
 
     // Attach tutorial-mode styles (safe to inject multiple times)
     this._injectStyles();
@@ -65,11 +71,23 @@ const TutorialMode = {
   },
 
   restart() {
+    const lastOptions = this._state.lastOptions || {};
     try {
       localStorage.removeItem(this._state.completionKey);
     } catch {}
     this._state.currentIndex = 0;
     this._state.active = true;
+
+    if (this._state.steps.length === 0 && Array.isArray(lastOptions.steps) && lastOptions.steps.length > 0) {
+      this.start({
+        pageKey: lastOptions.pageKey,
+        categoryKey: lastOptions.categoryKey,
+        steps: lastOptions.steps,
+        force: true
+      });
+      return;
+    }
+
     this._render();
   },
 
@@ -80,7 +98,18 @@ const TutorialMode = {
     const link = document.createElement('link');
     link.id = 'tutorial-mode-css';
     link.rel = 'stylesheet';
-    link.href = 'tutorial-mode.css';
+    const scriptSource = (() => {
+      if (document.currentScript && document.currentScript.src) {
+        return document.currentScript.src;
+      }
+
+      const scriptEl = document.querySelector('script[src*="js/features/tutorial-mode.js"]');
+      return scriptEl ? scriptEl.src : '';
+    })();
+
+    link.href = scriptSource
+      ? new URL('../../tutorial-mode.css', scriptSource).href
+      : 'tutorial-mode.css';
     document.head.appendChild(link);
   },
 
@@ -124,9 +153,20 @@ const TutorialMode = {
     this._state.overlayEl = overlay;
     this._state.tooltipEl = panel;
     this._state.highlightEl = highlight;
+  },
 
-    // Actions
-    overlay.addEventListener('click', (e) => {
+  _bindUIEvents() {
+    if (!this._state.overlayEl) return;
+
+    if (this._state.overlayClickHandler) {
+      this._state.overlayEl.removeEventListener('click', this._state.overlayClickHandler);
+    }
+
+    if (this._state.keydownHandler) {
+      document.removeEventListener('keydown', this._state.keydownHandler);
+    }
+
+    this._state.overlayClickHandler = (e) => {
       const btn = e.target && e.target.closest && e.target.closest('button[data-action]');
       if (!btn) return;
       const action = btn.getAttribute('data-action');
@@ -135,18 +175,22 @@ const TutorialMode = {
       else if (action === 'back') this.back();
       else if (action === 'skip') this.skip();
       else if (action === 'restart') this.restart();
-    });
+    };
 
-    // Keyboard
-    document.addEventListener('keydown', (e) => {
+    this._state.keydownHandler = (e) => {
       if (!this._state.active) return;
       if (e.key === 'Escape') {
         e.preventDefault();
         this.skip();
+        return;
       }
       if (e.key === 'ArrowRight') this.next();
       if (e.key === 'ArrowLeft') this.back();
-    });
+    };
+
+    this._state.overlayEl.addEventListener('click', this._state.overlayClickHandler);
+    document.addEventListener('keydown', this._state.keydownHandler);
+
   },
 
   _render() {
@@ -197,14 +241,47 @@ const TutorialMode = {
       }
     }
 
-    // Tooltip position (simple): place panel near top center
-    // Could be improved to anchor near element; keep stable across layouts.
-    this._positionPanel();
+    // Position the tooltip relative to the current target so it tracks layout shifts.
+    this._positionPanel(el);
   },
 
-  _positionPanel() {
-    // Keep the panel fixed so it doesn't jump when scrolling.
-    this._state.tooltipEl.style.transform = 'translateY(0)';
+  _positionPanel(el) {
+    if (!this._state.tooltipEl) return;
+
+    const panel = this._state.tooltipEl;
+
+    // Fallback placement keeps the panel readable when no target is available.
+    if (!el || typeof el.getBoundingClientRect !== 'function') {
+      panel.style.position = 'absolute';
+      panel.style.top = '84px';
+      panel.style.left = '50%';
+      panel.style.transform = 'translateX(-50%)';
+      return;
+    }
+
+    const rect = el.getBoundingClientRect();
+    const panelRect = panel.getBoundingClientRect();
+    const gap = 16;
+    const viewportPadding = 14;
+    const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+    const panelWidth = Math.min(panelRect.width || 560, Math.max(320, viewportWidth - viewportPadding * 2));
+    const panelHeight = panelRect.height || 180;
+
+    let top = rect.bottom + gap;
+    if (top + panelHeight > viewportHeight - viewportPadding && rect.top - gap - panelHeight >= viewportPadding) {
+      top = rect.top - gap - panelHeight;
+    }
+
+    top = Math.max(viewportPadding, Math.min(top, Math.max(viewportPadding, viewportHeight - panelHeight - viewportPadding)));
+
+    let left = rect.left + (rect.width / 2) - (panelWidth / 2);
+    left = Math.max(viewportPadding, Math.min(left, Math.max(viewportPadding, viewportWidth - panelWidth - viewportPadding)));
+
+    panel.style.position = 'absolute';
+    panel.style.top = `${top}px`;
+    panel.style.left = `${left}px`;
+    panel.style.transform = 'none';
   },
 
   _highlightElement(el) {
@@ -231,11 +308,11 @@ const TutorialMode = {
     };
 
     // Keep a single handler to avoid leaks
-    if (this._state._refreshHandler) {
-      window.removeEventListener('scroll', this._state._refreshHandler);
-      window.removeEventListener('resize', this._state._refreshHandler);
+    if (this._state.refreshHandler) {
+      window.removeEventListener('scroll', this._state.refreshHandler);
+      window.removeEventListener('resize', this._state.refreshHandler);
     }
-    this._state._refreshHandler = refresh;
+    this._state.refreshHandler = refresh;
     window.addEventListener('scroll', refresh, { passive: true });
     window.addEventListener('resize', refresh);
   },
@@ -264,6 +341,22 @@ const TutorialMode = {
   complete(skip = false) {
     this._state.active = false;
     this._setCompleted();
+
+    if (this._state.refreshHandler) {
+      window.removeEventListener('scroll', this._state.refreshHandler);
+      window.removeEventListener('resize', this._state.refreshHandler);
+      this._state.refreshHandler = null;
+    }
+
+    if (this._state.overlayEl && this._state.overlayClickHandler) {
+      this._state.overlayEl.removeEventListener('click', this._state.overlayClickHandler);
+      this._state.overlayClickHandler = null;
+    }
+
+    if (this._state.keydownHandler) {
+      document.removeEventListener('keydown', this._state.keydownHandler);
+      this._state.keydownHandler = null;
+    }
 
     if (this._state.highlightEl) this._state.highlightEl.style.display = 'none';
     if (this._state.overlayEl) this._state.overlayEl.style.display = 'none';

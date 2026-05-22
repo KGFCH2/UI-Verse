@@ -13,6 +13,11 @@
     overlayOpen: false,
   };
 
+  let cardsObserver = null;
+  let reconcileQueued = false;
+  let pendingActiveCell = undefined;
+  let syncRetryQueued = false;
+
   function getCardElements() {
     return Array.from(document.querySelectorAll(CARD_SELECTOR));
   }
@@ -29,9 +34,12 @@
     const all = getCardElements();
     const idx = all.indexOf(cardEl);
 
-    const raw = name ? `${name}__${cat}` : `card__${idx}`;
+    const metaKey = [name, cat].filter(Boolean).join('__');
+    const raw = metaKey || `card__${idx}`;
     const safe = raw.replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 80);
-    const id = `${safe}__${idx}`;
+
+    // Keep metadata-backed IDs stable across DOM re-renders.
+    const id = metaKey ? safe : `${safe}__${idx}`;
 
     cardEl.setAttribute(CARD_ID_ATTR, id);
     return id;
@@ -136,6 +144,7 @@
     const cell = document.createElement('div');
     cell.className = 'uiverse-compare-cell';
     cell.tabIndex = 0;
+    cell.setAttribute('aria-current', 'false');
 
     const label = document.createElement('div');
     label.className = 'uiverse-compare-cell-label';
@@ -175,14 +184,38 @@
 
   function syncActive(activeCell) {
     const grid = document.getElementById(OVERLAY_GRID_ID);
-    if (!grid) return;
+    if (!grid) {
+      pendingActiveCell = activeCell;
+      if (!syncRetryQueued) {
+        syncRetryQueued = true;
+        const retry = () => {
+          syncRetryQueued = false;
+          if (pendingActiveCell === undefined) return;
+          const queuedCell = pendingActiveCell;
+          pendingActiveCell = undefined;
+          syncActive(queuedCell);
+        };
+
+        if (typeof window.requestAnimationFrame === 'function') {
+          window.requestAnimationFrame(retry);
+        } else {
+          setTimeout(retry, 0);
+        }
+      }
+      return;
+    }
+
+    // Grid is available now; any queued state has been superseded.
+    pendingActiveCell = undefined;
 
     const cells = Array.from(grid.querySelectorAll('.uiverse-compare-cell'));
     const isActiveCell = (cell) => !!activeCell && cell === activeCell;
 
     cells.forEach((c) => {
-      if (isActiveCell(c)) c.classList.add('uiverse-compare-cell--active');
+      const active = isActiveCell(c);
+      if (active) c.classList.add('uiverse-compare-cell--active');
       else c.classList.remove('uiverse-compare-cell--active');
+      c.setAttribute('aria-current', active ? 'true' : 'false');
     });
   }
 
@@ -219,18 +252,15 @@
       document.body.appendChild(overlay);
 
       overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeOverlayKeepSelection();
+        if (e.target instanceof Element && !e.target.closest('.uiverse-compare-overlay__panel')) {
+          closeOverlayKeepSelection();
+        }
       });
 
       const clearBtn = document.getElementById('uiverse-compare-clear');
       const closeBtn = document.getElementById('uiverse-compare-close');
 
-      clearBtn.addEventListener('click', () => {
-        state.selectedIds = [];
-        persistSelection();
-        refreshCheckboxStates();
-        closeOverlayClearSelection();
-      });
+      clearBtn.addEventListener('click', () => closeOverlayClearSelection());
 
       closeBtn.addEventListener('click', () => closeOverlayKeepSelection());
 
@@ -250,37 +280,51 @@
 
     // initial active styling based on first cell
     const first = grid && grid.querySelector('.uiverse-compare-cell');
-    if (first) syncActive(first);
+    if (first) {
+      syncActive(first);
+      if (typeof first.focus === 'function') {
+        try {
+          first.focus({ preventScroll: true });
+        } catch {
+          first.focus();
+        }
+      }
+    }
   }
 
   function closeOverlayKeepSelection() {
     const overlay = document.getElementById(OVERLAY_ID);
     if (!overlay) return;
+    syncActive(null);
     overlay.classList.remove('uiverse-compare-overlay--open');
     state.overlayOpen = false;
   }
 
   function closeOverlayClearSelection() {
-    const overlay = document.getElementById(OVERLAY_ID);
-    if (!overlay) return;
-    overlay.classList.remove('uiverse-compare-overlay--open');
-    state.overlayOpen = false;
+    state.selectedIds = [];
+    persistSelection();
+    refreshCheckboxStates();
+    closeOverlayKeepSelection();
   }
 
   function onKeyDown(e) {
-    if (e.key !== 'Escape') return;
+    if (e.key !== 'Escape' || !state.overlayOpen) return;
 
-    // Requirement: Escape exits compare mode.
-    // Close overlay but keep selections; also clear active synchronized state.
-    syncActive(null);
-    closeOverlayKeepSelection();
+    // Escape exits compare mode completely.
+    e.preventDefault();
+    closeOverlayClearSelection();
   }
 
   function maybeInit() {
     const cards = getCardElements();
     if (!cards.length) return;
 
-    state.selectedIds = loadSelection();
+    const restoredIds = loadSelection();
+
+    // Keep only IDs that are present on this page load.
+    const validIds = new Set(cards.map((card) => ensureCompareId(card)).filter(Boolean));
+    state.selectedIds = restoredIds.filter((id) => validIds.has(id)).slice(0, MAX_COMPARE);
+    persistSelection();
 
     // Inject checkboxes once
     cards.forEach((card) => {
@@ -294,6 +338,45 @@
     if (state.selectedIds.length >= 2) {
       openOverlay();
     }
+  }
+
+  function mutationTouchesCards(mutations) {
+    const hasCard = (node) => {
+      if (!(node instanceof Element)) return false;
+      return node.matches(CARD_SELECTOR) || !!node.querySelector(CARD_SELECTOR);
+    };
+
+    return mutations.some((mutation) => {
+      if (mutation.type !== 'childList') return false;
+      return Array.from(mutation.addedNodes).some(hasCard) || Array.from(mutation.removedNodes).some(hasCard);
+    });
+  }
+
+  function scheduleCardReconcile() {
+    if (reconcileQueued) return;
+    reconcileQueued = true;
+
+    const run = () => {
+      reconcileQueued = false;
+      maybeInit();
+    };
+
+    if (typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(run);
+      return;
+    }
+    setTimeout(run, 0);
+  }
+
+  function observeDynamicCards() {
+    if (cardsObserver || typeof MutationObserver === 'undefined' || !document.body) return;
+
+    cardsObserver = new MutationObserver((mutations) => {
+      if (!mutationTouchesCards(mutations)) return;
+      scheduleCardReconcile();
+    });
+
+    cardsObserver.observe(document.body, { childList: true, subtree: true });
   }
 
   // Styles injected only when needed (so compare doesn't affect other pages too much)
@@ -336,12 +419,13 @@
       .uiverse-compare-overlay__panel{
         width:min(1100px, 98vw);
         background:var(--body-bg, #fff);
+        color:#0f172a;
         border:1px solid rgba(255,255,255,0.12);
         border-radius:22px;
         overflow:hidden;
         box-shadow:0 30px 80px rgba(0,0,0,0.35);
       }
-      body.dark-mode .uiverse-compare-overlay__panel{ background:rgba(15,23,42,0.92); border-color: rgba(255,255,255,0.06); }
+      body.dark-mode .uiverse-compare-overlay__panel{ background:rgba(15,23,42,0.92); color:#f8fafc; border-color: rgba(255,255,255,0.06); }
       .uiverse-compare-overlay__header{
         display:flex;
         justify-content:space-between;
@@ -352,7 +436,7 @@
       }
       .uiverse-compare-overlay__title{
         font-weight:800;
-        color:#fff;
+        color:inherit;
         display:flex;
         flex-direction:column;
         gap:2px;
@@ -362,9 +446,9 @@
       .uiverse-compare-overlay__actions{ display:flex; gap:10px; }
       .uiverse-compare-clear,
       .uiverse-compare-close{
-        border:1px solid rgba(255,255,255,0.12);
-        background:rgba(0,0,0,0.18);
-        color:#fff;
+        border:1px solid rgba(15,23,42,0.12);
+        background:rgba(15,23,42,0.06);
+        color:#0f172a;
         padding:10px 14px;
         border-radius:12px;
         cursor:pointer;
@@ -372,7 +456,7 @@
         transition:transform .15s ease, background .15s ease;
       }
       .uiverse-compare-clear:hover,
-      .uiverse-compare-close:hover{ transform: translateY(-1px); background:rgba(0,0,0,0.26); }
+      .uiverse-compare-close:hover{ transform: translateY(-1px); background:rgba(15,23,42,0.12); }
       .uiverse-compare-overlay__body{ padding:18px; }
       .uiverse-compare-grid{
         display:grid;
@@ -401,7 +485,7 @@
       .uiverse-compare-cell-label{
         font-size:12px;
         font-weight:800;
-        color: rgba(255,255,255,0.9);
+        color: inherit;
         word-break: break-word;
       }
       .uiverse-compare-cell-preview{
@@ -418,6 +502,16 @@
       .uiverse-compare-cell-preview > *{
         max-width:100%;
       }
+      body.dark-mode .uiverse-compare-clear,
+      body.dark-mode .uiverse-compare-close{
+        border-color: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.06);
+        color: #f8fafc;
+      }
+      body.dark-mode .uiverse-compare-clear:hover,
+      body.dark-mode .uiverse-compare-close:hover{
+        background: rgba(255,255,255,0.12);
+      }
     `;
     document.head.appendChild(style);
   }
@@ -427,10 +521,12 @@
     document.addEventListener('DOMContentLoaded', () => {
       injectStylesOnce();
       maybeInit();
+      observeDynamicCards();
     });
   } else {
     injectStylesOnce();
     maybeInit();
+    observeDynamicCards();
   }
 })();
 
