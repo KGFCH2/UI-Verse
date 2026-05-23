@@ -21,6 +21,7 @@
   let cachedCards = [];
   let cachedCheckboxInputs = [];
   let cachedOverlayGrid = null;
+  let cachedCompareCells = new Map();
 
   function getCardElements() {
     return Array.from(document.querySelectorAll(CARD_SELECTOR));
@@ -119,12 +120,66 @@
     return cell;
   }
 
+  function buildCompareCellSignature(cardEl) {
+    if (!cardEl) return '';
+
+    const name = cardEl.getAttribute('data-name') || '';
+    const cat = cardEl.getAttribute('data-cat') || '';
+    const preview = cardEl.querySelector('.card-preview');
+    const contentSignature = preview ? preview.outerHTML : cardEl.outerHTML;
+
+    return `${name}::${cat}::${contentSignature}`;
+  }
+
+  function ensureCompareCell(compareId, cardEl, onActivate) {
+    if (!compareId || !cardEl) return null;
+
+    const nextSignature = buildCompareCellSignature(cardEl);
+    const cachedEntry = cachedCompareCells.get(compareId);
+
+    if (cachedEntry && cachedEntry.cell && cachedEntry.cell.isConnected && cachedEntry.signature === nextSignature) {
+      cachedEntry.sourceCardEl = cardEl;
+      return cachedEntry.cell;
+    }
+
+    const cell = renderCompareCell(cardEl, onActivate);
+    cachedCompareCells.set(compareId, {
+      cell,
+      signature: nextSignature,
+      sourceCardEl: cardEl,
+    });
+
+    return cell;
+  }
+
   function renderOverlayGrid(gridEl, selectedCards, onActivate) {
     if (!gridEl) return;
 
-    gridEl.innerHTML = '';
+    const nextIds = [];
+
     selectedCards.slice(0, MAX_COMPARE).forEach((cardEl) => {
-      gridEl.appendChild(renderCompareCell(cardEl, onActivate));
+      const compareId = ensureCompareId(cardEl);
+      if (!compareId) return;
+
+      nextIds.push(compareId);
+      const cell = ensureCompareCell(compareId, cardEl, onActivate);
+      if (cell) {
+        gridEl.appendChild(cell);
+      }
+    });
+
+    for (const [compareId, entry] of cachedCompareCells.entries()) {
+      if (nextIds.includes(compareId)) continue;
+      if (entry && entry.cell && entry.cell.parentElement === gridEl) {
+        gridEl.removeChild(entry.cell);
+      }
+    }
+
+    cachedCompareCells.forEach((entry, compareId) => {
+      if (nextIds.includes(compareId)) return;
+      if (entry && entry.cell && !entry.cell.isConnected) {
+        cachedCompareCells.delete(compareId);
+      }
     });
   }
 
@@ -244,7 +299,7 @@
     // Grid is available now; any queued state has been superseded.
     pendingActiveCell = undefined;
 
-    const cells = Array.from(grid.querySelectorAll('.uiverse-compare-cell'));
+    const cells = Array.from(cachedCompareCells.values()).map((entry) => entry && entry.cell).filter(Boolean);
     const isActiveCell = (cell) => !!activeCell && cell === activeCell;
 
     cells.forEach((c) => {
@@ -383,6 +438,12 @@
     });
 
     rebuildCompareCaches(cards);
+
+    for (const compareId of Array.from(cachedCompareCells.keys())) {
+      if (!state.selectedIds.includes(compareId)) {
+        cachedCompareCells.delete(compareId);
+      }
+    }
 
     refreshCheckboxStates();
 
