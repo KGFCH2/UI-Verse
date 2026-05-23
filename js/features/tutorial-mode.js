@@ -17,7 +17,7 @@ const TutorialMode = {
     overlayClickHandler: null,
     keydownHandler: null,
     refreshHandler: null,
-    completionKey: '',
+    completionKey: null,
     lastOptions: null
   },
 
@@ -29,6 +29,15 @@ const TutorialMode = {
     const safePage = String(pageKey || 'global').toLowerCase();
     const safeCat = String(categoryKey || 'general').toLowerCase();
     return `${this._storageKeys.completedPrefix}.${safePage}.${safeCat}`;
+  },
+
+  _assertUsableState({ pageKey, categoryKey, steps } = {}) {
+    return Boolean(
+      pageKey &&
+      categoryKey &&
+      Array.isArray(steps) &&
+      steps.length > 0
+    );
   },
 
   _isCompleted() {
@@ -50,12 +59,18 @@ const TutorialMode = {
    * @param {{pageKey?: string, categoryKey?: string, steps: Array, force?: boolean}} options
    */
   start({ pageKey, categoryKey, steps, force = false } = {}) {
-    this._state.pageKey = pageKey || 'global';
-    this._state.categoryKey = categoryKey || 'general';
-    this._state.completionKey = this._buildCompletionKey(this._state.pageKey, this._state.categoryKey);
-    this._state.lastOptions = { pageKey: this._state.pageKey, categoryKey: this._state.categoryKey, steps };
+    const resolvedPageKey = pageKey || 'global';
+    const resolvedCategoryKey = categoryKey || 'general';
 
-    if (!steps || !Array.isArray(steps) || steps.length === 0) return;
+    if (!this._assertUsableState({ pageKey: resolvedPageKey, categoryKey: resolvedCategoryKey, steps })) return;
+
+    const completionKey = this._buildCompletionKey(resolvedPageKey, resolvedCategoryKey);
+
+    this._state.pageKey = resolvedPageKey;
+    this._state.categoryKey = resolvedCategoryKey;
+    this._state.completionKey = completionKey;
+    this._state.lastOptions = { pageKey: resolvedPageKey, categoryKey: resolvedCategoryKey, steps };
+
     if (!force && this._isCompleted()) return;
 
     this._state.steps = steps;
@@ -72,17 +87,26 @@ const TutorialMode = {
 
   restart() {
     const lastOptions = this._state.lastOptions || {};
+    const pageKey = this._state.pageKey || lastOptions.pageKey;
+    const categoryKey = this._state.categoryKey || lastOptions.categoryKey;
+    const steps = Array.isArray(this._state.steps) && this._state.steps.length > 0
+      ? this._state.steps
+      : lastOptions.steps;
+
+    if (!this._assertUsableState({ pageKey, categoryKey, steps })) return;
+
+    const completionKey = this._buildCompletionKey(pageKey, categoryKey);
     try {
-      localStorage.removeItem(this._state.completionKey);
+      localStorage.removeItem(completionKey);
     } catch {}
     this._state.currentIndex = 0;
     this._state.active = true;
 
     if (this._state.steps.length === 0 && Array.isArray(lastOptions.steps) && lastOptions.steps.length > 0) {
       this.start({
-        pageKey: lastOptions.pageKey,
-        categoryKey: lastOptions.categoryKey,
-        steps: lastOptions.steps,
+        pageKey,
+        categoryKey,
+        steps,
         force: true
       });
       return;
