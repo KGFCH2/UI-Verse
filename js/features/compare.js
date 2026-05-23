@@ -18,9 +18,18 @@
   let pendingActiveCell = undefined;
   let syncRetryQueued = false;
   let keyDownBound = false;
+  let cachedCards = [];
+  let cachedCheckboxInputs = [];
+  let cachedOverlayGrid = null;
 
   function getCardElements() {
     return Array.from(document.querySelectorAll(CARD_SELECTOR));
+  }
+
+  function rebuildCompareCaches(cards = getCardElements()) {
+    cachedCards = cards;
+    cachedCheckboxInputs = Array.from(document.querySelectorAll('.uiverse-compare-checkbox'));
+    cachedOverlayGrid = document.getElementById(OVERLAY_GRID_ID);
   }
 
   function ensureCompareId(cardEl) {
@@ -32,7 +41,7 @@
     const cat = (cardEl.getAttribute('data-cat') || '').trim();
 
     // Fallback: index within grid
-    const all = getCardElements();
+    const all = cachedCards.length ? cachedCards : getCardElements();
     const idx = all.indexOf(cardEl);
 
     const metaKey = [name, cat].filter(Boolean).join('__');
@@ -69,7 +78,7 @@
   function getSelectedCards() {
     if (!state.selectedIds.length) return [];
     const byId = new Map();
-    getCardElements().forEach((el) => {
+    (cachedCards.length ? cachedCards : getCardElements()).forEach((el) => {
       const id = ensureCompareId(el);
       if (id) byId.set(id, el);
     });
@@ -124,8 +133,8 @@
   }
 
   function refreshCheckboxStates() {
-    const cards = getCardElements();
-    const inputs = Array.from(document.querySelectorAll('.uiverse-compare-checkbox'));
+    const inputs = cachedCheckboxInputs.length ? cachedCheckboxInputs : Array.from(document.querySelectorAll('.uiverse-compare-checkbox'));
+    if (!cachedCheckboxInputs.length && inputs.length) cachedCheckboxInputs = inputs;
 
     // sync selected -> inputs
     inputs.forEach((input) => {
@@ -184,7 +193,7 @@
   }
 
   function syncActive(activeCell) {
-    const grid = document.getElementById(OVERLAY_GRID_ID);
+    const grid = cachedOverlayGrid || document.getElementById(OVERLAY_GRID_ID);
     if (!grid) {
       pendingActiveCell = activeCell;
       if (!syncRetryQueued) {
@@ -205,6 +214,8 @@
       }
       return;
     }
+
+    cachedOverlayGrid = grid;
 
     // Grid is available now; any queued state has been superseded.
     pendingActiveCell = undefined;
@@ -268,7 +279,8 @@
       bindOverlayKeydown();
     }
 
-    const grid = document.getElementById(OVERLAY_GRID_ID);
+    const grid = cachedOverlayGrid || document.getElementById(OVERLAY_GRID_ID);
+    cachedOverlayGrid = grid;
     if (grid) {
       grid.innerHTML = '';
       selectedCards.slice(0, MAX_COMPARE).forEach((cardEl) => {
@@ -310,11 +322,13 @@
     const overlay = document.getElementById(OVERLAY_ID);
     if (!overlay) {
       state.overlayOpen = false;
+      cachedOverlayGrid = null;
       return;
     }
     syncActive(null);
     overlay.classList.remove('uiverse-compare-overlay--open');
     state.overlayOpen = false;
+    cachedOverlayGrid = overlay.querySelector(`#${OVERLAY_GRID_ID}`);
   }
 
   function closeOverlayClearSelection() {
@@ -348,6 +362,8 @@
       if (card.querySelector('.uiverse-compare-checkbox-wrap')) return;
       createCheckbox(card);
     });
+
+    rebuildCompareCaches(cards);
 
     refreshCheckboxStates();
 
