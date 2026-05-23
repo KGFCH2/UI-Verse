@@ -18,9 +18,18 @@
   let pendingActiveCell = undefined;
   let syncRetryQueued = false;
   let keyDownBound = false;
+  let cachedCards = [];
+  let cachedCheckboxInputs = [];
+  let cachedOverlayGrid = null;
 
   function getCardElements() {
     return Array.from(document.querySelectorAll(CARD_SELECTOR));
+  }
+
+  function rebuildCompareCaches(cards = getCardElements()) {
+    cachedCards = cards;
+    cachedCheckboxInputs = Array.from(document.querySelectorAll('.uiverse-compare-checkbox'));
+    cachedOverlayGrid = document.getElementById(OVERLAY_GRID_ID);
   }
 
   function ensureCompareId(cardEl) {
@@ -32,7 +41,7 @@
     const cat = (cardEl.getAttribute('data-cat') || '').trim();
 
     // Fallback: index within grid
-    const all = getCardElements();
+    const all = cachedCards.length ? cachedCards : getCardElements();
     const idx = all.indexOf(cardEl);
 
     const metaKey = [name, cat].filter(Boolean).join('__');
@@ -69,7 +78,7 @@
   function getSelectedCards() {
     if (!state.selectedIds.length) return [];
     const byId = new Map();
-    getCardElements().forEach((el) => {
+    (cachedCards.length ? cachedCards : getCardElements()).forEach((el) => {
       const id = ensureCompareId(el);
       if (id) byId.set(id, el);
     });
@@ -124,8 +133,8 @@
   }
 
   function refreshCheckboxStates() {
-    const cards = getCardElements();
-    const inputs = Array.from(document.querySelectorAll('.uiverse-compare-checkbox'));
+    const inputs = cachedCheckboxInputs.length ? cachedCheckboxInputs : Array.from(document.querySelectorAll('.uiverse-compare-checkbox'));
+    if (!cachedCheckboxInputs.length && inputs.length) cachedCheckboxInputs = inputs;
 
     // sync selected -> inputs
     inputs.forEach((input) => {
@@ -184,7 +193,7 @@
   }
 
   function syncActive(activeCell) {
-    const grid = document.getElementById(OVERLAY_GRID_ID);
+    const grid = cachedOverlayGrid || document.getElementById(OVERLAY_GRID_ID);
     if (!grid) {
       pendingActiveCell = activeCell;
       if (!syncRetryQueued) {
@@ -205,6 +214,8 @@
       }
       return;
     }
+
+    cachedOverlayGrid = grid;
 
     // Grid is available now; any queued state has been superseded.
     pendingActiveCell = undefined;
@@ -268,7 +279,8 @@
       bindOverlayKeydown();
     }
 
-    const grid = document.getElementById(OVERLAY_GRID_ID);
+    const grid = cachedOverlayGrid || document.getElementById(OVERLAY_GRID_ID);
+    cachedOverlayGrid = grid;
     if (grid) {
       grid.innerHTML = '';
       selectedCards.slice(0, MAX_COMPARE).forEach((cardEl) => {
@@ -310,11 +322,13 @@
     const overlay = document.getElementById(OVERLAY_ID);
     if (!overlay) {
       state.overlayOpen = false;
+      cachedOverlayGrid = null;
       return;
     }
     syncActive(null);
     overlay.classList.remove('uiverse-compare-overlay--open');
     state.overlayOpen = false;
+    cachedOverlayGrid = overlay.querySelector(`#${OVERLAY_GRID_ID}`);
   }
 
   function closeOverlayClearSelection() {
@@ -348,6 +362,8 @@
       if (card.querySelector('.uiverse-compare-checkbox-wrap')) return;
       createCheckbox(card);
     });
+
+    rebuildCompareCaches(cards);
 
     refreshCheckboxStates();
 
@@ -399,138 +415,11 @@
   // Styles injected only when needed (so compare doesn't affect other pages too much)
   function injectStylesOnce() {
     if (document.getElementById('uiverse-compare-styles')) return;
-    const style = document.createElement('style');
-    style.id = 'uiverse-compare-styles';
-    style.textContent = `
-      .uiverse-compare-checkbox-wrap{
-        position:absolute;
-        top:12px;
-        left:12px;
-        z-index:20;
-        pointer-events:auto;
-        display:flex;
-        align-items:center;
-        gap:8px;
-        background:rgba(255,255,255,0.75);
-        border:1px solid rgba(0,0,0,0.06);
-        backdrop-filter: blur(10px);
-        padding:6px 10px;
-        border-radius:999px;
-        box-shadow:0 8px 22px rgba(0,0,0,0.06);
-      }
-      body.dark-mode .uiverse-compare-checkbox-wrap{
-        background:rgba(15,23,42,0.55);
-        border:1px solid rgba(255,255,255,0.06);
-        box-shadow:0 12px 30px rgba(0,0,0,0.18);
-      }
-      .uiverse-compare-overlay{
-        position:fixed;
-        inset:0;
-        z-index:2000;
-        display:none;
-        background:rgba(15,23,42,0.55);
-        backdrop-filter: blur(8px);
-        padding:20px;
-      }
-      .uiverse-compare-overlay--open{ display:flex; align-items:center; justify-content:center; }
-      .uiverse-compare-overlay__panel{
-        width:min(1100px, 98vw);
-        background:var(--body-bg, #fff);
-        color:#0f172a;
-        border:1px solid rgba(255,255,255,0.12);
-        border-radius:22px;
-        overflow:hidden;
-        box-shadow:0 30px 80px rgba(0,0,0,0.35);
-      }
-      body.dark-mode .uiverse-compare-overlay__panel{ background:rgba(15,23,42,0.92); color:#f8fafc; border-color: rgba(255,255,255,0.06); }
-      .uiverse-compare-overlay__header{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:16px 18px;
-        border-bottom:1px solid rgba(255,255,255,0.08);
-        gap:12px;
-      }
-      .uiverse-compare-overlay__title{
-        font-weight:800;
-        color:inherit;
-        display:flex;
-        flex-direction:column;
-        gap:2px;
-        line-height:1.15;
-      }
-      .uiverse-compare-overlay__hint{ font-size:12px; opacity:0.8; font-weight:600; }
-      .uiverse-compare-overlay__actions{ display:flex; gap:10px; }
-      .uiverse-compare-clear,
-      .uiverse-compare-close{
-        border:1px solid rgba(15,23,42,0.12);
-        background:rgba(15,23,42,0.06);
-        color:#0f172a;
-        padding:10px 14px;
-        border-radius:12px;
-        cursor:pointer;
-        font-weight:700;
-        transition:transform .15s ease, background .15s ease;
-      }
-      .uiverse-compare-clear:hover,
-      .uiverse-compare-close:hover{ transform: translateY(-1px); background:rgba(15,23,42,0.12); }
-      .uiverse-compare-overlay__body{ padding:18px; }
-      .uiverse-compare-grid{
-        display:grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap:14px;
-      }
-      @media (max-width: 980px){ .uiverse-compare-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-      @media (max-width: 640px){ .uiverse-compare-grid{ grid-template-columns: 1fr; } }
-      .uiverse-compare-cell{
-        outline:none;
-        border-radius:18px;
-        border:1px solid rgba(255,255,255,0.10);
-        background:rgba(255,255,255,0.06);
-        padding:12px;
-        min-height:260px;
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        transition:border-color .15s ease, box-shadow .15s ease;
-      }
-      body.dark-mode .uiverse-compare-cell{ background:rgba(2,6,23,0.35); border-color: rgba(255,255,255,0.06); }
-      .uiverse-compare-cell--active{
-        border-color: rgba(235,104,53,0.55) !important;
-        box-shadow: 0 0 0 3px rgba(235,104,53,0.18);
-      }
-      .uiverse-compare-cell-label{
-        font-size:12px;
-        font-weight:800;
-        color: inherit;
-        word-break: break-word;
-      }
-      .uiverse-compare-cell-preview{
-        flex:1;
-        min-height:200px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        overflow:hidden;
-        border-radius:14px;
-        background:rgba(255,255,255,0.05);
-        padding:10px;
-      }
-      .uiverse-compare-cell-preview > *{
-        max-width:100%;
-      }
-      body.dark-mode .uiverse-compare-clear,
-      body.dark-mode .uiverse-compare-close{
-        border-color: rgba(255,255,255,0.12);
-        background: rgba(255,255,255,0.06);
-        color: #f8fafc;
-      }
-      body.dark-mode .uiverse-compare-clear:hover,
-      body.dark-mode .uiverse-compare-close:hover{
-        background: rgba(255,255,255,0.12);
-      }
-    `;
-    document.head.appendChild(style);
+    const link = document.createElement('link');
+    link.id = 'uiverse-compare-styles';
+    link.rel = 'stylesheet';
+    link.href = 'css/compare.css';
+    document.head.appendChild(link);
   }
 
   // Only init on pages that contain cards
