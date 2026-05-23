@@ -885,11 +885,15 @@ body.dark-mode .navbar {
   color: #888;
   text-decoration: none;
   font-size: 14px;
-  transition: color var(--transition);
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
 .footer-col ul li a:hover {
   color: var(--accent);
+  transform: translateX(3px);
+  text-shadow: 0 0 8px rgba(235, 104, 53, 0.4);
 }
 
 .socials {
