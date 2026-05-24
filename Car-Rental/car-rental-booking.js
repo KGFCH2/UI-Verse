@@ -590,3 +590,186 @@ if (footerYear) {
     `© ${new Date().getFullYear()} DriveX. All rights reserved.`;
 
 }
+
+// ============================
+// NAVBAR SCROLL EFFECT
+// ============================
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 40){
+
+    navbar.style.background = "rgba(5,8,22,.92)";
+    navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,.35)";
+
+  }else{
+
+    navbar.style.background = "rgba(5,8,22,.72)";
+    navbar.style.boxShadow = "none";
+
+  }
+
+});
+
+// ============================
+// WISHLIST BUTTON
+// ============================
+
+const wishlistButtons =
+document.querySelectorAll(".wishlist-btn");
+
+wishlistButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const icon = button.querySelector("i");
+
+    if(icon.classList.contains("fa-regular")){
+
+      icon.classList.remove("fa-regular");
+      icon.classList.add("fa-solid");
+
+      button.style.background =
+      "linear-gradient(135deg,#ff416c,#ff4b2b)";
+
+      button.style.transform = "scale(1.1)";
+
+    }else{
+
+      icon.classList.remove("fa-solid");
+      icon.classList.add("fa-regular");
+
+      button.style.background =
+      "rgba(255,255,255,.18)";
+
+      button.style.transform = "scale(1)";
+
+    }
+
+  });
+
+});
+
+// ============================
+// BOOK NOW BUTTONS
+// ============================
+
+const bookButtons =
+document.querySelectorAll(".book-btn");
+
+bookButtons.forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    btn.innerHTML =
+    `<i class="fa-solid fa-circle-check"></i> Reserved`;
+
+    btn.style.background =
+    "linear-gradient(135deg,#16a34a,#22c55e)";
+
+    btn.disabled = true;
+
+  });
+
+});
+
+// ============================
+// SEARCH BUTTON
+// ============================
+
+const searchBtn =
+document.querySelector(".search-btn");
+
+searchBtn.addEventListener("click", () => {
+
+  const location =
+  document.querySelector(
+    'input[type="text"]'
+  ).value;
+
+  if(location.trim() === ""){
+
+    alert("Please enter pickup location");
+
+    return;
+
+  }
+
+  searchBtn.innerHTML =
+  `<i class="fa-solid fa-spinner fa-spin"></i>`;
+
+  setTimeout(() => {
+
+    searchBtn.innerHTML =
+    `<i class="fa-solid fa-check"></i>`;
+
+    setTimeout(() => {
+
+      searchBtn.innerHTML =
+      `<i class="fa-solid fa-magnifying-glass"></i>`;
+
+    },1500);
+
+  },1800);
+
+});
+
+// ============================
+// REVEAL ANIMATION
+// ============================
+
+const revealElements =
+document.querySelectorAll(
+  ".car-card,.feature-card,.testimonial-card,.mini-stat,.brand"
+);
+
+const revealOnScroll = () => {
+
+  revealElements.forEach(el => {
+
+    const top =
+    el.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 80){
+
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+
+    }
+
+  });
+
+};
+
+revealElements.forEach(el => {
+
+  el.style.opacity = "0";
+  el.style.transform = "translateY(40px)";
+  el.style.transition = ".7s ease";
+
+});
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+// ============================
+// FLOATING HERO IMAGE
+// ============================
+
+const heroCar =
+document.querySelector(".hero-image img");
+
+let floating = 0;
+
+setInterval(() => {
+
+  floating += 0.03;
+
+  heroCar.style.transform =
+  `translateY(${Math.sin(floating) * 10}px)
+   rotate(-2deg)`;
+
+},30);
