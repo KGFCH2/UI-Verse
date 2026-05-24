@@ -23,7 +23,6 @@ function validate(){
 
   const index = loadJson(SNIPPETS_INDEX);
   const comps = loadJson(COMPONENTS_FILE);
-  const compIds = new Set(comps.map(c=>c.id));
   const results = [];
 
   for(const entry of index){

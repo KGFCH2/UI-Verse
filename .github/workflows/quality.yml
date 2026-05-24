@@ -67,6 +67,14 @@ jobs:
         run: |
           npm run i18n:sync:check
 
+      - name: Snippet pipeline sync check
+        run: |
+          npm run snippets:check
+
+      - name: Snippet pipeline regression tests
+        run: |
+          npm run test:snippets:pipeline
+
       - name: Component discovery ranking tests
         run: |
           npm run test:search:rank

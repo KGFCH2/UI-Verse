@@ -87,6 +87,7 @@
         "i18n:sync:check": "node scripts/i18n-sync.js --check",
         "snippets:export": "node scripts/snippet-exporter.js",
         "snippets:validate": "node scripts/snippet-validate.js",
+        "test:snippets:pipeline": "node --test tests/snippets/snippet-pipeline.test.js",
         "snippets:check": "npm run snippets:export && npm run snippets:validate",
         "prepare": "npm run build"
     },
