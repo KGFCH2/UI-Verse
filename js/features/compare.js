@@ -33,7 +33,7 @@
     cachedOverlayGrid = document.getElementById(OVERLAY_GRID_ID);
   }
 
-  function loadSelectionFromStorage(storage = sessionStorage) {
+  function loadSelectionFromStorage(storage = localStorage) {
     try {
       const raw = storage.getItem(STORAGE_KEY);
       if (!raw) return [];
@@ -45,7 +45,7 @@
     }
   }
 
-  function persistSelectionToStorage(selectedIds, storage = sessionStorage) {
+  function persistSelectionToStorage(selectedIds, storage = localStorage) {
     try {
       storage.setItem(STORAGE_KEY, JSON.stringify(selectedIds));
     } catch (e) {
