@@ -838,7 +838,7 @@
 
 <div class="component-card">
         <h3>Info Alert</h3>
-        <div class="alert-box alert-info">
+        <div class="alert-box alert-info" role="status" aria-live="polite">
           <div>
             <strong>Info</strong>
             <p>This is an informational message. Learn more about our new features.</p>
@@ -864,7 +864,7 @@
 
 <div class="component-card">
         <h3>Critical Alert</h3>
-        <div class="alert-box alert-critical">
+        <div class="alert-box alert-critical" role="alert" aria-live="assertive">
           <div>
             <strong>Critical</strong>
             <p>Immediate action required! Your account has been locked due to suspicious activity.</p>
@@ -890,7 +890,7 @@
 
 <div class="component-card">
         <h3>Pending Alert</h3>
-        <div class="alert-box alert-pending">
+        <div class="alert-box alert-pending" role="status" aria-live="polite">
           <div>
             <strong>Pending</strong>
             <p>Your request is being processed. You'll be notified once it's complete.</p>
@@ -947,7 +947,7 @@
 <div class="component-card">
         <h3>Alert with Icon</h3>
         <div class="alert-box alert-warning alert-with-icon">
-          <span class="alert-icon">⚠️</span>
+          <span class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
           <div>
             <strong>Warning</strong>
             <p>Please review your input before proceeding.</p>
