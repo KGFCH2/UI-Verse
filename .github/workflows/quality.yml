@@ -87,6 +87,10 @@ jobs:
         run: |
           npm run security:assets:verify
 
+      - name: Performance budgets verification
+        run: |
+          npm run performance:budgets:verify
+
       - name: Accessibility audit (WCAG baseline)
         run: |
           npm run audit:a11y

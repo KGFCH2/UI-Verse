@@ -27,6 +27,9 @@ jobs:
       - name: Security assets verification
         run: npm run security:assets:verify
 
+      - name: Performance budgets verification
+        run: npm run performance:budgets:verify
+
       - name: HTML lint
         run: npm run lint:html
 
