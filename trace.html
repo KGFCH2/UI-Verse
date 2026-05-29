@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="traceability.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
     <div class="back-home">
       <a href="index.html" class="back-home-btn">
         <i class="fa-solid fa-house">
-        </i> 
+        </i>
         Back to Home
       </a>
     </div>
@@ -71,7 +72,209 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col brand">
+        <h2 class="footer-logo">⬡ UIverse</h2>
+        <p>Build modern, reusable UI components with clean HTML, CSS, and JavaScript.</p>
+        <div class="socials">
+          <a href="https://github.com" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com" aria-label="Twitter" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="button.html">Buttons</a></li>
+          <li><a href="navbar.html">Navbars</a></li>
+          <li><a href="cards.html">Cards</a></li>
+          <li><a href="inputs.html">Inputs</a></li>
+          <li><a href="forms.html">Forms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">GitHub Repo</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col newsletter">
+        <h3>Stay Updated</h3>
+        <p>Get notified when new components drop.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com">
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 UIverse. Made with ❤️ for developers worldwide.</p>
+    </div>
+  </footer>
+
   <style>
+    :root {
+      --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    .footer {
+      margin-left: 0;
+      /* full width */
+      background: #ffffff;
+      /* or use same as page: linear-gradient(135deg, #ecfdf5, #d1fae5) */
+      padding: 60px 40px 30px;
+      border-top: 1px solid rgba(15, 118, 110, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.4), transparent);
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #0f766e;
+      /* fallback */
+      margin-bottom: 16px;
+    }
+
+
+
+    .footer-col p {
+      color: #065f46;
+      /* deep green text */
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary-dark);
+      margin-bottom: 24px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: #065f46;
+      /* deep green or your theme color */
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary-light);
+      padding-left: 4px;
+    }
+
+    .footer-col.newsletter input[type="email"] {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(15, 118, 110, 0.2);
+      color: var(--text-main);
+      outline: none;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-col.newsletter input[type="email"]:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
+    }
+
+    .footer-col.newsletter button {
+      background: var(--accent);
+      /* or your primary green */
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .footer-col.newsletter button:hover {
+      background: var(--primary-dark);
+    }
+
+
+    .socials a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(20, 184, 166, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      color: var(--primary-dark);
+      transition: all 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(15, 118, 110, 0.2);
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      color: #065f46;
+      font-size: 13px;
+    }
+
     .back-home {
       margin: 20px 0;
       display: flex;
@@ -109,4 +312,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="js/features/traceability.js"></script>
 </body>
+
 </html>
