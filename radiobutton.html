@@ -76,6 +76,291 @@
     </div>
   </section>
 
+  <!-- ============ COMPONENT 11: IOS SEGMENT RADIO ============ -->
+<div class="component-card">
+  <div class="card-preview">
+    <div class="ios-radio-group">
+      <label class="ios-radio">
+        <input type="radio" name="ios" checked>
+        <span class="ios-pill">Daily</span>
+      </label>
+
+      <label class="ios-radio">
+        <input type="radio" name="ios">
+        <span class="ios-pill">Weekly</span>
+      </label>
+
+      <label class="ios-radio">
+        <input type="radio" name="ios">
+        <span class="ios-pill">Monthly</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card-content">
+    <div class="card-top">
+      <h3>iOS Segment Radio</h3>
+      <span>Smooth</span>
+    </div>
+
+    <p>
+      Apple-inspired segmented radio control with soft backgrounds
+      and smooth active transitions.
+    </p>
+
+    <div class="card-actions">
+      <button onclick="toggleCode('r11')"><i class="fa-solid fa-code"></i> View Code</button>
+      <button onclick="copyCode('r11')"><i class="fa-solid fa-copy"></i> Copy</button>
+      <button><i class="fa-solid fa-bookmark"></i> Save</button>
+    </div>
+  </div>
+
+  <pre id="r11" class="code-block" style="display:none;"><code>&lt;label class="ios-radio"&gt;
+  &lt;input type="radio" name="ios" checked&gt;
+  &lt;span class="ios-pill"&gt;Daily&lt;/span&gt;
+&lt;/label&gt;
+
+.ios-radio input:checked ~ .ios-pill {
+  background: #111827;
+  color: #fff;
+}</code></pre>
+</div>
+
+<!-- ============ COMPONENT 12: MUSIC PLAYER RADIO ============ -->
+<div class="component-card">
+  <div class="card-preview dark-preview">
+    <div class="music-radio-group">
+
+      <label class="music-radio">
+        <input type="radio" name="music" checked>
+
+        <div class="music-card">
+          <div class="music-cover">
+            <i class="fa-solid fa-music"></i>
+          </div>
+
+          <div class="music-info">
+            <strong>Synthwave</strong>
+            <span>Retro Mix</span>
+          </div>
+
+          <div class="music-wave"></div>
+        </div>
+      </label>
+
+      <label class="music-radio">
+        <input type="radio" name="music">
+
+        <div class="music-card">
+          <div class="music-cover">
+            <i class="fa-solid fa-headphones"></i>
+          </div>
+
+          <div class="music-info">
+            <strong>Lo-Fi</strong>
+            <span>Focus Beats</span>
+          </div>
+
+          <div class="music-wave"></div>
+        </div>
+      </label>
+
+    </div>
+  </div>
+
+  <div class="card-content">
+    <div class="card-top">
+      <h3>Music Player Radio</h3>
+      <span>Creative</span>
+    </div>
+
+    <p>
+      Audio-inspired radio selection cards with animated equalizer glow effects.
+    </p>
+
+    <div class="card-actions">
+      <button onclick="toggleCode('r12')"><i class="fa-solid fa-code"></i> View Code</button>
+      <button onclick="copyCode('r12')"><i class="fa-solid fa-copy"></i> Copy</button>
+      <button><i class="fa-solid fa-bookmark"></i> Save</button>
+    </div>
+  </div>
+
+  <pre id="r12" class="code-block" style="display:none;"><code>&lt;label class="music-radio"&gt;
+  &lt;input type="radio" name="music" checked&gt;
+
+  &lt;div class="music-card"&gt;
+    &lt;strong&gt;Synthwave&lt;/strong&gt;
+  &lt;/div&gt;
+&lt;/label&gt;
+
+.music-radio input:checked ~ .music-card {
+  border-color: #8b5cf6;
+  transform: scale(1.03);
+}</code></pre>
+</div>
+
+<!-- ============ COMPONENT 13: STATUS SELECT RADIO ============ -->
+<div class="component-card">
+  <div class="card-preview">
+    <div class="status-radio-group">
+
+      <label class="status-radio online">
+        <input type="radio" name="status" checked>
+        <span class="status-dot"></span>
+        <span class="status-label">Online</span>
+      </label>
+
+      <label class="status-radio away">
+        <input type="radio" name="status">
+        <span class="status-dot"></span>
+        <span class="status-label">Away</span>
+      </label>
+
+      <label class="status-radio busy">
+        <input type="radio" name="status">
+        <span class="status-dot"></span>
+        <span class="status-label">Busy</span>
+      </label>
+
+    </div>
+  </div>
+
+  <div class="card-content">
+    <div class="card-top">
+      <h3>Status Select Radio</h3>
+      <span>Utility</span>
+    </div>
+
+    <p>
+      Presence-style radio buttons with animated colored indicators and hover effects.
+    </p>
+
+    <div class="card-actions">
+      <button onclick="toggleCode('r13')"><i class="fa-solid fa-code"></i> View Code</button>
+      <button onclick="copyCode('r13')"><i class="fa-solid fa-copy"></i> Copy</button>
+      <button><i class="fa-solid fa-bookmark"></i> Save</button>
+    </div>
+  </div>
+
+  <pre id="r13" class="code-block" style="display:none;"><code>&lt;label class="status-radio online"&gt;
+  &lt;input type="radio" name="status" checked&gt;
+  &lt;span class="status-dot"&gt;&lt;/span&gt;
+  &lt;span class="status-label"&gt;Online&lt;/span&gt;
+&lt;/label&gt;
+
+.status-radio input:checked ~ .status-dot {
+  transform: scale(1.2);
+}</code></pre>
+</div>
+
+<!-- ============ COMPONENT 14: IMAGE PICKER RADIO ============ -->
+<div class="component-card">
+  <div class="card-preview">
+    <div class="image-radio-group">
+
+      <label class="image-radio">
+        <input type="radio" name="theme" checked>
+
+        <div class="image-card">
+          <img src="https://picsum.photos/200/120?1" alt="">
+          <span>Nature</span>
+        </div>
+      </label>
+
+      <label class="image-radio">
+        <input type="radio" name="theme">
+
+        <div class="image-card">
+          <img src="https://picsum.photos/200/120?2" alt="">
+          <span>City</span>
+        </div>
+      </label>
+
+    </div>
+  </div>
+
+  <div class="card-content">
+    <div class="card-top">
+      <h3>Image Picker Radio</h3>
+      <span>Gallery</span>
+    </div>
+
+    <p>
+      Visual image-based radio selector perfect for themes, wallpapers, or product previews.
+    </p>
+
+    <div class="card-actions">
+      <button onclick="toggleCode('r14')"><i class="fa-solid fa-code"></i> View Code</button>
+      <button onclick="copyCode('r14')"><i class="fa-solid fa-copy"></i> Copy</button>
+      <button><i class="fa-solid fa-bookmark"></i> Save</button>
+    </div>
+  </div>
+
+  <pre id="r14" class="code-block" style="display:none;"><code>&lt;label class="image-radio"&gt;
+  &lt;input type="radio" name="theme" checked&gt;
+
+  &lt;div class="image-card"&gt;
+    &lt;img src="image.jpg"&gt;
+  &lt;/div&gt;
+&lt;/label&gt;
+
+.image-radio input:checked ~ .image-card {
+  border-color: #2563eb;
+}</code></pre>
+</div>
+
+<!-- ============ COMPONENT 15: LIQUID RADIO BUTTON ============ -->
+<div class="component-card">
+  <div class="card-preview dark-preview">
+    <div class="liquid-radio-group">
+
+      <label class="liquid-radio">
+        <input type="radio" name="liquid" checked>
+        <span class="liquid-circle"></span>
+        <span class="liquid-label">Ocean</span>
+      </label>
+
+      <label class="liquid-radio">
+        <input type="radio" name="liquid">
+        <span class="liquid-circle"></span>
+        <span class="liquid-label">River</span>
+      </label>
+
+      <label class="liquid-radio">
+        <input type="radio" name="liquid">
+        <span class="liquid-circle"></span>
+        <span class="liquid-label">Rain</span>
+      </label>
+
+    </div>
+  </div>
+
+  <div class="card-content">
+    <div class="card-top">
+      <h3>Liquid Radio Button</h3>
+      <span>Animated</span>
+    </div>
+
+    <p>
+      Fluid-inspired glowing radio buttons with ripple animations and vibrant gradients.
+    </p>
+
+    <div class="card-actions">
+      <button onclick="toggleCode('r15')"><i class="fa-solid fa-code"></i> View Code</button>
+      <button onclick="copyCode('r15')"><i class="fa-solid fa-copy"></i> Copy</button>
+      <button><i class="fa-solid fa-bookmark"></i> Save</button>
+    </div>
+  </div>
+
+  <pre id="r15" class="code-block" style="display:none;"><code>&lt;label class="liquid-radio"&gt;
+  &lt;input type="radio" name="liquid" checked&gt;
+  &lt;span class="liquid-circle"&gt;&lt;/span&gt;
+&lt;/label&gt;
+
+.liquid-radio input:checked ~ .liquid-circle {
+  animation: pulse 1.5s infinite;
+}</code></pre>
+</div>
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
