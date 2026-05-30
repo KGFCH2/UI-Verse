@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="../dist/shared.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>My Collection — UIverse</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <!-- CSS -->
+
+  <link
+    rel="stylesheet"
+    href="../css/mycollection.css"
+  >
+
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+  <div>
+
+    <div class="sidebar-brand">
+
+      <div class="brand-icon">
+        ⬡
+      </div>
+
+      <div class="brand-text">
+        UIverse
+      </div>
+
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="#">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a
+        href="#"
+        class="active"
+      >
+        <i class="fa-solid fa-bookmark"></i>
+        <span>My Collection</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Components</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-fire"></i>
+        <span>Trending</span>
+      </a>
+
+      <a href="#">
+        <i class="fa-solid fa-code"></i>
+        <span>Source</span>
+      </a>
+
+    </nav>
+
+  </div>
+
+
+
+</aside>
+
+<!-- =====================================================
+TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+  <div class="search-box">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+      type="text"
+      placeholder="Search saved components..."
+     data-a11y-remediation="label-needed">
+
+  </div>
+
+  <div class="topbar-actions">
+
+    <button class="outline-btn" data-a11y-remediation="button-label-needed">
+      Import
+    </button>
+
+    <button class="primary-btn">
+      New Collection
+    </button>
+
+  </div>
+
+</header>
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main-home">
+
+  <!-- HERO -->
+
+  <section class="hero-section">
+
+    <div class="hero-left">
+
+      <div class="hero-badge">
+        ✦ Saved Components
+      </div>
+
+      <h1>
+        My <span>Collection</span>
+      </h1>
+
+      <p>
+
+        Organize, save and manage
+        your favorite UI components
+        in one futuristic workspace.
+
+      </p>
+
+      <div class="hero-stats">
+
+        <div class="hero-stat">
+
+          <h2>
+            248
+          </h2>
+
+          <span>
+            Saved UI
+          </span>
+
+        </div>
+
+        <div class="hero-stat">
+
+          <h2>
+            18
+          </h2>
+
+          <span>
+            Collections
+          </span>
+
+        </div>
+
+        <div class="hero-stat">
+
+          <h2>
+            4.9
+          </h2>
+
+          <span>
+            Favorites
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PREVIEW -->
+
+    <div class="hero-preview">
+
+      <div class="preview-card">
+
+        <div class="preview-top">
+
+          <span>
+            Recent Saves
+          </span>
+
+          <button>
+            View All
+          </button>
+
+        </div>
+
+        <div class="preview-ui">
+
+          <div class="mini-ui purple-ui"></div>
+
+          <div class="mini-ui blue-ui"></div>
+
+          <div class="mini-ui orange-ui"></div>
+
+          <div class="mini-ui green-ui"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FILTERS -->
+
+  <section class="filters-section">
+
+    <button class="filter-btn active">
+      All
+    </button>
+
+    <button class="filter-btn">
+      Dashboard
+    </button>
+
+    <button class="filter-btn">
+      Cards
+    </button>
+
+    <button class="filter-btn">
+      Forms
+    </button>
+
+    <button class="filter-btn">
+      Navigation
+    </button>
+
+    <button class="filter-btn">
+      AI UI
+    </button>
+
+  </section>
+
+  <!-- COLLECTION GRID -->
+
+  <section class="collection-grid">
+
+    <!-- CARD -->
+
+    <div class="collection-card">
+
+      <div class="card-preview purple-gradient">
+
+        <div class="preview-window">
+
+          <div class="preview-header"></div>
+
+          <div class="preview-content"></div>
+
+        </div>
+
+        <button class="save-btn active-save">
+          <i class="fa-solid fa-bookmark"></i>
+        </button>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-top">
+
+          <span class="component-tag">
+            Dashboard
+          </span>
+
+          <span class="likes">
+            <i class="fa-solid fa-heart"></i>
+            2.1K
+          </span>
+
+        </div>
+
+        <h2>
+          Analytics Dashboard
+        </h2>
+
+        <p>
+
+          Modern analytics interface
+          with futuristic cards and charts.
+
+        </p>
+
+        <div class="card-footer">
+
+          <button class="view-btn">
+            Preview
+          </button>
+
+          <button class="code-btn">
+            Source
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+
+    <div class="collection-card">
+
+      <div class="card-preview blue-gradient">
+
+        <div class="preview-mobile">
+
+          <div class="mobile-bar"></div>
+
+          <div class="mobile-card"></div>
+
+          <div class="mobile-card small"></div>
+
+        </div>
+
+        <button class="save-btn active-save">
+          <i class="fa-solid fa-bookmark"></i>
+        </button>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-top">
+
+          <span class="component-tag">
+            Mobile
+          </span>
+
+          <span class="likes">
+            <i class="fa-solid fa-heart"></i>
+            1.8K
+          </span>
+
+        </div>
+
+        <h2>
+          Mobile Banking UI
+        </h2>
+
+        <p>
+
+          Premium mobile dashboard
+          inspired by fintech apps.
+
+        </p>
+
+        <div class="card-footer">
+
+          <button class="view-btn">
+            Preview
+          </button>
+
+          <button class="code-btn">
+            Source
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+
+    <div class="collection-card">
+
+      <div class="card-preview orange-gradient">
+
+        <div class="preview-chat">
+
+          <div class="chat-bubble"></div>
+
+          <div class="chat-bubble small-chat"></div>
+
+          <div class="chat-bubble"></div>
+
+        </div>
+
+        <button class="save-btn">
+          <i class="fa-regular fa-bookmark"></i>
+        </button>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-top">
+
+          <span class="component-tag">
+            Chat UI
+          </span>
+
+          <span class="likes">
+            <i class="fa-solid fa-heart"></i>
+            3.4K
+          </span>
+
+        </div>
+
+        <h2>
+          AI Chat Interface
+        </h2>
+
+        <p>
+
+          Sleek AI messaging interface
+          with futuristic interactions.
+
+        </p>
+
+        <div class="card-footer">
+
+          <button class="view-btn">
+            Preview
+          </button>
+
+          <button class="code-btn">
+            Source
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+
+    <div class="collection-card">
+
+      <div class="card-preview green-gradient">
+
+        <div class="preview-kanban">
+
+          <div class="kanban-col"></div>
+
+          <div class="kanban-col"></div>
+
+          <div class="kanban-col"></div>
+
+        </div>
+
+        <button class="save-btn active-save">
+          <i class="fa-solid fa-bookmark"></i>
+        </button>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-top">
+
+          <span class="component-tag">
+            Productivity
+          </span>
+
+          <span class="likes">
+            <i class="fa-solid fa-heart"></i>
+            2.7K
+          </span>
+
+        </div>
+
+        <h2>
+          Kanban Workspace
+        </h2>
+
+        <p>
+
+          Advanced productivity board
+          with drag and drop style UI.
+
+        </p>
+
+        <div class="card-footer">
+
+          <button class="view-btn">
+            Preview
+          </button>
+
+          <button class="code-btn">
+            Source
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col brand">
+        <h2 class="footer-logo">⬡ UIverse</h2>
+        <p>Build modern, reusable UI components with clean HTML, CSS, and JavaScript.</p>
+        <div class="socials">
+          <a href="https://github.com" aria-label="GitHub" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com" aria-label="LinkedIn" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" aria-label="Twitter" title="Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li>
+            <a href="button.html">Buttons</a>
+          </li>
+          <li>
+            <a href="navbar.html">Navbars</a>
+          </li>
+          <li>
+            <a href="cards.html">Cards</a>
+          </li>
+          <li>
+            <a href="inputs.html">Inputs</a>
+          </li>
+          <li>
+            <a href="forms.html">Forms</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li>
+            <a href="#">Documentation</a>
+          </li>
+          <li>
+            <a href="#">GitHub Repo</a>
+          </li>
+          <li>
+            <a href="#">Community</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Legal</h3>
+        <ul>
+          <li>
+            <a href="privacypolicy.html">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="terms.html">Terms of Service</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col newsletter">
+        <h3>Stay Updated</h3>
+        <p>Get notified when new components drop.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com">
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 UIverse. Made with ❤️ for developers worldwide.</p>
+    </div>
+  </footer>
+
+<script src="../js/collection.js"></script>
+
+    <script src="../dist/shared.js"></script>
+</body>
+</html>
